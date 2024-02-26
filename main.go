@@ -2,79 +2,89 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
-	"os"
-
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
+	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
+	"github.com/joho/godotenv"
+	"log"
+	"net/http"
 )
 
 func main() {
-	// Put Your Bot Token via ENV Vars
-	b, err := gotgbot.NewBot(
-		os.Getenv("BOT_TOKEN"),
-		&gotgbot.BotOpts{
-			Client: http.Client{},
-		},
-	)
+	// Load environment variable
+	envFile, _ := godotenv.Read(".env")
+	botToken := envFile["BOT_TOKEN"]
+
+	b, err := gotgbot.NewBot(botToken, &gotgbot.BotOpts{
+		Client: http.Client{},
+	})
 	if err != nil {
-		panic("failed to create new bot: " + err.Error())
+		log.Fatalf("failed to create new bot: %s", err)
 	}
 
-	// Create updater and dispatcher.
 	updater := ext.NewUpdater(nil)
 	dispatcher := updater.Dispatcher
 
-	// Handlers for runnning commands.
-	dispatcher.AddHandler(handlers.NewCommand("start", start))
-	dispatcher.AddHandler(handlers.NewCommand("run", run))
+	dispatcher.AddHandler(handlers.NewCommand("start", startCommand))
+	dispatcher.AddHandler(handlers.NewCommand("help", helpCommand))
+	dispatcher.AddHandler(handlers.NewCommand("about", aboutCommand))
+	dispatcher.AddHandler(handlers.NewCommand("query", queryCommand))
+	dispatcher.AddHandler(handlers.NewMessage(message.All, handleMessage))
 
 	err = updater.StartPolling(b, &ext.PollingOpts{DropPendingUpdates: true})
 	if err != nil {
-		log.Fatalf("[Polling] Failed to start polling: %w\n", err)
-	} else {
-		log.Println("[Polling] Started Polling...!")
+		log.Fatalf("Failed to start polling: %s", err)
 	}
+	log.Println("Bot started!")
 
-	// log msg telling that bot has started
-	fmt.Printf("%s has been started...!\nMade with ❤️ by @DivideProjects\n", b.User.Username)
-
-	// Idle, to keep updates coming in, and avoid bot stopping.
 	updater.Idle()
 }
 
-func start(bot *gotgbot.Bot, ctx *ext.Context) error {
-	msg := ctx.EffectiveMessage
-	// To ensure bot does not reply outside of private chats
-	if ctx.EffectiveChat.Type != "private" {
-		return ext.EndGroups
-	}
-
-	user_name := ctx.EffectiveUser.FirstName
-
-	// Following string is replied to cmd user on /start
-	start_msg := "*Hi %v*,\n" +
-		"I am a Simple Telegram made using [Go](https://go.dev)*\n" +
-		"Brought to You with ❤️ By @DivideProjects"
-	// For Checking either user joined channel or not
-	_, _ = msg.Reply(bot, fmt.Sprintf(start_msg, user_name), &gotgbot.SendMessageOpts{ParseMode: "Markdown"})
-	return ext.EndGroups
+func startCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+	welcomeMessage := fmt.Sprintf("👋 Welcome to MediQuery Bot! Your assistant for medical queries and feedback.\n\n" +
+		"💡 I can help you find answers to medical questions, provide links to reputable sources, and collect feedback on medical information gaps. My goal is to make reliable medical information more accessible and to continuously improve based on your feedback.\n\n" +
+		"Here's how you can get started:\n" +
+		"- Use /query followed by your question to get medical information.\n" +
+		"- Use /feedback to provide feedback or report gaps in our knowledge base.\n" +
+		"- If you need help or want to learn more about how I work, just type /help.\n" +
+		"- Curious about who I am and my mission? Type /about for more information on my background and how I operate.\n\n" +
+		"What would you like to know today? Feel free to ask me anything!")
+	_, err := ctx.EffectiveMessage.Reply(b, welcomeMessage, nil)
+	return err
 }
 
-func run(bot *gotgbot.Bot, ctx *ext.Context) error {
-	chat := ctx.EffectiveChat
-	msg := ctx.EffectiveMessage
+func helpCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+	helpMessage := "🆘 Need some help? Here's what I can do for you:\n\n" +
+		"/query [your question] - Use this command followed by your medical question to get information.\n" +
+		"/feedback - Provide feedback or suggest improvements.\n" +
+		"/about - Learn more about MediQuery Bot and our mission.\n" +
+		"/help - Display this help message again.\n\n" +
+		"Just type your command and follow the instructions. I'm here to help!"
+	_, err := ctx.EffectiveMessage.Reply(b, helpMessage, nil)
+	return err
+}
 
-	// To ensure bot does not reply outside of private chats
-	if chat.Type != "private" {
-		msg.Reply(bot, "This command only works in private chats!", nil)
-		return ext.EndGroups
-	}
-	text := "This command does nothing, you can build your bot by looking my source code here:\nhttps://github.com/divkix/GoLangTgBot"
+func aboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+	aboutMessage := "🤖 About MediQuery Bot:\n\n" +
+		"MediQuery Bot is designed to provide quick, reliable medical information and collect feedback to improve our knowledge base. Our goal is to make medical information more accessible and help fill in the gaps with your feedback.\n\n" +
+		"Remember: The information provided is for educational purposes and should not be considered medical advice.\n\n" +
+		"👩‍💻 Developed by ___. For more information or support, contact us at ___."
+	_, err := ctx.EffectiveMessage.Reply(b, aboutMessage, nil)
+	return err
+}
 
-	_, _ = msg.Reply(bot, text, &gotgbot.SendMessageOpts{ParseMode: "Markdown", DisableWebPagePreview: false})
+func queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+	userQuery := ctx.EffectiveMessage.Text
+	dummyResponse := fmt.Sprintf("🔍 You asked: '%s'\n\n"+
+		"📚 Here's a quick answer: https://tii.la/cafef \n\n"+
+		"Remember, this information is for educational purposes only and should not replace professional medical advice.", userQuery)
+	_, err := ctx.EffectiveMessage.Reply(b, dummyResponse, nil)
+	return err
+}
 
-	return ext.EndGroups
+func handleMessage(b *gotgbot.Bot, ctx *ext.Context) error {
+	text := "I'm sorry, I don't understand that."
+	_, err := ctx.EffectiveMessage.Reply(b, text, nil)
+	return err
 }
