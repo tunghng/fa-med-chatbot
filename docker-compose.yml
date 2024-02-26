@@ -1,13 +1,14 @@
-#version: '3.8'
-#services:
-#  bot1:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    command: /FirstBot
-#
-#  bot2:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    command: /SecondBot
+#THIS IS NOT WORKING YET
+version: '3.8'
+services:
+  bot1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /FirstBot
+
+  bot2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /SecondBot

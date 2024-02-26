@@ -14,8 +14,9 @@ import (
 func main() {
 	// Load environment variable
 	envFile, _ := godotenv.Read(".env")
-	botToken := envFile["BOT_TOKEN"]
+	botToken := envFile["MEDI_QUERY_BOT"]
 
+	// Create bot
 	b, err := gotgbot.NewBot(botToken, &gotgbot.BotOpts{
 		Client: http.Client{},
 	})
@@ -23,6 +24,7 @@ func main() {
 		log.Fatalf("failed to create new bot: %s", err)
 	}
 
+	// Command Handlers
 	updater := ext.NewUpdater(nil)
 	dispatcher := updater.Dispatcher
 
