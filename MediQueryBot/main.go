@@ -8,6 +8,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
 	"github.com/joho/godotenv"
 	"log"
+	"med-chat-bot/MediQueryBot/search"
 	"net/http"
 )
 
@@ -78,10 +79,21 @@ func aboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 
 func queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	userQuery := ctx.EffectiveMessage.Text
-	dummyResponse := fmt.Sprintf("🔍 You asked: '%s'\n\n"+
-		"📚 Here's a quick answer: https://tii.la/cafef \n\n"+
-		"Remember, this information is for educational purposes only and should not replace professional medical advice.", userQuery)
-	_, err := ctx.EffectiveMessage.Reply(b, dummyResponse, nil)
+
+	results, err := search.PerformSearch(userQuery)
+	fmt.Print(results)
+	if err != nil {
+		log.Printf("%v", err)
+		_, err := ctx.EffectiveMessage.Reply(b, "Failed to perform the search.", &gotgbot.SendMessageOpts{})
+		return err
+	}
+
+	replyText := "Here are your search results:\n"
+	for i, item := range results.Items {
+		replyText += fmt.Sprintf("%d. [%s](%s)\n", i+1, item.Title, item.Link)
+	}
+
+	_, err = ctx.EffectiveMessage.Reply(b, replyText, &gotgbot.SendMessageOpts{ParseMode: "Markdown", DisableWebPagePreview: true})
 	return err
 }
 
