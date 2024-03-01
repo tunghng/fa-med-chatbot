@@ -15,13 +15,13 @@
 # First Bot Build Stage
 FROM golang:1.22.0-alpine AS builder1
 WORKDIR /app1
-COPY MediQueryBot/ .
+COPY mediQueryBot/ .
 RUN CGO_ENABLED=0 GOOS=`go env GOHOSTOS` GOARCH=`go env GOHOSTARCH` go build -o out/FirstBot -ldflags="-w -s" .
 
 # Second Bot Build Stage
 FROM golang:1.22.0-alpine AS builder2
 WORKDIR /app2
-COPY MediRequestBot/ .
+COPY mediRequestBot/ .
 RUN CGO_ENABLED=0 GOOS=`go env GOHOSTOS` GOARCH=`go env GOHOSTARCH` go build -o out/SecondBot -ldflags="-w -s" .
 
 # Final Stage

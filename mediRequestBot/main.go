@@ -21,6 +21,7 @@ func main() {
 	b, err := gotgbot.NewBot(botToken, &gotgbot.BotOpts{
 		Client: http.Client{},
 	})
+
 	if err != nil {
 		log.Fatalf("failed to create new bot: %s", err)
 	}

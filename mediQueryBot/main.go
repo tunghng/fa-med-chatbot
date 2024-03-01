@@ -7,20 +7,45 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
 	"github.com/joho/godotenv"
+	"github.com/spf13/viper"
 	"log"
-	"med-chat-bot/MediQueryBot/search"
+	"med-chat-bot/cfg"
+	"med-chat-bot/db"
+	"med-chat-bot/mediQueryBot/search"
 	"net/http"
 )
+
+func newMySQLConnection() *db.DB {
+	_db, err := db.Connect(&db.Config{
+		Driver:                db.DriverMySQL,
+		LogDebug:              viper.GetBool(cfg.ConfigKeyDBMySQLLogBug),
+		Username:              viper.GetString(cfg.ConfigKeyDBMySQLUsername),
+		Password:              viper.GetString(cfg.ConfigKeyDBMySQLPassword),
+		Host:                  viper.GetString(cfg.ConfigKeyDBMySQLHost),
+		Port:                  viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
+		Database:              viper.GetString(cfg.ConfigKeyDBMySQLDatabase),
+		MaxIdleConnections:    viper.GetInt(cfg.ConfigKeyDBMaxIdleConnections),
+		MaxOpenConnections:    viper.GetInt(cfg.ConfigKeyDBMaxOpenConnections),
+		ConnectionMaxLifetime: viper.GetInt(cfg.ConfigKeyDBConnectionMaxLifetime),
+	})
+	if err != nil {
+		log.Fatalf("Connecting to MySQL DB: %v", err)
+	}
+	return _db
+}
 
 func main() {
 	// Load environment variable
 	envFile, _ := godotenv.Read(".env")
 	botToken := envFile["MEDI_QUERY_BOT"]
 
+	//db := newMySQLConnection()
+
 	// Create bot
 	b, err := gotgbot.NewBot(botToken, &gotgbot.BotOpts{
 		Client: http.Client{},
 	})
+
 	if err != nil {
 		log.Fatalf("failed to create new bot: %s", err)
 	}
@@ -80,18 +105,22 @@ func aboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 func queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	userQuery := ctx.EffectiveMessage.Text
 
-	results, err := search.PerformSearch(userQuery)
-	fmt.Print(results)
-	if err != nil {
-		log.Printf("%v", err)
-		_, err := ctx.EffectiveMessage.Reply(b, "Failed to perform the search.", &gotgbot.SendMessageOpts{})
-		return err
-	}
+	webResults, err := search.PerformSearchWebsite(userQuery)
 
-	replyText := "Here are your search results:\n"
-	for i, item := range results.Items {
-		replyText += fmt.Sprintf("%d. [%s](%s)\n", i+1, item.Title, item.Link)
+	//databaseResult, err := search.PerformSearchWordPress(db.GormDB(), userQuery)
+
+	replyText := "Here are your search webResults:\n"
+	var count int
+	for i, item := range webResults.Items {
+		count = i + 1
+		replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
 	}
+	//for i, item := range databaseResult.Items {
+	//	if count+i+1 < 6 {
+	//		count = i + 1
+	//		replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
+	//	}
+	//}
 
 	_, err = ctx.EffectiveMessage.Reply(b, replyText, &gotgbot.SendMessageOpts{ParseMode: "Markdown", DisableWebPagePreview: true})
 	return err
