@@ -2,6 +2,7 @@ package providers
 
 import (
 	"go.uber.org/dig"
+	"med-chat-bot/handlers"
 	"med-chat-bot/pkg/cfg"
 	"med-chat-bot/repositories"
 	"med-chat-bot/services/searchService"
@@ -20,6 +21,7 @@ func BuildContainer() *dig.Container {
 	{
 		_ = container.Provide(searchService.NewSearchService)
 		_ = container.Provide(repositories.NewLinkRepository)
+		_ = container.Provide(handlers.NewSearchHandler)
 	}
 
 	return container
