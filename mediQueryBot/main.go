@@ -12,7 +12,6 @@ import (
 	"log"
 	"med-chat-bot/cfg"
 	"med-chat-bot/db"
-	"med-chat-bot/mediQueryBot/search"
 	"net/http"
 )
 
@@ -109,27 +108,27 @@ func aboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 }
 
 func queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
-	userQuery := ctx.EffectiveMessage.Text
-
-	webResults, err := search.PerformSearchWebsite(userQuery)
-
+	//userQuery := ctx.EffectiveMessage.Text
+	//
+	//webResults, err := searchService.PerformSearchWebsite(userQuery)
+	//
 	//databaseResult, err := search.PerformSearchWordPress(db, userQuery)
-
-	replyText := "Here are your search webResults:\n"
-	var count int
-	for i, item := range webResults.Items {
-		count = i + 1
-		replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
-	}
+	//
+	//replyText := "Here are your search webResults:\n"
+	//var count int
+	//for i, item := range webResults.Items {
+	//	count = i + 1
+	//	replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
+	//}
 	//for i, item := range databaseResult.Items {
 	//	if count+i+1 < 6 {
 	//		count = i + 1
 	//		replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
 	//	}
 	//}
-
-	_, err = ctx.EffectiveMessage.Reply(b, replyText, &gotgbot.SendMessageOpts{ParseMode: "Markdown", DisableWebPagePreview: true})
-	return err
+	//
+	//_, err = ctx.EffectiveMessage.Reply(b, replyText, &gotgbot.SendMessageOpts{ParseMode: "Markdown", DisableWebPagePreview: true})
+	//return err
 }
 
 func handleMessage(b *gotgbot.Bot, ctx *ext.Context) error {

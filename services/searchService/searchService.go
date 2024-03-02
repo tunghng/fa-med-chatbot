@@ -1,13 +1,38 @@
-package search
+package searchService
 
 import (
 	"encoding/json"
 	"fmt"
+	"go.uber.org/dig"
 	"io"
 	"med-chat-bot/db"
+	"med-chat-bot/repositories"
 	"net/http"
 	"net/url"
 )
+
+type ISearchService interface {
+	PerformSearchWebsite(query string) (*SearchResult, error)
+	PerformSearchWordPress(query string) (*SearchResult, error)
+}
+
+type searchService struct {
+	db         *db.DB
+	searchRepo repositories.ILinkRepository
+}
+
+type searchServiceArgs struct {
+	dig.In
+	DB         *db.DB
+	SearchRepo repositories.ILinkRepository
+}
+
+func NewSearchService(args searchServiceArgs) ISearchService {
+	return &searchService{
+		db:         args.DB,
+		searchRepo: args.SearchRepo,
+	}
+}
 
 const (
 	apiKey         = "AIzaSyBzWWzys0LEqFgCPcwC5fWhkx_AQFP1KDM"
@@ -26,7 +51,7 @@ type Post struct {
 	Link  string `gorm:"column:guid"` // Assuming 'guid' can be used as a direct link
 }
 
-func PerformSearchWebsite(query string) (*SearchResult, error) {
+func (_this searchService) PerformSearchWebsite(query string) (*SearchResult, error) {
 	searchURL := fmt.Sprintf("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s&num=5",
 		apiKey, searchEngineID, url.QueryEscape(query))
 
@@ -49,32 +74,19 @@ func PerformSearchWebsite(query string) (*SearchResult, error) {
 	return &results, nil
 }
 
-func PerformSearchWordPress(db *db.DB, query string) (*SearchResult, error) {
-	var posts []struct {
-		Title string `gorm:"column:post_title"`
-		Link  string `gorm:"column:guid"` // Assuming 'guid' can be used as a direct link
-	}
-	err := db.DB().Table("wplw_posts").Select("post_title as title", "guid as link").
-		Where("post_title LIKE ?", "%"+query+"%").
-		Where("post_status = ?", "publish").
-		Limit(5).
-		Find(&posts).Error
+func (_this searchService) PerformSearchWordPress(query string) (*SearchResult, error) {
+	posts, err := _this.searchRepo.GetPostsByTitle(_this.db, query)
 	if err != nil {
 		return nil, err
 	}
 
-	// Map directly to SearchResult format
-	var searchResult SearchResult
+	var result SearchResult
 	for _, post := range posts {
-		item := struct {
+		result.Items = append(result.Items, struct {
 			Title string `json:"title"`
 			Link  string `json:"link"`
-		}{
-			Title: post.Title,
-			Link:  post.Link,
-		}
-		searchResult.Items = append(searchResult.Items, item)
+		}{Title: post.Title, Link: post.Link})
 	}
 
-	return &searchResult, nil
+	return &result, nil
 }
