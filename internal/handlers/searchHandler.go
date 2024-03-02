@@ -5,7 +5,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"go.uber.org/dig"
-	"med-chat-bot/cmd/mediQueryBot/internal/services/searchService"
+	"med-chat-bot/internal/services/searchService"
 )
 
 type SearchHandler struct {

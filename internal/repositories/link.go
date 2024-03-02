@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"med-chat-bot/cmd/mediQueryBot/pkg/db"
+	"med-chat-bot/pkg/db"
 )
 
 type Post struct {

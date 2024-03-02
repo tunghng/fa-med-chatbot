@@ -9,10 +9,10 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 	"log"
-	"med-chat-bot/cmd/mediQueryBot/internal/handlers"
-	"med-chat-bot/cmd/mediQueryBot/internal/providers"
-	"med-chat-bot/cmd/mediQueryBot/pkg/cfg"
-	"med-chat-bot/cmd/mediQueryBot/pkg/db"
+	"med-chat-bot/internal/handlers"
+	"med-chat-bot/internal/providers"
+	"med-chat-bot/pkg/cfg"
+	"med-chat-bot/pkg/db"
 	"net/http"
 )
 

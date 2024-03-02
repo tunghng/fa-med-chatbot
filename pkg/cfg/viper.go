@@ -9,7 +9,7 @@ import (
 
 func SetupConfig() {
 	viper.AddConfigPath("./statics")
-	env := os.Getenv("ENVIRONMENT")
+	env := os.Getenv(".env")
 
 	fmt.Printf("CURRENT ENV: %s\n", env)
 
