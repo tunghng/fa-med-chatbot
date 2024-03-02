@@ -6,6 +6,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 	"log"
@@ -17,12 +18,16 @@ import (
 
 func newMySQLConnection() *db.DB {
 	_db, err := db.Connect(&db.Config{
-		Driver:                db.DriverMySQL,
-		LogDebug:              viper.GetBool(cfg.ConfigKeyDBMySQLLogBug),
-		Username:              viper.GetString(cfg.ConfigKeyDBMySQLUsername),
-		Password:              viper.GetString(cfg.ConfigKeyDBMySQLPassword),
-		Host:                  viper.GetString(cfg.ConfigKeyDBMySQLHost),
-		Port:                  viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
+		Driver:   db.DriverMySQL,
+		LogDebug: viper.GetBool(cfg.ConfigKeyDBMySQLLogBug),
+		//Username:              viper.GetString(cfg.ConfigKeyDBMySQLUsername),
+		//Password:              viper.GetString(cfg.ConfigKeyDBMySQLPassword),
+		//Host:                  viper.GetString(cfg.ConfigKeyDBMySQLHost),
+		//Port:                  viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
+		Username:              "videdent_tele",
+		Password:              "Muaxuan2024",
+		Host:                  "173.252.167.20",
+		Port:                  3306,
 		Database:              viper.GetString(cfg.ConfigKeyDBMySQLDatabase),
 		MaxIdleConnections:    viper.GetInt(cfg.ConfigKeyDBMaxIdleConnections),
 		MaxOpenConnections:    viper.GetInt(cfg.ConfigKeyDBMaxOpenConnections),
@@ -38,8 +43,9 @@ func main() {
 	// Load environment variable
 	envFile, _ := godotenv.Read(".env")
 	botToken := envFile["MEDI_QUERY_BOT"]
+	fmt.Print(viper.GetString(cfg.ConfigKeyDBMySQLUsername))
 
-	//db := newMySQLConnection()
+	newMySQLConnection()
 
 	// Create bot
 	b, err := gotgbot.NewBot(botToken, &gotgbot.BotOpts{
@@ -107,7 +113,7 @@ func queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 
 	webResults, err := search.PerformSearchWebsite(userQuery)
 
-	//databaseResult, err := search.PerformSearchWordPress(db.GormDB(), userQuery)
+	//databaseResult, err := search.PerformSearchWordPress(db, userQuery)
 
 	replyText := "Here are your search webResults:\n"
 	var count int

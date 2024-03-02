@@ -3,8 +3,8 @@ package search
 import (
 	"encoding/json"
 	"fmt"
-	"gorm.io/gorm"
 	"io"
+	"med-chat-bot/db"
 	"net/http"
 	"net/url"
 )
@@ -49,12 +49,12 @@ func PerformSearchWebsite(query string) (*SearchResult, error) {
 	return &results, nil
 }
 
-func PerformSearchWordPress(db *gorm.DB, query string) (*SearchResult, error) {
+func PerformSearchWordPress(db *db.DB, query string) (*SearchResult, error) {
 	var posts []struct {
 		Title string `gorm:"column:post_title"`
 		Link  string `gorm:"column:guid"` // Assuming 'guid' can be used as a direct link
 	}
-	err := db.Table("wplw_posts").Select("post_title as title", "guid as link").
+	err := db.DB().Table("wplw_posts").Select("post_title as title", "guid as link").
 		Where("post_title LIKE ?", "%"+query+"%").
 		Where("post_status = ?", "publish").
 		Limit(5).
