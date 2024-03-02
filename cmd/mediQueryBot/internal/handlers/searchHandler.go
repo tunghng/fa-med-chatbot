@@ -5,7 +5,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"go.uber.org/dig"
-	"med-chat-bot/services/searchService"
+	"med-chat-bot/cmd/mediQueryBot/internal/services/searchService"
 )
 
 type SearchHandler struct {
@@ -23,7 +23,7 @@ func NewSearchHandler(params SearchHandlerParams) *SearchHandler {
 	}
 }
 
-func startCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+func (_this *SearchHandler) StartCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	welcomeMessage := fmt.Sprintf("👋 Welcome to MediQuery Bot! Your assistant for medical queries and feedback.\n\n" +
 		"💡 I can help you find answers to medical questions, provide links to reputable sources, and collect feedback on medical information gaps. My goal is to make reliable medical information more accessible and to continuously improve based on your feedback.\n\n" +
 		"Here's how you can get started:\n" +
@@ -36,7 +36,7 @@ func startCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	return err
 }
 
-func helpCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+func (_this *SearchHandler) HelpCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	helpMessage := "🆘 Need some help? Here's what I can do for you:\n\n" +
 		"/query [your question] - Use this command followed by your medical question to get information.\n" +
 		"/feedback - Provide feedback or suggest improvements.\n" +
@@ -47,7 +47,7 @@ func helpCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	return err
 }
 
-func aboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+func (_this *SearchHandler) AboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	aboutMessage := "🤖 About MediQuery Bot:\n\n" +
 		"MediQuery Bot is designed to provide quick, reliable medical information and collect feedback to improve our knowledge base. Our goal is to make medical information more accessible and help fill in the gaps with your feedback.\n\n" +
 		"Remember: The information provided is for educational purposes and should not be considered medical advice.\n\n" +
@@ -56,7 +56,7 @@ func aboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	return err
 }
 
-func (_this *SearchHandler) queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+func (_this *SearchHandler) QueryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	userQuery := ctx.EffectiveMessage.Text
 
 	webResults, err := _this.searchService.PerformSearchWebsite(userQuery)
@@ -80,7 +80,7 @@ func (_this *SearchHandler) queryCommand(b *gotgbot.Bot, ctx *ext.Context) error
 	return err
 }
 
-func handleMessage(b *gotgbot.Bot, ctx *ext.Context) error {
+func (_this *SearchHandler) HandleMessage(b *gotgbot.Bot, ctx *ext.Context) error {
 	text := "I'm sorry, I don't understand that."
 	_, err := ctx.EffectiveMessage.Reply(b, text, nil)
 	return err

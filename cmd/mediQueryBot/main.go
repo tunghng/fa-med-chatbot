@@ -3,13 +3,16 @@ package main
 import (
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
+	handlers2 "github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
+	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 	"log"
-	"med-chat-bot/db"
-	"med-chat-bot/pkg/cfg"
-	"med-chat-bot/providers"
+	"med-chat-bot/cmd/mediQueryBot/internal/handlers"
+	"med-chat-bot/cmd/mediQueryBot/internal/providers"
+	"med-chat-bot/cmd/mediQueryBot/pkg/cfg"
+	"med-chat-bot/cmd/mediQueryBot/pkg/db"
 	"net/http"
 )
 
@@ -52,16 +55,22 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to create new bot: %s", err)
 	}
-
+	var searchHandler *handlers.SearchHandler
+	err = c.Invoke(func(sh *handlers.SearchHandler) {
+		searchHandler = sh
+	})
+	if err != nil {
+		log.Fatalf("Failed to get SearchHandler: %s", err)
+	}
 	// Command Handlers
 	updater := ext.NewUpdater(nil)
-	//dispatcher := updater.Dispatcher
+	dispatcher := updater.Dispatcher
 
-	//dispatcher.AddHandler(handlers.NewCommand("start", startCommand))
-	//dispatcher.AddHandler(handlers.NewCommand("help", helpCommand))
-	//dispatcher.AddHandler(handlers.NewCommand("about", aboutCommand))
-	//dispatcher.AddHandler(handlers.NewCommand("query", queryCommand))
-	//dispatcher.AddHandler(handlers.NewMessage(message.All, handleMessage))
+	dispatcher.AddHandler(handlers2.NewCommand("start", searchHandler.StartCommand))
+	dispatcher.AddHandler(handlers2.NewCommand("help", searchHandler.HelpCommand))
+	dispatcher.AddHandler(handlers2.NewCommand("about", searchHandler.AboutCommand))
+	dispatcher.AddHandler(handlers2.NewCommand("query", searchHandler.QueryCommand))
+	dispatcher.AddHandler(handlers2.NewMessage(message.All, searchHandler.HandleMessage))
 
 	err = updater.StartPolling(b, &ext.PollingOpts{DropPendingUpdates: true})
 	if err != nil {

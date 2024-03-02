@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"go.uber.org/dig"
 	"io"
-	"med-chat-bot/db"
-	"med-chat-bot/repositories"
+	"med-chat-bot/cmd/mediQueryBot/internal/repositories"
+	"med-chat-bot/cmd/mediQueryBot/pkg/db"
 	"net/http"
 	"net/url"
 )

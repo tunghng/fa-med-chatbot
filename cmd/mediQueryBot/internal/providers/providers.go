@@ -2,10 +2,10 @@ package providers
 
 import (
 	"go.uber.org/dig"
-	"med-chat-bot/handlers"
-	"med-chat-bot/pkg/cfg"
-	"med-chat-bot/repositories"
-	"med-chat-bot/services/searchService"
+	"med-chat-bot/cmd/mediQueryBot/internal/handlers"
+	"med-chat-bot/cmd/mediQueryBot/internal/repositories"
+	"med-chat-bot/cmd/mediQueryBot/internal/services/searchService"
+	"med-chat-bot/cmd/mediQueryBot/pkg/cfg"
 )
 
 func init() {

@@ -15,7 +15,7 @@
 # First Bot Build Stage
 FROM golang:1.22.0-alpine AS builder1
 WORKDIR /app1
-COPY mediQueryBot/ .
+COPY cmd/mediQueryBot/ .
 RUN CGO_ENABLED=0 GOOS=`go env GOHOSTOS` GOARCH=`go env GOHOSTARCH` go build -o out/FirstBot -ldflags="-w -s" .
 
 # Second Bot Build Stage
