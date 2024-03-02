@@ -13,6 +13,7 @@ import (
 	"log"
 	"med-chat-bot/db"
 	"med-chat-bot/pkg/cfg"
+	"med-chat-bot/providers"
 	"med-chat-bot/services/searchService"
 	"net/http"
 )
@@ -20,20 +21,15 @@ import (
 func newMySQLConnection() *db.DB {
 	_db, err := db.Connect(&db.Config{
 		Driver:   db.DriverMySQL,
-		LogDebug: viper.GetBool(cfg.ConfigKeyDBMySQLLogBug),
-		//Username:              viper.GetString(cfg.ConfigKeyDBMySQLUsername),
-		//Password:              viper.GetString(cfg.ConfigKeyDBMySQLPassword),
-		//Host:                  viper.GetString(cfg.ConfigKeyDBMySQLHost),
-		//Port:                  viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
-		Username:              "videdent_tele",
-		Password:              "Muaxuan2024",
-		Host:                  "173.252.167.20",
-		Port:                  3306,
-		Database:              viper.GetString(cfg.ConfigKeyDBMySQLDatabase),
-		MaxIdleConnections:    viper.GetInt(cfg.ConfigKeyDBMaxIdleConnections),
-		MaxOpenConnections:    viper.GetInt(cfg.ConfigKeyDBMaxOpenConnections),
-		ConnectionMaxLifetime: viper.GetInt(cfg.ConfigKeyDBConnectionMaxLifetime),
-	})
+		Username: viper.GetString(cfg.ConfigKeyDBMySQLUsername),
+		Password: viper.GetString(cfg.ConfigKeyDBMySQLPassword),
+		Host:     viper.GetString(cfg.ConfigKeyDBMySQLHost),
+		Port:     viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
+		//Username:              "videdent_tele",
+		//Password:              "Muaxuan2024",
+		//Host:                  "173.252.167.20",
+		//Port:                  3306,
+		Database: viper.GetString(cfg.ConfigKeyDBMySQLDatabase)})
 	if err != nil {
 		log.Fatalf("Connecting to MySQL DB: %v", err)
 	}
@@ -56,6 +52,7 @@ func NewSearchHandler(params SearchHandlerParams) *SearchHandler {
 }
 
 func main() {
+	providers.BuildContainer()
 	// Load environment variable
 	envFile, _ := godotenv.Read(".env")
 	botToken := envFile["MEDI_QUERY_BOT"]

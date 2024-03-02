@@ -2,9 +2,14 @@ package providers
 
 import (
 	"go.uber.org/dig"
+	"med-chat-bot/pkg/cfg"
 	"med-chat-bot/repositories"
 	"med-chat-bot/services/searchService"
 )
+
+func init() {
+	cfg.SetupConfig()
+}
 
 // container is a global Container.
 var container *dig.Container
