@@ -9,9 +9,11 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
+	"go.uber.org/dig"
 	"log"
 	"med-chat-bot/cfg"
 	"med-chat-bot/db"
+	"med-chat-bot/services/searchService"
 	"net/http"
 )
 
@@ -38,6 +40,21 @@ func newMySQLConnection() *db.DB {
 	return _db
 }
 
+type SearchHandler struct {
+	searchService searchService.ISearchService
+}
+
+type SearchHandlerParams struct {
+	dig.In
+	SearchService searchService.ISearchService
+}
+
+func NewSearchHandler(params SearchHandlerParams) *SearchHandler {
+	return &SearchHandler{
+		searchService: params.SearchService,
+	}
+}
+
 func main() {
 	// Load environment variable
 	envFile, _ := godotenv.Read(".env")
@@ -62,7 +79,7 @@ func main() {
 	dispatcher.AddHandler(handlers.NewCommand("start", startCommand))
 	dispatcher.AddHandler(handlers.NewCommand("help", helpCommand))
 	dispatcher.AddHandler(handlers.NewCommand("about", aboutCommand))
-	dispatcher.AddHandler(handlers.NewCommand("query", queryCommand))
+	//dispatcher.AddHandler(handlers.NewCommand("query", queryCommand))
 	dispatcher.AddHandler(handlers.NewMessage(message.All, handleMessage))
 
 	err = updater.StartPolling(b, &ext.PollingOpts{DropPendingUpdates: true})
@@ -107,28 +124,28 @@ func aboutCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	return err
 }
 
-func queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
-	//userQuery := ctx.EffectiveMessage.Text
-	//
-	//webResults, err := searchService.PerformSearchWebsite(userQuery)
-	//
-	//databaseResult, err := search.PerformSearchWordPress(db, userQuery)
-	//
-	//replyText := "Here are your search webResults:\n"
-	//var count int
-	//for i, item := range webResults.Items {
-	//	count = i + 1
-	//	replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
-	//}
-	//for i, item := range databaseResult.Items {
-	//	if count+i+1 < 6 {
-	//		count = i + 1
-	//		replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
-	//	}
-	//}
-	//
-	//_, err = ctx.EffectiveMessage.Reply(b, replyText, &gotgbot.SendMessageOpts{ParseMode: "Markdown", DisableWebPagePreview: true})
-	//return err
+func (_this *SearchHandler) queryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
+	userQuery := ctx.EffectiveMessage.Text
+
+	webResults, err := _this.searchService.PerformSearchWebsite(userQuery)
+
+	databaseResult, err := _this.searchService.PerformSearchWordPress(userQuery)
+
+	replyText := "Here are your search webResults:\n"
+	var count int
+	for i, item := range webResults.Items {
+		count = i + 1
+		replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
+	}
+	for i, item := range databaseResult.Items {
+		if count+i+1 < 6 {
+			count = i + 1
+			replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
+		}
+	}
+
+	_, err = ctx.EffectiveMessage.Reply(b, replyText, &gotgbot.SendMessageOpts{ParseMode: "Markdown", DisableWebPagePreview: true})
+	return err
 }
 
 func handleMessage(b *gotgbot.Bot, ctx *ext.Context) error {
