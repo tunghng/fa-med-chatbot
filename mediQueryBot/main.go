@@ -11,8 +11,8 @@ import (
 	"github.com/spf13/viper"
 	"go.uber.org/dig"
 	"log"
-	"med-chat-bot/cfg"
 	"med-chat-bot/db"
+	"med-chat-bot/pkg/cfg"
 	"med-chat-bot/services/searchService"
 	"net/http"
 )
