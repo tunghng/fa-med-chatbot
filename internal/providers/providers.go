@@ -19,6 +19,8 @@ var container *dig.Container
 func BuildContainer() *dig.Container {
 	container = dig.New()
 	{
+		_ = container.Provide(newCfgReader)
+		_ = container.Provide(newMySQLConnection)
 		_ = container.Provide(searchService.NewSearchService)
 		_ = container.Provide(repositories.NewLinkRepository)
 		_ = container.Provide(handlers.NewSearchHandler)

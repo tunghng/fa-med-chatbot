@@ -7,32 +7,11 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
-	"github.com/spf13/viper"
 	"log"
 	"med-chat-bot/internal/handlers"
 	"med-chat-bot/internal/providers"
-	"med-chat-bot/pkg/cfg"
-	"med-chat-bot/pkg/db"
 	"net/http"
 )
-
-func newMySQLConnection() *db.DB {
-	_db, err := db.Connect(&db.Config{
-		Driver: db.DriverMySQL,
-		//Username: viper.GetString(cfg.ConfigKeyDBMySQLUsername),
-		//Password: viper.GetString(cfg.ConfigKeyDBMySQLPassword),
-		//Host:     viper.GetString(cfg.ConfigKeyDBMySQLHost),
-		//Port:     viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
-		Username: "videdent_tele",
-		Password: "Muaxuan2024",
-		Host:     "173.252.167.20",
-		Port:     3306,
-		Database: viper.GetString(cfg.ConfigKeyDBMySQLDatabase)})
-	if err != nil {
-		log.Fatalf("Connecting to MySQL DB: %v", err)
-	}
-	return _db
-}
 
 func main() {
 	providers.BuildContainer()
@@ -44,9 +23,7 @@ func main() {
 	// Load environment variable
 	envFile, _ := godotenv.Read(".env")
 	botToken := envFile["MEDI_QUERY_BOT"]
-
-	newMySQLConnection()
-
+	
 	// Create bot
 	b, err := gotgbot.NewBot(botToken, &gotgbot.BotOpts{
 		Client: http.Client{},
