@@ -71,7 +71,7 @@ func (_this *SearchHandler) QueryCommand(b *gotgbot.Bot, ctx *ext.Context) error
 	for i, item := range webResults.Items {
 		if count+i+1 < 6 {
 			count = i + 1
-			replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
+			replyText += fmt.Sprintf("%d. [%s](%s)\n", count+i+1, item.Title, item.Link)
 		}
 	}
 

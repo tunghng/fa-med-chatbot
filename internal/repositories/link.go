@@ -25,7 +25,7 @@ func (_this *linkRepo) GetPostsByTitle(db *db.DB, name string) ([]Post, error) {
 		Select("post_title AS title, guid AS link").
 		Where("post_title LIKE ?", "%"+processed+"%").
 		Where("post_status = ?", "publish").
-		Limit(5).
+		Limit(2).
 		Find(&posts).Error
 
 	return posts, err
