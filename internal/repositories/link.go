@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"med-chat-bot/pkg/db"
+	"strings"
 )
 
 type Post struct {
@@ -19,9 +20,10 @@ func NewLinkRepository() ILinkRepository { return &linkRepo{} }
 
 func (_this *linkRepo) GetPostsByTitle(db *db.DB, name string) ([]Post, error) {
 	var posts []Post
+	processed := strings.TrimSpace(name[7:])
 	err := db.DB().Table("wplw_posts").
 		Select("post_title AS title", "guid AS link").
-		Where("post_title LIKE ?", "%"+name+"%").
+		Where("post_title LIKE ?", "%"+processed+"%").
 		Where("post_status = ?", "publish").
 		Limit(5).
 		Find(&posts).Error

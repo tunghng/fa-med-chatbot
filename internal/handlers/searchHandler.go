@@ -59,17 +59,16 @@ func (_this *SearchHandler) AboutCommand(b *gotgbot.Bot, ctx *ext.Context) error
 func (_this *SearchHandler) QueryCommand(b *gotgbot.Bot, ctx *ext.Context) error {
 	userQuery := ctx.EffectiveMessage.Text
 
-	webResults, err := _this.searchService.PerformSearchWebsite(userQuery)
-
 	databaseResult, err := _this.searchService.PerformSearchWordPress(userQuery)
+	webResults, err := _this.searchService.PerformSearchWebsite(userQuery)
 
 	replyText := "Here are your search webResults:\n"
 	var count int
-	for i, item := range webResults.Items {
+	for i, item := range databaseResult.Items {
 		count = i + 1
 		replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)
 	}
-	for i, item := range databaseResult.Items {
+	for i, item := range webResults.Items {
 		if count+i+1 < 6 {
 			count = i + 1
 			replyText += fmt.Sprintf("%d. [%s](%s)\n", count, item.Title, item.Link)

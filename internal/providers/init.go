@@ -3,7 +3,6 @@ package providers
 import (
 	"github.com/spf13/viper"
 	"log"
-	"med-chat-bot/pkg/cfg"
 	"med-chat-bot/pkg/db"
 	"strings"
 )
@@ -15,11 +14,13 @@ func newMySQLConnection() *db.DB {
 		//Password: viper.GetString(cfg.ConfigKeyDBMySQLPassword),
 		//Host:     viper.GetString(cfg.ConfigKeyDBMySQLHost),
 		//Port:     viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
+		//Database: viper.GetString(cfg.ConfigKeyDBMySQLDatabase)
 		Username: "videdent_tele",
 		Password: "Muaxuan2024",
 		Host:     "173.252.167.20",
 		Port:     3306,
-		Database: viper.GetString(cfg.ConfigKeyDBMySQLDatabase)})
+		Database: "videdent_tree",
+	})
 	if err != nil {
 		log.Fatalf("Connecting to MySQL DB: %v", err)
 	}
