@@ -5,6 +5,9 @@ import (
 	"med-chat-bot/cmd/medi-query-bot/internal/handlers"
 	medBot2 "med-chat-bot/cmd/medi-query-bot/internal/handlers/medBot"
 	"med-chat-bot/cmd/medi-query-bot/internal/services/medBot"
+	"med-chat-bot/internal/errors"
+	"med-chat-bot/internal/ginServer"
+	handlers2 "med-chat-bot/internal/handlers"
 	"med-chat-bot/internal/repositories/wordpress"
 	"med-chat-bot/pkg/cfg"
 )
@@ -20,7 +23,16 @@ var container *dig.Container
 func BuildContainer() *dig.Container {
 	container = dig.New()
 	{
+
 		_ = container.Provide(newCfgReader)
+		_ = container.Provide(newServerConfig)
+		_ = container.Provide(handlers2.NewBaseHandler)
+		_ = container.Provide(newErrorParserConfig)
+		_ = container.Provide(newGinEngine)
+		_ = container.Provide(errors.NewErrorParser)
+		_ = container.Provide(ginServer.NewGinServer)
+
+		_ = container.Provide(setupRouter)
 		_ = container.Provide(newMySQLConnection)
 		_ = container.Provide(medBot.NewSearchService)
 		_ = container.Provide(wordpress.NewWordpressPostRepository)

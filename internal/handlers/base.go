@@ -10,8 +10,8 @@ import (
 	"med-chat-bot/internal/dtos"
 	"med-chat-bot/internal/errors"
 	"med-chat-bot/internal/ginLogger"
+	"med-chat-bot/internal/meta"
 	"med-chat-bot/internal/validators"
-	"med-chat-bot/pkg/meta"
 	"net/http"
 	"reflect"
 )

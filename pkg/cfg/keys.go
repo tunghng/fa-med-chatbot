@@ -1,9 +1,12 @@
 package cfg
 
 const (
-	ConfigKeyDBMySQLUsername = "videdent_tele"
-	ConfigKeyDBMySQLPassword = "Muaxuan2024"
-	ConfigKeyDBMySQLHost     = "173.252.167.20"
-	ConfigKeyDBMySQLPort     = "3306"
-	ConfigKeyDBMySQLDatabase = "videdent_tree"
+	ConfigKeyDBMySQLUsername = "DB_MYSQL_USERNAME"
+	ConfigKeyDBMySQLPassword = "DB_MYSQL_PASSWORD"
+	ConfigKeyDBMySQLHost     = "DB_MYSQL_HOST"
+	ConfigKeyDBMySQLPort     = "DB_MYSQL_PORT"
+	ConfigKeyDBMySQLDatabase = "DB_MYSQL_DATABASE"
+
+	ConfigKeyHttpAddress = "HTTP_ADDR"
+	ConfigKeyHttpPort    = "HTTP_PORT"
 )

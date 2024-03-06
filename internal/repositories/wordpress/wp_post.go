@@ -33,12 +33,12 @@ func (_this *wordpressPostRepo) Update(db *db.DB, item *models.WPPost) error {
 
 func (_this *wordpressPostRepo) GetPostsByTitle(db *db.DB, title string) ([]models.WPPost, error) {
 	var posts []models.WPPost
-	processed := strings.TrimSpace(title[7:])
+	processed := strings.TrimSpace(title)
 	err := db.DB().Table("wplw_posts").
 		Select("post_title AS title, guid AS link").
 		Where("post_title LIKE ?", "%"+processed+"%").
 		Where("post_status = ?", "publish").
-		Limit(2).
+		Limit(5).
 		Find(&posts).Error
 
 	return posts, err

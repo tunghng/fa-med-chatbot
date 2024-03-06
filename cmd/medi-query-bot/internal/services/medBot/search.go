@@ -9,9 +9,9 @@ import (
 	dtoWordpress "med-chat-bot/internal/dtos/wordpress"
 	"med-chat-bot/internal/errors"
 	"med-chat-bot/internal/ginLogger"
+	"med-chat-bot/internal/meta"
 	"med-chat-bot/internal/repositories/wordpress"
 	"med-chat-bot/pkg/db"
-	"med-chat-bot/pkg/meta"
 
 	"net/http"
 	"net/url"

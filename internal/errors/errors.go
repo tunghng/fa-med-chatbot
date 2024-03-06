@@ -6,7 +6,7 @@ import (
 	"github.com/pkg/errors"
 	"go.uber.org/dig"
 	"log"
-	"med-chat-bot/pkg/meta"
+	"med-chat-bot/internal/meta"
 	"net/http"
 	"path/filepath"
 	"strconv"

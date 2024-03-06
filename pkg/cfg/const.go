@@ -14,8 +14,4 @@ const (
 	EnvironmentTest = "TEST"
 	// EnvironmentUAT uat environment
 	EnvironmentUAT = "UAT"
-
-	ConfigKeyGoogleCredentials     = "GOOGLE_DRIVER_KEY_STORE"
-	ConfigKeyGoogleSheet           = "GOOGLE_SHEET_KEY_STORE"
-	ConfigKeyGoogleDriveTokenSheet = "GOOGLE_DRIVER_TOKEN_KEY_STORE"
 )

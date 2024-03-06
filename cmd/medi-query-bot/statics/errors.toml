@@ -1,0 +1,32 @@
+[modules]
+"000" = "common"
+"001" = "authentication"
+"002" = "files"
+"003" = "flashcards"
+
+
+[common]
+"50000001" = "The server encountered an internal error or misconfiguration and was unable to complete your request"
+
+[authentication]
+"40000103" = "The account already exists on system please enter a different account"
+"40000104" = "The old password you have entered is incorrect"
+"40000105" = "The new password you entered is the same as the old password. Enter a different password"
+"40100103" = "Error validating access token"
+"40100108" = "You have entered an invalid username or password"
+"40100104" = "The account does not exist"
+"40100105" = "The Gmail account dose not exist, please register a new account"
+"40100106" = "The Facebook account dose not exist, please register a new account"
+"40100107" = "The Apple account dose not exist, please register a new account"
+"40100109" = "You have entered an invalid username or password"
+
+[file]
+"40000201" = "Hãy nhập file upload."
+"40000202" = "Chỉ hỗ trợ 1 file upload."
+"40000203" = "MIME type not valid"
+"40000204" = "Upload image error occur"
+
+[flashcards]
+"40300301" = "Flashcard details create empty"
+"40000302" = "Flashcard in private mode"
+"40000303" = "Flashcard topic is empty"
