@@ -5,16 +5,16 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"go.uber.org/dig"
-	"med-chat-bot/cmd/medi-query-bot/internal/services/searchService"
+	"med-chat-bot/cmd/medi-query-bot/internal/services/medBot"
 )
 
 type SearchHandler struct {
-	searchService searchService.ISearchService
+	searchService medBot.ISearchService
 }
 
 type SearchHandlerParams struct {
 	dig.In
-	SearchService searchService.ISearchService
+	SearchService medBot.ISearchService
 }
 
 func NewSearchHandler(params SearchHandlerParams) *SearchHandler {

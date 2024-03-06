@@ -1,4 +1,4 @@
-package repositories
+package wordpress
 
 import (
 	"med-chat-bot/internal/models"
