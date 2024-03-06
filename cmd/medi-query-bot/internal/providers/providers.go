@@ -2,9 +2,9 @@ package providers
 
 import (
 	"go.uber.org/dig"
-	"med-chat-bot/cmd/medi-query-bot/internal/handlers"
+	medBot2 "med-chat-bot/cmd/medi-query-bot/internal/handlers"
 	"med-chat-bot/cmd/medi-query-bot/internal/services/medBot"
-	"med-chat-bot/internal/repositories"
+	"med-chat-bot/internal/repositories/wordpress"
 	"med-chat-bot/pkg/cfg"
 )
 
@@ -22,8 +22,8 @@ func BuildContainer() *dig.Container {
 		_ = container.Provide(newCfgReader)
 		_ = container.Provide(newMySQLConnection)
 		_ = container.Provide(medBot.NewSearchService)
-		_ = container.Provide(repositories.NewLinkRepository)
-		_ = container.Provide(handlers.NewSearchHandler)
+		_ = container.Provide(wordpress.NewWordpressPostRepository)
+		_ = container.Provide(medBot2.NewSearchHandler)
 	}
 
 	return container
