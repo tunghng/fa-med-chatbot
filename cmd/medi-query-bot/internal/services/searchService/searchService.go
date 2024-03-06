@@ -85,7 +85,7 @@ func (_this searchService) PerformSearchWordPress(query string) (*SearchResult, 
 		result.Items = append(result.Items, struct {
 			Title string `json:"title"`
 			Link  string `json:"link"`
-		}{Title: post.Title, Link: post.Link})
+		}{Title: post.Title, Link: "https://clinicalpub.com/?p=" + post.Link})
 	}
 
 	return &result, nil

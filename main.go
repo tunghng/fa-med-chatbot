@@ -8,9 +8,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 	"log"
-	"med-chat-bot/internal/handlers"
-	"med-chat-bot/internal/providers"
-	"net/http"
+	"med-chat-bot/cmd/internal/handlers"
+	"med-chat-bot/cmd/internal/providers"
 )
 
 func main() {
@@ -23,10 +22,10 @@ func main() {
 	// Load environment variable
 	envFile, _ := godotenv.Read(".env")
 	botToken := envFile["MEDI_QUERY_BOT"]
-	
+
 	// Create bot
 	b, err := gotgbot.NewBot(botToken, &gotgbot.BotOpts{
-		Client: http.Client{},
+		//Client: http.Client{},
 	})
 
 	if err != nil {

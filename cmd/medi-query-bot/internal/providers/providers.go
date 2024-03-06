@@ -2,9 +2,9 @@ package providers
 
 import (
 	"go.uber.org/dig"
-	"med-chat-bot/internal/handlers"
+	"med-chat-bot/cmd/medi-query-bot/internal/handlers"
+	"med-chat-bot/cmd/medi-query-bot/internal/services/searchService"
 	"med-chat-bot/internal/repositories"
-	"med-chat-bot/internal/services/searchService"
 	"med-chat-bot/pkg/cfg"
 )
 
