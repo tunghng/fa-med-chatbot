@@ -70,7 +70,8 @@ GetLinksMedbot
 */
 func (_this *SearchHandler) GetLinksMedbot() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		response, err := _this.searchService.PerformSearchWordPress(c, c.Param("query"))
+		queryParam := c.Query("query")
+		response, err := _this.searchService.PerformSearchWordPress(c, queryParam)
 		_this.HandleResponse(c, response, err)
 	}
 
