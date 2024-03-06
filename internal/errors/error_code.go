@@ -3,9 +3,10 @@ package errors
 /*
 Example error code is 5000102:
 - 500 is HTTP status code (400, 401, 403, 500, ...)
-- 01 is module represents for each handler
-	+ 00 for common error for all handler
-	+ 01 for health check handler
+- 01 is module represents for each handlers
+  - 00 for common error for all handlers
+  - 01 for health check handlers
+
 - 02 is actual error code, just auto increment and start at 1
 */
 const ERR_3RD string = "3rd-code"

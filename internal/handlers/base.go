@@ -16,7 +16,7 @@ import (
 	"reflect"
 )
 
-// BaseHandler is common handler for handlers or middlewares.
+// BaseHandler is common handlers for handlers or middlewares.
 type BaseHandler interface {
 	Validate(c *gin.Context, data interface{}) error
 	RespondError(c *gin.Context, err error)
