@@ -5,7 +5,6 @@ import (
 	"med-chat-bot/cmd/medi-query-bot/internal/handlers"
 	medBot2 "med-chat-bot/cmd/medi-query-bot/internal/handlers/medBot"
 	cbHandler "med-chat-bot/cmd/medi-query-bot/internal/handlers/telegram"
-	telegramHandler "med-chat-bot/cmd/medi-query-bot/internal/handlers/telegram"
 	"med-chat-bot/cmd/medi-query-bot/internal/services/medBot"
 	chatbotService "med-chat-bot/cmd/medi-query-bot/internal/services/telegram"
 	"med-chat-bot/internal/errors"
@@ -43,7 +42,6 @@ func BuildContainer() *dig.Container {
 		_ = container.Provide(medBot2.NewSearchHandler)
 		_ = container.Provide(handlers.NewHandlers)
 
-		_ = container.Provide(telegramHandler.NewImageHandler)
 		_ = container.Provide(tlRepositories.NewTelegramChabotRepository)
 		_ = container.Provide(chatbotService.NewTelegramService)
 		_ = container.Provide(cbHandler.NewChatBotHandler)
