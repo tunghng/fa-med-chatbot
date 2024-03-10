@@ -8,14 +8,12 @@ import (
 	"med-chat-bot/internal/ginLogger"
 	"med-chat-bot/internal/meta"
 	"med-chat-bot/internal/models"
-	"med-chat-bot/pkg/cfg"
 	"med-chat-bot/pkg/db"
 
 	tlRepositories "med-chat-bot/internal/repositories/telegram"
 	//wprepositories "fa-quiz-next-gen/internal/repositories/wordpress"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 	"go.uber.org/dig"
 	"io"
 	"io/ioutil"
@@ -191,8 +189,10 @@ func (_this *telegramService) WebHookTest(c *gin.Context) (*meta.BasicResponse, 
 }
 
 func (_this *telegramService) PerformSearch(c *gin.Context, query string) ([]dtos.SearchResult, error) {
-	apiKey := viper.GetString(cfg.GoogleSeachEngineAPIKey)
-	searchEngineID := viper.GetString(cfg.GoogleSeachEngineID)
+	//apiKey := viper.GetString(cfg.GoogleSeachEngineAPIKey)
+	//searchEngineID := viper.GetString(cfg.GoogleSeachEngineID)
+	apiKey := "AIzaSyBzWWzys0LEqFgCPcwC5fWhkx_AQFP1KDM"
+	searchEngineID := "c26f5365e4f214268"
 	posts, err := _this.wordPressPostRepo.GetPostsByTitle(_this.dbWordPress, query)
 	if err != nil {
 		ginLogger.Gin(c).Errorf("Failed when GetPostsByTitle to err: %v", err)
@@ -249,7 +249,8 @@ func (_this *telegramService) PerformSearch(c *gin.Context, query string) ([]dto
 // SendMessage sends a message to a user in Telegram
 func (_this *telegramService) SendMessage(chatID int64, message string) error {
 	// API endpoint for sending messages
-	botToken := viper.GetString(cfg.ConfigTelegramBotToken)
+	//botToken := viper.GetString(cfg.ConfigTelegramBotToken)
+	botToken := "6327700438:AAGFtsaQcs0dT3Uiwp9idqAitA814OosEg4"
 	sendMessageURL := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", botToken)
 	messageBody, err := json.Marshal(map[string]interface{}{
 		"chat_id": chatID,

@@ -63,7 +63,7 @@ func newMySQLConnection() *db.DB {
 
 func newMySQLUserTrackingConnection() *db.DB {
 	_db, err := db.Connect(&db.Config{
-		//Driver:   db.DriverMySQL,
+		Driver: db.DriverMySQL,
 		//Username: viper.GetString(cfg.ConfigKeyDBMySQLUsername),
 		//Password: viper.GetString(cfg.ConfigKeyDBMySQLPassword),
 		//Host:     viper.GetString(cfg.ConfigKeyDBMySQLHost),

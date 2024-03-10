@@ -3,9 +3,7 @@ package providers
 import (
 	"go.uber.org/dig"
 	"med-chat-bot/cmd/medi-query-bot/internal/handlers"
-	medBot2 "med-chat-bot/cmd/medi-query-bot/internal/handlers/medBot"
 	cbHandler "med-chat-bot/cmd/medi-query-bot/internal/handlers/telegram"
-	"med-chat-bot/cmd/medi-query-bot/internal/services/medBot"
 	chatbotService "med-chat-bot/cmd/medi-query-bot/internal/services/telegram"
 	"med-chat-bot/internal/errors"
 	"med-chat-bot/internal/ginServer"
@@ -36,16 +34,16 @@ func BuildContainer() *dig.Container {
 		_ = container.Provide(ginServer.NewGinServer)
 
 		_ = container.Provide(setupRouter)
-		_ = container.Provide(newMySQLConnection)
-		_ = container.Provide(medBot.NewSearchService)
+		_ = container.Provide(newMySQLConnection, dig.Name("faquizDB"))
+		_ = container.Provide(newMySQLUserTrackingConnection, dig.Name("trackingDB"))
+
 		_ = container.Provide(wordpress.NewWordpressPostRepository)
-		_ = container.Provide(medBot2.NewSearchHandler)
 		_ = container.Provide(handlers.NewHandlers)
 
 		_ = container.Provide(tlRepositories.NewTelegramChabotRepository)
 		_ = container.Provide(chatbotService.NewTelegramService)
 		_ = container.Provide(cbHandler.NewChatBotHandler)
-		_ = container.Provide(newMySQLUserTrackingConnection, dig.Name("trackingDB"))
+
 	}
 
 	return container
