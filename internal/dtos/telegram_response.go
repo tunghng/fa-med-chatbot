@@ -60,3 +60,21 @@ type MessageBody struct {
 	ChatID int64  `json:"id"`
 	Text   string `json:"message"`
 }
+
+type TelegramResponse struct {
+	OK     bool `json:"ok"`
+	Result struct {
+		Document struct {
+			FileID   string `json:"file_id"`
+			FileName string `json:"file_name"`
+			MimeType string `json:"mime_type"`
+		} `json:"document"`
+	} `json:"result"`
+}
+
+type GetFileResponse struct {
+	OK     bool `json:"ok"`
+	Result struct {
+		FilePath string `json:"file_path"`
+	} `json:"result"`
+}
