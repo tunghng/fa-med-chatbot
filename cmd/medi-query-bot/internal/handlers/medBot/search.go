@@ -74,5 +74,4 @@ func (_this *SearchHandler) GetLinksMedbot() gin.HandlerFunc {
 		response, err := _this.searchService.PerformSearchWordPress(c, queryParam)
 		_this.HandleResponse(c, response, err)
 	}
-
 }

@@ -14,4 +14,9 @@ const (
 	EnvironmentTest = "TEST"
 	// EnvironmentUAT uat environment
 	EnvironmentUAT = "UAT"
+
+	ConfigTelegramBotToken = "TELEGRAM_TOKEN"
+
+	GoogleSeachEngineAPIKey = "GOOGLE_SEARCH_API"
+	GoogleSeachEngineID     = "SEARCH_ENGINE_ID"
 )
