@@ -44,8 +44,8 @@ func BuildContainer() *dig.Container {
 		_ = container.Provide(chatbotService.NewTelegramService)
 		_ = container.Provide(cbHandler.NewChatBotHandler)
 
-		_ = container.Provide(telegramHandler.NewImageHandler)
-		_ = container.Provide(telegram.NewImageService)
+		_ = container.Provide(cbHandler.NewImageHandler)
+		_ = container.Provide(chatbotService.NewImageService)
 	}
 
 	return container
