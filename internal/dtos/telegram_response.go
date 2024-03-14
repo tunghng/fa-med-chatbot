@@ -35,6 +35,11 @@ type CallbackQuery struct {
 	Data    string   `json:"data"`
 }
 
+type MessageBody struct {
+	ChatID int64  `json:"id"`
+	Text   string `json:"message"`
+}
+
 type SearchResult struct {
 	Title string `json:"title"`
 	Link  string `json:"link"`
@@ -56,25 +61,24 @@ type LinkConversionResponse struct {
 	Status string `json:"status"`
 }
 
-type MessageBody struct {
-	ChatID int64  `json:"id"`
-	Text   string `json:"message"`
-}
-
-type TelegramResponse struct {
-	OK     bool `json:"ok"`
+// Define the structs matching your JSON structure
+type TelegramMessage struct {
+	Ok     bool `json:"ok"`
 	Result struct {
-		Document struct {
-			FileID   string `json:"file_id"`
-			FileName string `json:"file_name"`
-			MimeType string `json:"mime_type"`
-		} `json:"document"`
-	} `json:"result"`
-}
-
-type GetFileResponse struct {
-	OK     bool `json:"ok"`
-	Result struct {
-		FilePath string `json:"file_path"`
+		MessageID int `json:"message_id"`
+		From      struct {
+			ID        int64  `json:"id"`
+			IsBot     bool   `json:"is_bot"`
+			FirstName string `json:"first_name"`
+			Username  string `json:"username"`
+		} `json:"from"`
+		Chat struct {
+			ID        int64  `json:"id"`
+			FirstName string `json:"first_name"`
+			LastName  string `json:"last_name"`
+			Type      string `json:"type"`
+		} `json:"chat"`
+		Date int64  `json:"date"`
+		Text string `json:"text"`
 	} `json:"result"`
 }
