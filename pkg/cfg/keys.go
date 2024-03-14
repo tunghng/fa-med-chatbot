@@ -5,6 +5,8 @@ const (
 	ElasticsearchUserName = "ELK_USERNAME"
 	ElasticsearchPassword = "ELK_PASSWORD"
 
+	ConfigSeleniumPath = "SELENIUM_PATH"
+
 	ConfigKeyDBMySQLUsername = "DB_MYSQL_USERNAME"
 	ConfigKeyDBMySQLPassword = "DB_MYSQL_PASSWORD"
 	ConfigKeyDBMySQLHost     = "DB_MYSQL_HOST"
