@@ -7,6 +7,8 @@ const (
 	ConfigKeyDBMySQLPort     = "DB_MYSQL_PORT"
 	ConfigKeyDBMySQLDatabase = "DB_MYSQL_DATABASE"
 
+	ConfigKeyDBMySQLTrackingDatabase = "DB_MYSQL_TRACKING_DATABASE"
+
 	ConfigKeyHttpAddress = "HTTP_ADDR"
 	ConfigKeyHttpPort    = "HTTP_PORT"
 )

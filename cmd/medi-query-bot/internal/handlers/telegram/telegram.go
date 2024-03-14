@@ -26,9 +26,9 @@ func NewChatBotHandler(params chatBotHandlerParams) *ChatBotHandler {
 	}
 }
 
-func (_this *ChatBotHandler) TestWebHook() gin.HandlerFunc {
+func (_this *ChatBotHandler) WebHook() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		res, err := _this.teleService.WebHookTest(c)
+		res, err := _this.teleService.CallWebhook(c)
 		_this.HandleResponse(c, res, err)
 	}
 }
