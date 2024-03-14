@@ -58,12 +58,7 @@ func newMySQLConnection() *db.DB {
 
 func newMySQLUserTrackingConnection() *db.DB {
 	_db, err := db.Connect(&db.Config{
-		Driver: db.DriverMySQL,
-		//Username: viper.GetString(cfg.ConfigKeyDBMySQLUsername),
-		//Password: viper.GetString(cfg.ConfigKeyDBMySQLPassword),
-		//Host:     viper.GetString(cfg.ConfigKeyDBMySQLHost),
-		//Port:     viper.GetInt64(cfg.ConfigKeyDBMySQLPort),
-		//Database: viper.GetString(cfg.ConfigKeyDBMySQLTrackingDatabase),
+		Driver:   db.DriverMySQL,
 		Username: "root",
 		Password: "tungoccho123",
 		Host:     "localhost",
