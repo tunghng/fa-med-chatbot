@@ -17,6 +17,11 @@ const (
 
 	ConfigTelegramBotToken = "TELEGRAM_TOKEN"
 
-	GoogleSeachEngineAPIKey = "GOOGLE_SEARCH_API"
-	GoogleSeachEngineID     = "SEARCH_ENGINE_ID"
+	GoogleSeachEngineAPIKey1 = "GOOGLE_SEARCH_API1"
+	GoogleSeachEngineAPIKey2 = "GOOGLE_SEARCH_API2"
+	GoogleSeachEngineAPIKey3 = "GOOGLE_SEARCH_API3"
+	GoogleSeachEngineID      = "SEARCH_ENGINE_ID"
+
+	ConfigLinklyToken       = "LINKLY_TOKEN"
+	ConfigLinklyWorkspaceId = "LINKLY_WORKSPACE_ID"
 )
