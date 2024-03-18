@@ -19,10 +19,10 @@ type ICrawlerService interface {
 type crawlerService struct {
 }
 
-type CrawlerServiceArgs struct {
-}
+//type CrawlerServiceArgs struct {
+//}
 
-func NewCrawlerService(args CrawlerServiceArgs) ICrawlerService {
+func NewCrawlerService() ICrawlerService {
 	return &crawlerService{}
 }
 
@@ -70,7 +70,7 @@ func (_this *crawlerService) Crawl(c *gin.Context) (*meta.BasicResponse, error) 
 			Code:    http.StatusOK,
 			Message: "Success",
 		},
-		Data: nil,
+		Data: title,
 	}
 	return response, nil
 }

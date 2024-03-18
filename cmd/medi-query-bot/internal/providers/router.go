@@ -16,6 +16,7 @@ func setupRouter(hs *handlers.Handlers) ginServer.GinRoutingFn {
 			chatbotURL.POST("/webhook", hs.ChatbotHandler.WebHook())
 			chatbotURL.POST("/upload-image", hs.ImageHandler.UploadImage())
 			chatbotURL.POST("/download-image", hs.ImageHandler.DownloadImage())
+			chatbotURL.GET("/crawl", hs.CrawlerHandler.Crawl())
 		}
 
 	}

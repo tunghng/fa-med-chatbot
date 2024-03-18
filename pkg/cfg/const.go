@@ -24,4 +24,20 @@ const (
 
 	ConfigLinklyToken       = "LINKLY_TOKEN"
 	ConfigLinklyWorkspaceId = "LINKLY_WORKSPACE_ID"
+
+	GoogleSeachEngineIDR  = "SEARCH_ENGINE_ID_R"
+	GoogleSeachEngineIDM  = "SEARCH_ENGINE_ID_M"
+	GoogleSeachEngineIDP  = "SEARCH_ENGINE_ID_P"
+	GoogleSeachEngineIDD  = "SEARCH_ENGINE_ID_D"
+	GoogleSeachEngineIDT  = "SEARCH_ENGINE_ID_T"
+	GoogleSeachEngineIDV  = "SEARCH_ENGINE_ID_V"
+	GoogleSeachEngineIDN  = "SEARCH_ENGINE_ID_N"
+	GoogleSeachEngineIDNU = "SEARCH_ENGINE_ID_NU"
+	GoogleSeachEngineIDON = "SEARCH_ENGINE_ID_ON"
+	GoogleSeachEngineIDE  = "SEARCH_ENGINE_ID_E"
+	GoogleSeachEngineIDC  = "SEARCH_ENGINE_ID_C"
+	GoogleSeachEngineIDB  = "SEARCH_ENGINE_ID_B"
+	GoogleSeachEngineIDA  = "SEARCH_ENGINE_ID_A"
+	GoogleSeachEngineIDAB = "SEARCH_ENGINE_ID_AB"
+	GoogleSeachEngineIDO  = "SEARCH_ENGINE_ID_O"
 )
