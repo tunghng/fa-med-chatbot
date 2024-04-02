@@ -185,7 +185,6 @@ func (_this *telegramService) CallWebhook(c *gin.Context) (*meta.BasicResponse, 
 		//	chatID = update.CallbackQuery.Message.Chat.ID
 		//}
 		//log.Printf("Callback query from user ID %d in chat ID %d: %s\n", userID, chatID, update.CallbackQuery.Data)
-		fmt.Println("OOOOOOOOOOOOOOOOOOOO")
 		userID := update.CallbackQuery.From.ID
 		chatID := update.CallbackQuery.Message.Chat.ID
 		callbackData := update.CallbackQuery.Data
