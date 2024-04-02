@@ -82,3 +82,13 @@ type TelegramMessage struct {
 		Text string `json:"text"`
 	} `json:"result"`
 }
+
+type InteractionContext struct {
+	UserID      int64
+	ChatID      int64
+	UserMessage string
+}
+
+type UserTelegramConfig struct {
+	Mode string `json:"mode"`
+}
