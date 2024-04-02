@@ -1,9 +1,15 @@
 package cfg
 
 const (
+	KeyDBRedisAddr     = "DB_REDIS_ADDR"
+	KeyDBRedisPassword = "DB_REDIS_PASSWORD"
+	KeyDBRedisDB       = "DB_REDIS_DB"
+
 	ElasticsearchUrl      = "ELK_URL"
 	ElasticsearchUserName = "ELK_USERNAME"
 	ElasticsearchPassword = "ELK_PASSWORD"
+
+	ConfigSeleniumPath = "SELENIUM_PATH"
 
 	ConfigKeyDBMySQLUsername = "DB_MYSQL_USERNAME"
 	ConfigKeyDBMySQLPassword = "DB_MYSQL_PASSWORD"

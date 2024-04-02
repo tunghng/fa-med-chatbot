@@ -8,6 +8,7 @@ require (
 	github.com/go-playground/locales v0.14.1
 	github.com/go-playground/universal-translator v0.18.1
 	github.com/go-playground/validator/v10 v10.14.0
+	github.com/go-redis/redis/v7 v7.4.1
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/jinzhu/gorm v1.9.16
 	github.com/jmoiron/sqlx v1.3.5
@@ -17,10 +18,12 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/sijms/go-ora v1.3.2
 	github.com/spf13/viper v1.18.2
+	github.com/tebeka/selenium v0.9.9
 	go.uber.org/dig v1.17.1
 )
 
 require (
+	github.com/blang/semver v3.5.1+incompatible // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect

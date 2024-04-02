@@ -4,11 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"med-chat-bot/internal/dtos"
+	"med-chat-bot/internal/errors"
 	"med-chat-bot/internal/ginLogger"
 	"med-chat-bot/internal/meta"
 	"med-chat-bot/internal/models"
 	"med-chat-bot/pkg/cfg"
 	"med-chat-bot/pkg/db"
+	"med-chat-bot/pkg/rediscmd"
+	"strconv"
 
 	tlRepositories "med-chat-bot/internal/repositories/telegram"
 	wprepositories "med-chat-bot/internal/repositories/wordpress"
@@ -18,7 +21,6 @@ import (
 	"github.com/spf13/viper"
 	"go.uber.org/dig"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -27,14 +29,14 @@ import (
 )
 
 type ITelegramService interface {
-	LogUserFeedback(c *gin.Context) (*meta.BasicResponse, error)
 	CallWebhook(c *gin.Context) (*meta.BasicResponse, error)
-	SendMessage(chatID int64, message string) (string, error)
-	FeedbackCommand(c *gin.Context, chatID int64) (string, string, error)
-	AboutCommand(c *gin.Context, chatID int64) (string, string, error)
-	HelpCommand(c *gin.Context, chatID int64) (string, string, error)
-	StartCommand(c *gin.Context, chatID int64) (string, string, error)
-	UnknownCommand(c *gin.Context, chatID int64) (string, string, error)
+	SendMessage(c *gin.Context, chatID int64, message string, messageId int) (string, error)
+	ContactCommand(c *gin.Context, chatID int64, messageId int) (string, string, error)
+	StartCommand(c *gin.Context, chatID int64, messageId int) (string, string, error)
+	ModeCommand(c *gin.Context, chatID int64, messageId int, mode string) (string, string, error)
+	SpecialtiesCommand(c *gin.Context, chatID int64, messageId int) (string, string, error)
+	SendMessageWithCallBack(c *gin.Context, chatID int64, message string, messageId int, currentPage int, globalUpdate dtos.InteractionContext) (string, error)
+	// FeedbackCommand(c *gin.Context, chatID int64, messageId int) (string, string, error)
 }
 
 type telegramService struct {
@@ -42,6 +44,8 @@ type telegramService struct {
 	dbTracking        *db.DB
 	wordPressPostRepo wprepositories.IFaWordpressPostRepository
 	userTrackingRepo  tlRepositories.ITelegramChabotRepository
+	chatResponseRepo  tlRepositories.ITelegramChabotResponseRepository
+	redis             rediscmd.RedisCmd
 }
 
 type TelegramServiceArgs struct {
@@ -50,6 +54,8 @@ type TelegramServiceArgs struct {
 	DBTracking        *db.DB `name:"trackingDB"`
 	WordPressPostRepo wprepositories.IFaWordpressPostRepository
 	UserTrackingRepo  tlRepositories.ITelegramChabotRepository
+	ChatResponseRepo  tlRepositories.ITelegramChabotResponseRepository
+	Redis             rediscmd.RedisCmd
 }
 
 func NewTelegramService(args TelegramServiceArgs) ITelegramService {
@@ -58,20 +64,47 @@ func NewTelegramService(args TelegramServiceArgs) ITelegramService {
 		dbTracking:        args.DBTracking,
 		wordPressPostRepo: args.WordPressPostRepo,
 		userTrackingRepo:  args.UserTrackingRepo,
+		chatResponseRepo:  args.ChatResponseRepo,
+		redis:             args.Redis,
 	}
 }
 
-func (_this *telegramService) LogUserFeedback(c *gin.Context) (*meta.BasicResponse, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
 func (_this *telegramService) CallWebhook(c *gin.Context) (*meta.BasicResponse, error) {
+	commandToSite := map[string][]string{
+		"/r":   {viper.GetString(cfg.GoogleSeachEngineIDR), "radiologykey", "radiologykey.com"},
+		"/m":   {viper.GetString(cfg.GoogleSeachEngineIDM), "musculoskeletalkey", "musculoskeletalkey.com"},
+		"/p":   {viper.GetString(cfg.GoogleSeachEngineIDP), "plasticsurgerykey", "plasticsurgerykey.com"},
+		"/d":   {viper.GetString(cfg.GoogleSeachEngineIDD), "pocketdentistry", "pocketdentistry.com"},
+		"/t":   {viper.GetString(cfg.GoogleSeachEngineIDT), "thoracickey", "thoracickey.com"},
+		"/v":   {viper.GetString(cfg.GoogleSeachEngineIDV), "veteriankey", "veteriankey.com"},
+		"/n":   {viper.GetString(cfg.GoogleSeachEngineIDN), "neupsykey", "neupsykey.com"},
+		"/nu":  {viper.GetString(cfg.GoogleSeachEngineIDNU), "nursekey", "nursekey.com"},
+		"/o":   {viper.GetString(cfg.GoogleSeachEngineIDO), "obgynkey", "obgynkey.com"},
+		"/on":  {viper.GetString(cfg.GoogleSeachEngineIDON), "oncohemakey", "oncohemakey.com"},
+		"/e":   {viper.GetString(cfg.GoogleSeachEngineIDE), "entokey", "entokey.com"},
+		"/c":   {viper.GetString(cfg.GoogleSeachEngineIDC), "clemedicine", "clemedicine.com"},
+		"/b":   {viper.GetString(cfg.GoogleSeachEngineIDB), "basicmedicalkey", "basicmedicalkey.com"},
+		"/a":   {viper.GetString(cfg.GoogleSeachEngineIDA), "aneskey", "aneskey.com"},
+		"/ab":  {viper.GetString(cfg.GoogleSeachEngineIDAB), "abdominalkey", "abdominalkey.com"},
+		"/app": {viper.GetString(cfg.GoogleSeachEngineID), "clinicalpub", "https://clinicalpub.com/"},
+		"/web": {viper.GetString(cfg.GoogleSeachEngineID), "web"},
+	}
+
+	icons := map[string]string{
+		"0": "📕",
+		"1": "📙",
+		"2": "📗",
+		"3": "📘",
+		"4": "📓",
+	}
+
+	var globalUpdate dtos.InteractionContext
 	var update dtos.TelegramUpdate
 	var response string
+
 	action := "SEARCH"
 	if err := c.ShouldBindJSON(&update); err != nil {
-		log.Printf("Error decoding update: %v\n", err)
+		ginLogger.Gin(c).Errorf("Error decoding update: %v\n", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Error decoding update"})
 		return nil, err
 	}
@@ -80,60 +113,90 @@ func (_this *telegramService) CallWebhook(c *gin.Context) (*meta.BasicResponse, 
 		userID := update.Message.From.ID
 		chatID := update.Message.Chat.ID
 		userMessage := update.Message.Text
-		if strings.HasPrefix(userMessage, "/help") {
-			response, action, _ = _this.HelpCommand(c, chatID)
-		} else if strings.HasPrefix(userMessage, "/about") {
-			response, action, _ = _this.AboutCommand(c, chatID)
-		} else if strings.HasPrefix(userMessage, "/start") {
-			response, action, _ = _this.StartCommand(c, chatID)
-		} else if strings.HasPrefix(userMessage, "/feedback") {
-			response, action, _ = _this.FeedbackCommand(c, chatID)
-		} else if strings.HasPrefix(userMessage, "/query") {
-			_, message := TakeQueryAndAction(userMessage)
-			if message == "" {
-				replyText := "Your query is empty!"
-				responseTele, err := _this.SendMessage(chatID, replyText)
+		messageId := update.Message.MessageID
+		globalUpdate.UserID = userID
+		globalUpdate.ChatID = chatID
+		configKey := fmt.Sprintf("user_telegram_config:%d", userID)
+
+		var userConfig dtos.UserTelegramConfig
+
+		_, err := _this.redis.Get(configKey, &userConfig)
+		if err != nil {
+			ginLogger.Gin(c).Infof("No existing mode found or error retrieving mode for userID %d, setting default to /web. Error: %v", userID, err)
+			userConfig.Mode = "/web"
+
+			if err := _this.redis.Set(configKey, userConfig, 0); err != nil {
+				ginLogger.Gin(c).Errorf("Error storing default UserTelegramConfig in Redis: %v", err)
+			}
+		} else {
+			ginLogger.Gin(c).Infof("Successfully retrieved mode for userID %d: %s", userID, userConfig.Mode)
+		}
+
+		if !strings.HasPrefix(userMessage, "/") && userConfig.Mode == "/app" {
+			userMessage = userConfig.Mode + " " + userMessage
+		}
+		globalUpdate.UserMessage = userMessage
+
+		temp := strings.Fields(userMessage)[0]
+
+		if value, exist := commandToSite[userMessage]; exist {
+			userConfig := dtos.UserTelegramConfig{
+				Mode: userMessage,
+			}
+
+			err := _this.redis.Set(configKey, userConfig, 0)
+			if err != nil {
+				ginLogger.Gin(c).Errorf("Error storing UserTelegramConfig in Redis: %v", err)
+			}
+
+			ginLogger.Gin(c).Infof("Changed search mode successfully")
+			response, action, _ = _this.ModeCommand(c, chatID, messageId, value[1])
+
+		} else if temp == "/start" {
+			response, action, _ = _this.StartCommand(c, chatID, messageId)
+		} else if temp == "/contact" {
+			response, action, _ = _this.ContactCommand(c, chatID, messageId)
+		} else if temp == "/specialty" {
+			response, action, _ = _this.SpecialtiesCommand(c, chatID, messageId)
+		} else {
+			value := commandToSite[userConfig.Mode]
+
+			replyText := ""
+			var results []dtos.SearchResult
+
+			results, _ = _this.PerformSearch(c, userMessage, value[0], temp == "/app", 1)
+			if len(results) == 0 {
+				emptyMessage := "Sorry! But we can not find any articles that matches your query! Please try another query!"
+				responseTele, err := _this.SendMessage(c, chatID, emptyMessage, messageId)
 				if err != nil {
-					log.Printf("Error sending response messagev: %", err)
-					c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-					return nil, err
+					ginLogger.Gin(c).Errorf("Error sending response messagev: %v", err)
+					return nil, errors.NewCusErr(errors.ErrCommonInvalidRequest)
 				}
 				response = responseTele
 			} else {
-				replyText := "Here are your search results:\n"
-				results, _ := _this.PerformSearch(c, message)
-				if len(results) == 0 {
-					emptyMessage := "Sorry! But we can not find any articles that matches your query! Please try another query!"
-					responseTele, err := _this.SendMessage(chatID, emptyMessage)
-					if err != nil {
-						log.Printf("Error sending response messagev: %", err)
-						c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-						return nil, err
+				for index, item := range results {
+					if userConfig.Mode == "/web" {
+						cleanedURL := strings.Replace(item.DisplayLink, ".com", "", -1)
+						replyText += fmt.Sprintf("<b>%s %s</b> \n 🌱<a href=\"%s\"><i><u>%s</u></i></a>    🔗 <a href=\"%s\"><b><u>View</u></b></a> \n\n", icons[strconv.Itoa(index)], item.Title, item.DisplayLink, cleanedURL, item.Link)
+					} else {
+						replyText += fmt.Sprintf("<b>%s %s</b> \n 🌱<a href=\"%s\"><i><u>%s</u></i></a>    🔗 <a href=\"%s\"><b><u>View</u></b></a> \n\n", icons[strconv.Itoa(index)], item.Title, value[2], value[1], item.Link)
 					}
-					response = responseTele
-				} else {
-					for index, item := range results {
-						replyText += fmt.Sprintf("%d, Title: %s \n Link to the Website: %s \n", index+1, item.Title, item.Link)
-					}
-					log.Printf("Message from user ID %d in chat ID %d: %s\n", userID, chatID, update.Message.Text)
-					responseTele, err := _this.SendMessage(chatID, replyText)
-					if err != nil {
-						log.Printf("Error sending response messagev: %", err)
-						c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-						return nil, err
-					}
-					response = responseTele
 				}
+
+				ginLogger.Gin(c).Infof("Message from user ID %d in chat ID %d: %s\n\n", userID, chatID, update.Message.Text)
+				responseTele, err := _this.SendMessageWithCallBack(c, chatID, replyText, messageId, 1, globalUpdate)
+				if err != nil {
+					ginLogger.Gin(c).Errorf("Error sending response messagev: %v", err)
+					return nil, errors.NewCusErr(errors.ErrCommonInvalidRequest)
+				}
+				response = responseTele
 			}
-		} else if strings.HasPrefix(userMessage, "/feedback") {
-			response, action, _ = _this.FeedbackCommand(c, chatID)
-		} else {
-			return nil, nil
+
 		}
 
 		var msg dtos.TelegramMessage
 		if err := json.Unmarshal([]byte(response), &msg); err != nil {
-			fmt.Println("Error parsing JSON: ", err)
+			ginLogger.Gin(c).Errorf("Error parsing JSON: %v", err)
 			return nil, err
 		}
 		name := msg.Result.Chat.FirstName + " " + msg.Result.Chat.LastName
@@ -147,17 +210,26 @@ func (_this *telegramService) CallWebhook(c *gin.Context) (*meta.BasicResponse, 
 			CreatedAt:   time.Now(),
 			UpdatedAt:   time.Now(),
 		}
-		_, err := _this.userTrackingRepo.Create(_this.dbTracking, userInfo)
+		_, err = _this.userTrackingRepo.Create(_this.dbTracking, userInfo)
 		if err != nil {
 			return nil, err
 		}
 	} else if update.CallbackQuery != nil {
-		userID := update.CallbackQuery.From.ID
-		var chatID int64
-		if update.CallbackQuery.Message != nil {
-			chatID = update.CallbackQuery.Message.Chat.ID
+
+		callbackData := update.CallbackQuery.Data
+		var globalMessage dtos.InteractionContext
+		callback, step, globalMessage := parseCallbackData(c, callbackData)
+
+		ginLogger.Gin(c).Infof("Callback query from user ID %d at page %d: %s\n", globalMessage.UserID, step, callbackData)
+		newCallbackData := fmt.Sprintf("%d_%s_%d", globalMessage.UserID, globalMessage.UserMessage, globalMessage.ChatID)
+		switch callback {
+		case "next":
+			_this.HandleNextPage(c, globalMessage, update.CallbackQuery.Message.MessageID, step, newCallbackData)
+		case "previous":
+			_this.HandlePreviousPage(c, globalMessage, update.CallbackQuery.Message.MessageID, step, newCallbackData)
 		}
-		log.Printf("Callback query from user ID %d in chat ID %d: %s\n", userID, chatID, update.CallbackQuery.Data)
+
+		_this.AcknowledgeCallbackQuery(c, update.CallbackQuery.ID)
 	}
 
 	c.Status(http.StatusOK)
@@ -170,8 +242,174 @@ func (_this *telegramService) CallWebhook(c *gin.Context) (*meta.BasicResponse, 
 	return responseBE, nil
 }
 
+// AcknowledgeCallbackQuery sends an empty response to Telegram to stop the loading spinner on the button
+func (_this *telegramService) AcknowledgeCallbackQuery(c *gin.Context, callbackQueryID string) {
+	botToken := viper.GetString(cfg.ConfigTelegramBotToken)
+	request_url := fmt.Sprintf("https://api.telegram.org/bot%s/answerCallbackQuery", botToken)
+	payload := map[string]string{"callback_query_id": callbackQueryID}
+	payloadBytes, err := json.Marshal(payload)
+	if err != nil {
+		ginLogger.Gin(c).Errorf("Error marshaling payload: %v", err)
+		return
+	}
+	resp, err := http.Post(request_url, "application/json", bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		ginLogger.Gin(c).Errorf("Error sending request: %v", err)
+		return
+	}
+	defer resp.Body.Close()
+}
+
+func (_this *telegramService) HandleNextPage(c *gin.Context, globalMessage dtos.InteractionContext, messageID int, currentPage int, callbackData string) {
+	currentPage++
+
+	if currentPage > 5 {
+		ginLogger.Gin(c).Infof("Already at the last page, cannot go to next page.")
+		return
+	}
+	_this.UpdateMessage(c, globalMessage, messageID, currentPage, callbackData)
+}
+
+func (_this *telegramService) HandlePreviousPage(c *gin.Context, globalMessage dtos.InteractionContext, messageID int, currentPage int, callbackData string) {
+	currentPage--
+	if currentPage < 1 {
+		ginLogger.Gin(c).Infof("Already at the first page, cannot go to previous page.")
+		return
+	}
+
+	_this.UpdateMessage(c, globalMessage, messageID, currentPage, callbackData)
+}
+
+// UpdateMessage edits a message's text
+func (_this *telegramService) UpdateMessage(c *gin.Context, globalMessage dtos.InteractionContext, messageID int, currentPage int, callbackData string) {
+	commandToSite := map[string][]string{
+		"/r":   {viper.GetString(cfg.GoogleSeachEngineIDR), "radiologykey", "radiologykey.com"},
+		"/m":   {viper.GetString(cfg.GoogleSeachEngineIDM), "musculoskeletalkey", "musculoskeletalkey.com"},
+		"/p":   {viper.GetString(cfg.GoogleSeachEngineIDP), "plasticsurgerykey", "plasticsurgerykey.com"},
+		"/d":   {viper.GetString(cfg.GoogleSeachEngineIDD), "pocketdentistry", "pocketdentistry.com"},
+		"/t":   {viper.GetString(cfg.GoogleSeachEngineIDT), "thoracickey", "thoracickey.com"},
+		"/v":   {viper.GetString(cfg.GoogleSeachEngineIDV), "veteriankey", "veteriankey.com"},
+		"/n":   {viper.GetString(cfg.GoogleSeachEngineIDN), "neupsykey", "neupsykey.com"},
+		"/nu":  {viper.GetString(cfg.GoogleSeachEngineIDNU), "nursekey", "nursekey.com"},
+		"/o":   {viper.GetString(cfg.GoogleSeachEngineIDO), "obgynkey", "obgynkey.com"},
+		"/on":  {viper.GetString(cfg.GoogleSeachEngineIDON), "oncohemakey", "oncohemakey.com"},
+		"/e":   {viper.GetString(cfg.GoogleSeachEngineIDE), "entokey", "entokey.com"},
+		"/c":   {viper.GetString(cfg.GoogleSeachEngineIDC), "clemedicine", "clemedicine.com"},
+		"/b":   {viper.GetString(cfg.GoogleSeachEngineIDB), "basicmedicalkey", "basicmedicalkey.com"},
+		"/a":   {viper.GetString(cfg.GoogleSeachEngineIDA), "aneskey", "aneskey.com"},
+		"/ab":  {viper.GetString(cfg.GoogleSeachEngineIDAB), "abdominalkey", "abdominalkey.com"},
+		"/app": {viper.GetString(cfg.GoogleSeachEngineID), "clinicalpub", "https://clinicalpub.com/"},
+		"/web": {viper.GetString(cfg.GoogleSeachEngineID), "web", ""},
+	}
+
+	icons := map[string]string{
+		"0": "📕",
+		"1": "📙",
+		"2": "📗",
+		"3": "📘",
+		"4": "📓",
+	}
+
+	botToken := viper.GetString(cfg.ConfigTelegramBotToken)
+	editUrl := fmt.Sprintf("https://api.telegram.org/bot%s/editMessageText", botToken)
+
+	temp := strings.Fields(globalMessage.UserMessage)[0]
+	replyText := ""
+	if value, exists := commandToSite[temp]; exists {
+		_, message := TakeQueryAndAction(globalMessage.UserMessage)
+
+		results, _ := _this.PerformSearch(c, message, value[0], temp == "/app", currentPage*5-4)
+
+		for index, item := range results {
+			replyText += fmt.Sprintf("<b>%s %s</b> \n 🌱<a href=\"%s\"><i><u>%s</u></i></a>    🔗 <a href=\"%s\"><b><u>View</u></b></a> \n\n", icons[strconv.Itoa(index)], item.Title, value[2], value[1], item.Link)
+		}
+	} else {
+		value = commandToSite["/web"]
+
+		results, _ := _this.PerformSearch(c, globalMessage.UserMessage, value[0], false, currentPage*5-4)
+
+		for index, item := range results {
+			cleanedURL := strings.Replace(item.DisplayLink, ".com", "", -1)
+			replyText += fmt.Sprintf("<b>%s %s</b> \n 🌱<a href=\"%s\"><i><u>%s</u></i></a>    🔗 <a href=\"%s\"><b><u>View</u></b></a> \n\n", icons[strconv.Itoa(index)], item.Title, item.DisplayLink, cleanedURL, item.Link)
+		}
+	}
+	keyboard := map[string]interface{}{
+		"inline_keyboard": [][]map[string]interface{}{
+			{
+				{"text": "Previous", "callback_data": fmt.Sprintf("previous_%d_%s", currentPage, callbackData)},
+				{"text": "Next", "callback_data": fmt.Sprintf("next_%d_%s", currentPage, callbackData)},
+			},
+		},
+	}
+
+	payload := map[string]interface{}{
+		"chat_id":      globalMessage.ChatID,
+		"message_id":   messageID,
+		"text":         replyText,
+		"parse_mode":   "HTML",
+		"reply_markup": keyboard,
+	}
+	payloadBytes, err := json.Marshal(payload)
+	if err != nil {
+		// Handle error
+		ginLogger.Gin(c).Errorf("Error marshaling payload: %v", err)
+		return
+	}
+	resp, err := http.Post(editUrl, "application/json", bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		// Handle error
+		ginLogger.Gin(c).Errorf("Error sending request: %v", err)
+		return
+	}
+	defer resp.Body.Close()
+	// Check response status code, etc.
+}
+func (_this *telegramService) SendMessageWithCallBack(c *gin.Context, chatID int64, message string, messageId int, currentPage int, globalUpdate dtos.InteractionContext) (string, error) {
+	// API endpoint for sending messages
+	botToken := viper.GetString(cfg.ConfigTelegramBotToken)
+	sendMessageURL := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", botToken)
+
+	globalMessageString := fmt.Sprintf("%d_%s_%d", globalUpdate.UserID, globalUpdate.UserMessage, globalUpdate.ChatID)
+
+	inlineKeyboard := map[string]interface{}{
+		"inline_keyboard": [][]map[string]interface{}{
+			{
+				{"text": "Next", "callback_data": fmt.Sprintf("next_%d_%s", currentPage, globalMessageString)},
+			},
+		},
+	}
+	messageBody, err := json.Marshal(map[string]interface{}{
+		"chat_id":      chatID,
+		"text":         message,
+		"parse_mode":   "HTML",
+		"reply_markup": inlineKeyboard,
+		"reply_parameters": map[string]interface{}{
+			"message_id":                  messageId,
+			"allow_sending_without_reply": true,
+		},
+	})
+	if err != nil {
+		return "", err
+	}
+
+	response, err := http.Post(sendMessageURL, "application/json", bytes.NewBuffer(messageBody))
+	if err != nil {
+		return "", err
+	}
+	defer response.Body.Close()
+
+	responseBody, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Println("Error reading response from Telegram:", err)
+		return "", err
+	}
+	ginLogger.Gin(c).Infof("Response from Telegram: %s\n", string(responseBody))
+
+	return string(responseBody), nil
+}
+
 // SendMessage sends a message to a user in Telegram
-func (_this *telegramService) SendMessage(chatID int64, message string) (string, error) {
+func (_this *telegramService) SendMessage(c *gin.Context, chatID int64, message string, messageId int) (string, error) {
 	// API endpoint for sending messages
 	botToken := viper.GetString(cfg.ConfigTelegramBotToken)
 	sendMessageURL := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", botToken)
@@ -189,92 +427,67 @@ func (_this *telegramService) SendMessage(chatID int64, message string) (string,
 	}
 	defer response.Body.Close()
 
-	responseBody, err := ioutil.ReadAll(response.Body)
+	responseBody, err := io.ReadAll(response.Body)
 	if err != nil {
 		log.Println("Error reading response from Telegram:", err)
 		return "", err
 	}
-	log.Printf("Response from Telegram: %s\n", string(responseBody))
+	ginLogger.Gin(c).Errorf("Response from Telegram: %s\n", string(responseBody))
 
 	return string(responseBody), nil
 }
 
-func (_this *telegramService) HelpCommand(c *gin.Context, chatID int64) (string, string, error) {
-	helpMessage := "🆘 Need some help? Here's what I can do for you:\n\n" +
-		"/query [your question] - Use this command followed by your medical question to get information.\n" +
-		"/feedback - Provide feedback or suggest improvements.\n" +
-		"/about - Learn more about MediQuery Bot and our mission.\n" +
-		"/help - Display this help message again.\n\n" +
-		"Just type your command and follow the instructions. I'm here to help!"
-	responseTele, err := _this.SendMessage(chatID, helpMessage)
-	action := "HELP"
-	if err != nil {
-		log.Printf("Error sending response messagev: %", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-		return "", "ERROR", err
-	}
-	return responseTele, action, nil
-}
+//func (_this *telegramService) FeedbackCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
+//	action := "REPORT"
+//	feedbackMessage := "We have received you feedback!"
+//	responseTele, err := _this.SendMessage(c, chatID, feedbackMessage, messageId)
+//	if err != nil {
+//		ginLogger.Gin(c).Errorf("Error sending response messagev: %", err)
+//		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
+//	}
+//	return responseTele, action, nil
+//}
 
-func (_this *telegramService) FeedbackCommand(c *gin.Context, chatID int64) (string, string, error) {
-	action := "REPORT"
-	feedbackMessage := "OMG HELP ME DON'T REPORT US!!!"
-	responseTele, err := _this.SendMessage(chatID, feedbackMessage)
-	if err != nil {
-		log.Printf("Error sending response messagev: %", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-		return "", "ERROR", err
-	}
-	return responseTele, action, nil
-}
-
-func (_this *telegramService) UnknownCommand(c *gin.Context, chatID int64) (string, string, error) {
-	action := "UNKNOWN"
-	replyText := "🆘 I don't understand! In general, here's what I can do for you:\n\n" +
-		"/query [your question] - Use this command followed by your medical question to get information.\n" +
-		"/feedback - Provide feedback or suggest improvements.\n" +
-		"/about - Learn more about MediQuery Bot and our mission.\n" +
-		"/help - Display this help message again.\n\n" +
-		"Just type your command and follow the instructions. I'm here to help!"
-	responseTele, err := _this.SendMessage(chatID, replyText)
-	if err != nil {
-		log.Printf("Error sending response messagev: %", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-		return "", "ERROR", err
-	}
-	return responseTele, action, nil
-}
-
-func (_this *telegramService) AboutCommand(c *gin.Context, chatID int64) (string, string, error) {
-	aboutMessage := "🤖 About MediQuery Bot:\n\n" +
-		"MediQuery Bot is designed to provide quick, reliable medical information and collect feedback to improve our knowledge base. Our goal is to make medical information more accessible and help fill in the gaps with your feedback.\n\n" +
-		"Remember: The information provided is for educational purposes and should not be considered medical advice.\n\n" +
-		"👩‍💻 Developed by ___. For more information or support, contact us at ___."
-	responseTele, err := _this.SendMessage(chatID, aboutMessage)
+func (_this *telegramService) SpecialtiesCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
+	specialtyMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "SPECIALTY")
+	responseTele, err := _this.SendMessage(c, chatID, specialtyMessage, messageId)
 	action := "ABOUT"
 	if err != nil {
-		log.Printf("Error sending response messagev: %", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-		return "", "ERROR", err
+		ginLogger.Gin(c).Errorf("Error sending response messagev:  %v", err)
+		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
 	}
 	return responseTele, action, nil
 }
 
-func (_this *telegramService) StartCommand(c *gin.Context, chatID int64) (string, string, error) {
-	welcomeMessage := "👋 Welcome to MediQuery Bot! Your assistant for medical queries and feedback.\n\n" +
-		"💡 I can help you find answers to medical questions, provide links to reputable sources, and collect feedback on medical information gaps. My goal is to make reliable medical information more accessible and to continuously improve based on your feedback.\n\n" +
-		"Here's how you can get started:\n" +
-		"- Use /query followed by your question to get medical information.\n" +
-		"- Use /feedback to provide feedback or report gaps in our knowledge base.\n" +
-		"- If you need help or want to learn more about how I work, just type /help.\n" +
-		"- Curious about who I am and my mission? Type /about for more information on my background and how I operate.\n\n" +
-		"What would you like to know today? Feel free to ask me anything!"
-	responseTele, err := _this.SendMessage(chatID, welcomeMessage)
+func (_this *telegramService) ContactCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
+	aboutMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "CONTACT")
+	responseTele, err := _this.SendMessage(c, chatID, aboutMessage, messageId)
+	action := "CONTACT"
+	if err != nil {
+		ginLogger.Gin(c).Errorf("Error sending response messagev:  %v", err)
+		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
+	}
+	return responseTele, action, nil
+}
+
+func (_this *telegramService) StartCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
+	welcomeMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "START")
+	responseTele, err := _this.SendMessage(c, chatID, welcomeMessage, messageId)
 	action := "START"
 	if err != nil {
-		log.Printf("Error sending response messagev: %", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to send response"})
-		return "", "ERROR", err
+		ginLogger.Gin(c).Errorf("Error sending response messagev: %v", err)
+		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
+	}
+	return responseTele, action, nil
+}
+
+func (_this *telegramService) ModeCommand(c *gin.Context, chatID int64, messageId int, mode string) (string, string, error) {
+	modeMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "MODE")
+	responseTele, err := _this.SendMessage(c, chatID, modeMessage+mode, messageId)
+	action := "CONTACT"
+	if err != nil {
+		ginLogger.Gin(c).Errorf("Error sending response messagev:  %v", err)
+		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
 	}
 	return responseTele, action, nil
 }
@@ -292,27 +505,29 @@ func getNextApiKey() string {
 	return apiKey
 }
 
-func (_this *telegramService) PerformSearch(c *gin.Context, query string) ([]dtos.SearchResult, error) {
-	apiKey := getNextApiKey()
-	searchEngineID := viper.GetString(cfg.GoogleSeachEngineID)
-	posts, err := _this.wordPressPostRepo.GetPostsByTitle(_this.dbWordPress, query)
-	if err != nil {
-		ginLogger.Gin(c).Errorf("Failed when GetPostsByTitle to err: %v", err)
-	}
+func (_this *telegramService) PerformSearch(c *gin.Context, query string, site string, isApp bool, start int) ([]dtos.SearchResult, error) {
 	res := make([]dtos.SearchResult, 0)
-	for _, post := range posts {
-		var item dtos.SearchResult
-		if post.PostTitle != "" {
-			item.Title = post.PostTitle
-			item.Link = "https://clinicalpub.com/?p=" + post.GUID
-			res = append(res, item)
+	apiKey := getNextApiKey()
+	if isApp == true {
+		posts, err := _this.wordPressPostRepo.GetPostsByTitle(_this.dbWordPress, query, start)
+		if err != nil {
+			ginLogger.Gin(c).Errorf("Failed when GetPostsByTitle to err: %v", err)
+		}
+
+		for _, post := range posts {
+			var item dtos.SearchResult
+			if post.PostTitle != "" {
+				item.Title = post.PostTitle
+				item.Link = "https://clinicalpub.com/?p=" + post.GUID
+				res = append(res, item)
+			}
 		}
 	}
 
 	var gsr dtos.GoogleSearchResponse
 	if left := 5 - len(res); len(res) != 5 {
-		searchURL := fmt.Sprintf("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s&num=%d",
-			apiKey, searchEngineID, url.QueryEscape(query), left)
+		searchURL := fmt.Sprintf("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s&num=%d&start=%d",
+			apiKey, site, url.QueryEscape(query), left, start)
 
 		resp, err := http.Get(searchURL)
 		if err != nil {
@@ -330,6 +545,10 @@ func (_this *telegramService) PerformSearch(c *gin.Context, query string) ([]dto
 		}
 	}
 	for _, item := range gsr.Items {
+		parts := strings.Split(item.Title, "|")
+		if len(parts) > 0 {
+			item.Title = strings.TrimSpace(parts[0])
+		}
 		res = append(res, item)
 	}
 	if len(res) == 0 {
@@ -397,4 +616,26 @@ func TakeQueryAndAction(userMessage string) (action string, message string) {
 		message = parts[1]
 	}
 	return action, message
+}
+
+func parseCallbackData(c *gin.Context, callbackData string) (string, int, dtos.InteractionContext) {
+	var globalValue dtos.InteractionContext
+
+	parts := strings.Split(callbackData, "_")
+	action := parts[0]
+	pageNumber, err := strconv.Atoi(parts[1])
+
+	chatId, err := strconv.ParseInt(parts[4], 10, 64)
+	if err == nil {
+		ginLogger.Gin(c).Errorf("Err: %v", err)
+	}
+
+	userId, err := strconv.ParseInt(parts[2], 10, 64)
+	if err == nil {
+		ginLogger.Gin(c).Errorf("Err: %v", err)
+	}
+	globalValue.UserID = userId
+	globalValue.ChatID = chatId
+	globalValue.UserMessage = parts[3]
+	return action, pageNumber, globalValue
 }

@@ -20,6 +20,7 @@ func main() {
 	}
 
 	log.Println("Preparing and running main application . . . !")
+
 	if err := run(); err != nil {
 		log.Fatalf("Running HTTP server: %v", err)
 	}

@@ -41,8 +41,9 @@ type MessageBody struct {
 }
 
 type SearchResult struct {
-	Title string `json:"title"`
-	Link  string `json:"link"`
+	Title       string `json:"title"`
+	Link        string `json:"link"`
+	DisplayLink string `json:"displayLink"`
 }
 
 type GoogleSearchResponse struct {
@@ -81,4 +82,14 @@ type TelegramMessage struct {
 		Date int64  `json:"date"`
 		Text string `json:"text"`
 	} `json:"result"`
+}
+
+type InteractionContext struct {
+	UserID      int64
+	ChatID      int64
+	UserMessage string
+}
+
+type UserTelegramConfig struct {
+	Mode string `json:"mode"`
 }
