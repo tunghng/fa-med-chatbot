@@ -3,6 +3,7 @@ package rediscmd
 import (
 	"encoding/json"
 	"github.com/spf13/viper"
+	"med-chat-bot/pkg/cfg"
 	"time"
 
 	"github.com/go-redis/redis/v7"

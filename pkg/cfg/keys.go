@@ -1,6 +1,10 @@
 package cfg
 
 const (
+	KeyDBRedisAddr     = "DB_REDIS_ADDR"
+	KeyDBRedisPassword = "DB_REDIS_PASSWORD"
+	KeyDBRedisDB       = "DB_REDIS_DB"
+
 	ElasticsearchUrl      = "ELK_URL"
 	ElasticsearchUserName = "ELK_USERNAME"
 	ElasticsearchPassword = "ELK_PASSWORD"
