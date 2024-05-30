@@ -36,7 +36,6 @@ type ITelegramService interface {
 	ModeCommand(c *gin.Context, chatID int64, messageId int, mode string) (string, string, error)
 	SpecialtiesCommand(c *gin.Context, chatID int64, messageId int) (string, string, error)
 	SendMessageWithCallBack(c *gin.Context, chatID int64, message string, messageId int, currentPage int, globalUpdate dtos.InteractionContext) (string, error)
-	// FeedbackCommand(c *gin.Context, chatID int64, messageId int) (string, string, error)
 }
 
 type telegramService struct {
@@ -148,10 +147,8 @@ func (_this *telegramService) CallWebhook(c *gin.Context) (*meta.BasicResponse, 
 			if err != nil {
 				ginLogger.Gin(c).Errorf("Error storing UserTelegramConfig in Redis: %v", err)
 			}
-
 			ginLogger.Gin(c).Infof("Changed search mode successfully")
 			response, action, _ = _this.ModeCommand(c, chatID, messageId, value[1])
-
 		} else if temp == "/start" {
 			response, action, _ = _this.StartCommand(c, chatID, messageId)
 		} else if temp == "/contact" {
@@ -437,21 +434,10 @@ func (_this *telegramService) SendMessage(c *gin.Context, chatID int64, message 
 	return string(responseBody), nil
 }
 
-//func (_this *telegramService) FeedbackCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
-//	action := "REPORT"
-//	feedbackMessage := "We have received you feedback!"
-//	responseTele, err := _this.SendMessage(c, chatID, feedbackMessage, messageId)
-//	if err != nil {
-//		ginLogger.Gin(c).Errorf("Error sending response messagev: %", err)
-//		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
-//	}
-//	return responseTele, action, nil
-//}
-
 func (_this *telegramService) SpecialtiesCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
-	specialtyMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "SPECIALTY")
+	specialtyMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "specialty")
 	responseTele, err := _this.SendMessage(c, chatID, specialtyMessage, messageId)
-	action := "ABOUT"
+	action := "specialty"
 	if err != nil {
 		ginLogger.Gin(c).Errorf("Error sending response messagev:  %v", err)
 		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
@@ -460,9 +446,9 @@ func (_this *telegramService) SpecialtiesCommand(c *gin.Context, chatID int64, m
 }
 
 func (_this *telegramService) ContactCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
-	aboutMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "CONTACT")
+	aboutMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "contact")
 	responseTele, err := _this.SendMessage(c, chatID, aboutMessage, messageId)
-	action := "CONTACT"
+	action := "contact"
 	if err != nil {
 		ginLogger.Gin(c).Errorf("Error sending response messagev:  %v", err)
 		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
@@ -471,9 +457,9 @@ func (_this *telegramService) ContactCommand(c *gin.Context, chatID int64, messa
 }
 
 func (_this *telegramService) StartCommand(c *gin.Context, chatID int64, messageId int) (string, string, error) {
-	welcomeMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "START")
+	welcomeMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "start")
 	responseTele, err := _this.SendMessage(c, chatID, welcomeMessage, messageId)
-	action := "START"
+	action := "start"
 	if err != nil {
 		ginLogger.Gin(c).Errorf("Error sending response messagev: %v", err)
 		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
@@ -482,14 +468,13 @@ func (_this *telegramService) StartCommand(c *gin.Context, chatID int64, message
 }
 
 func (_this *telegramService) ModeCommand(c *gin.Context, chatID int64, messageId int, mode string) (string, string, error) {
-	modeMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, "MODE")
-	responseTele, err := _this.SendMessage(c, chatID, modeMessage+mode, messageId)
-	action := "CONTACT"
+	modeMessage, _ := _this.chatResponseRepo.FindByName(_this.dbTracking, mode)
+	responseTele, err := _this.SendMessage(c, chatID, modeMessage, messageId)
 	if err != nil {
 		ginLogger.Gin(c).Errorf("Error sending response messagev:  %v", err)
 		return "", "ERROR", errors.NewCusErr(errors.ErrCommonInvalidRequest)
 	}
-	return responseTele, action, nil
+	return responseTele, mode, nil
 }
 
 var apiKeyIndex int

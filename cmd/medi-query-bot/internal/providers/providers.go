@@ -3,9 +3,7 @@ package providers
 import (
 	"go.uber.org/dig"
 	"med-chat-bot/cmd/medi-query-bot/internal/handlers"
-	crawlerHandler "med-chat-bot/cmd/medi-query-bot/internal/handlers/crawler"
 	cbHandler "med-chat-bot/cmd/medi-query-bot/internal/handlers/telegram"
-	"med-chat-bot/cmd/medi-query-bot/internal/services/crawler"
 	chatbotService "med-chat-bot/cmd/medi-query-bot/internal/services/telegram"
 	"med-chat-bot/internal/errors"
 	"med-chat-bot/internal/ginServer"
@@ -42,11 +40,9 @@ func BuildContainer() *dig.Container {
 		_ = container.Provide(handlers.NewHandlers)
 		_ = container.Provide(cbHandler.NewChatBotHandler)
 		_ = container.Provide(cbHandler.NewImageHandler)
-		_ = container.Provide(crawlerHandler.NewCrawlerHandler)
 
 		_ = container.Provide(chatbotService.NewTelegramService)
 		_ = container.Provide(chatbotService.NewImageService)
-		_ = container.Provide(crawler.NewCrawlerService)
 
 		_ = container.Provide(tlRepositories.NewTelegramChabotRepository)
 		_ = container.Provide(wordpress.NewWordpressPostRepository)
