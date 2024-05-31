@@ -1,0 +1,99 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - search_in_abdominalkey 
+  - search_in_aneskey
+  - search_in_basicmdeicalkey
+  - search_in_clemedicine
+  - search_in_entokey
+  - search_in_oncohemakey
+  - search_in_obgynkey
+  - search_in_nursekey
+  - search_in_neupsykey
+  - search_in_veteriankey
+  - search_in_thoracickey
+  - search_in_pocketdentistry
+  - search_in_plasticsurgerykey
+  - search_in_musculoskeletalkey
+  - search_in_radiologykey
+  - contact_us
+
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ab: 
+  - text: "/ab"
+
+  utter_a: 
+  - text: "/a"
+
+  utter_b: 
+  - text: "/b"
+
+  utter_d:
+  - text: "/d"
+
+  utter_c: 
+  - text: "/c"
+
+  utter_e: 
+  - text: "/e"
+
+  utter_on: 
+  - text: "/on"
+
+  utter_o: 
+  - text: "/o"
+
+  utter_nu: 
+  - text: "/nu"
+
+  utter_n: 
+  - text: "/n"
+
+  utter_v: 
+  - text: "/v"
+
+  utter_t: 
+  - text: "/t"
+
+  utter_p: 
+  - text: "/p"
+
+  utter_m: 
+  - text: "/m"
+
+  utter_r: 
+  - text: "/r"
+
+  utter_contact: 
+  - text: "/contact"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

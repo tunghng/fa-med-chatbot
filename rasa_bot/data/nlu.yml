@@ -1,0 +1,4468 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: search_in_abdominalkey 
+  examples: |
+    - I have an abdominal disease
+    - abdominal disease
+    - The surgeon carefully examined the patient's abdomen for any signs of swelling or tenderness.
+    - She felt a fluttering sensation in her abdomen, a sure sign of excitement.
+    - The patient was advised to breathe abdominally, focusing on deep diaphragmatic breaths to promote relaxation.
+    - The yoga instructor demonstrated how to engage abdominally while performing plank poses for maximum core strength.
+    - He diligently worked on his abdominals at the gym, aiming for a defined six-pack.
+    - Strengthening the abdominals is crucial for maintaining good posture and preventing lower back pain.
+    - abdomen
+    - abdominally
+    - abdominals
+    - more abdominal
+    - "abdominals" (referring to the abdominal muscles)
+    - I'm experiencing severe abdominal pain.
+    - The doctor said my abdominal muscles need strengthening.
+    - Could you recommend exercises for abdominal toning?
+    - My abdominal area feels bloated after eating.
+    - She was diagnosed with an abdominal infection.
+    - Is abdominal surgery necessary for my condition?
+    - I need to work on my abdominal core.
+    - What are the best foods for abdominal health?
+    - He complained of sharp abdominal cramps.
+    - Abdominal exercises can help reduce belly fat.
+    - I have an abdominal ultrasound scheduled for tomorrow.
+    - How can I relieve this persistent abdominal discomfort?
+    - The abdominal workout was intense but effective.
+    - Is it normal to have abdominal swelling after surgery?
+    - The pain in my lower abdominal region is worsening.
+    - I feel a lot of pressure in my upper abdominal area.
+    - Her abdominal muscles are really well-defined.
+    - Do you know any good abdominal stretches?
+    - My abdominal pain subsides when I rest.
+    - The doctor performed an abdominal examination.
+    - I need advice on reducing abdominal fat.
+    - Abdominal pain can be a sign of many conditions.
+    - The medicine helped reduce my abdominal inflammation.
+    - I have a tight feeling in my abdominal muscles.
+    - The abdominal surgery went well and was successful.
+    - I experience abdominal discomfort after meals.
+    - He has a strong and muscular abdominal core.
+    - Is it safe to do abdominal exercises during pregnancy?
+    - I have a persistent ache in my abdominal area.
+    - The abdominal strain is affecting my daily activities.
+    - She has an abdominal scar from her operation.
+    - The abdominal ultrasound showed no abnormalities.
+    - I am focusing on strengthening my abdominal region.
+    - The abdominal pain might be due to gastritis.
+    - He injured his abdominal muscles while lifting weights.
+    - Can you recommend an abdominal brace for support?
+    - I feel a sharp pain in my lower abdominal area.
+    - The abdominal workout includes crunches and planks.
+    - She was admitted to the hospital with severe abdominal pain.
+    - My doctor recommended an abdominal CT scan.
+    - I feel bloated and have abdominal discomfort.
+    - The abdominal binder helps support my muscles post-surgery.
+    - I have a tender spot in my upper abdominal area.
+    - Abdominal exercises should be done correctly to avoid injury.
+    - The abdominal cramps are quite debilitating.
+    - He has developed a strong abdominal core over the years.
+    - The doctor is concerned about my abdominal swelling.
+    - I feel discomfort in my abdominal muscles after exercising.
+    - Her abdominal pain has been ongoing for a few days.
+    - I am doing an abdominal massage to relieve the pain.
+    - The surgeon specializes in abdominal procedures.
+    - My abdominal area is very sensitive to touch.
+    - He needs to strengthen his abdominal muscles for better posture.
+    - The abdominal binder provides necessary support.
+    - I have an appointment with an abdominal specialist.
+    - The abdominal pain can be due to indigestion.
+    - I need to get an abdominal X-ray done.
+    - She felt a sudden, sharp pain in her abdominal region.
+    - My abdominal muscles are sore after the workout.
+    - The abdominal discomfort is quite persistent.
+    - Do you have any tips for reducing abdominal fat?
+    - I am experiencing a lot of abdominal bloating.
+    - The abdominal exercises are really effective.
+    - He felt a cramp in his lower abdominal area.
+    - The doctor examined my abdominal area for any abnormalities.
+    - I feel a dull ache in my upper abdominal region.
+    - The abdominal pain worsens after I eat.
+    - I need to strengthen my abdominal core for better balance.
+    - The abdominal cramps are really bothering me.
+    - She has a very toned abdominal area.
+    - The doctor is checking for abdominal hernias.
+    - I feel a lot of pressure in my lower abdominal region.
+    - Her abdominal muscles are quite strong.
+    - I have been experiencing abdominal discomfort all day.
+    - The abdominal binder is very supportive.
+    - He has a lot of pain in his upper abdominal area.
+    - The abdominal pain is affecting my appetite.
+    - The abdominal ultrasound is a non-invasive procedure.
+    - I have a sharp pain in my abdominal area.
+    - The abdominal exercises are challenging but rewarding.
+    - She complained of severe abdominal cramps.
+    - The abdominal CT scan was clear.
+    - My doctor recommended rest for my abdominal strain.
+    - The abdominal surgery was a success.
+    - I feel a constant ache in my abdominal muscles.
+    - The abdominal binder helps me stay comfortable.
+    - She is doing abdominal exercises to tone her stomach.
+    - I have been having abdominal pain for a few days.
+    - The abdominal pain might be due to an infection.
+    - I need to work on my abdominal strength.
+    - The abdominal ultrasound showed a small cyst.
+    - He has a pain in his lower abdominal area.
+    - The abdominal workout targets the core muscles.
+    - I have a persistent abdominal ache.
+    - The doctor performed an abdominal tap to relieve fluid.
+    - I feel a lot of tension in my abdominal muscles.
+    - The abdominal pain is getting worse.
+    - She has a strong abdominal core.
+    - The abdominal discomfort is affecting my sleep.
+    - The abdominal binder helps reduce pain.
+    - He has a sharp pain in his abdominal region.
+    - The abdominal exercises are really helping.
+    - The doctor checked for abdominal tenderness.
+    - I need to strengthen my abdominal core.
+    - The abdominal pain is quite severe.
+    - I am experiencing a lot of abdominal bloating.
+    - The abdominal surgery was successful.
+    - The doctor recommended an abdominal MRI.
+    - I have a constant ache in my abdominal area.
+    - She has a lot of pain in her lower abdominal region.
+    - The abdominal exercises are very effective.
+    - The doctor performed an abdominal ultrasound.
+    - I feel a lot of discomfort in my abdominal muscles.
+    - The abdominal pain might be due to a hernia.
+    - She has a very toned abdominal region.
+    - I need to work on my abdominal strength.
+    - The abdominal discomfort is affecting my daily life.
+    - He felt a sharp pain in his abdominal area.
+    - The abdominal exercises are challenging but effective.
+    - I have a persistent ache in my upper abdominal region.
+    - The abdominal binder is very supportive.
+    - The doctor recommended an abdominal X-ray.
+    - I feel a lot of tension in my abdominal muscles.
+    - The abdominal pain is getting worse.
+    - The abdominal muscles are very important for core strength.
+    - I have a pain in my lower abdominal area.
+    - The abdominal exercises are really helping.
+    - The doctor checked for abdominal tenderness.
+    - I need to strengthen my abdominal core.
+    - The abdominal pain is quite severe.
+    - I am experiencing a lot of abdominal bloating.
+    - The abdominal surgery was successful.
+    - The doctor recommended an abdominal MRI.
+    - I have a constant ache in my abdominal area.
+    - She has a lot of pain in her lower abdominal region.
+
+- intent: search_in_aneskey
+  examples: |
+    - anes
+    - anesthesia
+    - anesthesiology
+    - anesthesiologist
+    - anesthetic
+    - anesthetize
+    - anesthetist
+    - anesthetization
+    - anesthetized
+    - anesthetizing
+    - anesthetics
+    - anesthetically
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anesthetically
+    - anesthetize
+    - anesthetized
+    - anesthetizing
+    - anesthetization
+    - anesthetic
+    - anesthetics
+    - anesthesize
+    - anesthesizes
+    - anesthesizing
+    - anesthesiology
+    - anesthetists
+    - anesthetically
+    - anesthesiologists
+    - anes is an abbreviation commonly used for anesthesia.
+    - The field of anesthesiology deals with administering anesthesia during surgical procedures.
+    - An anesthesiologist is a medical doctor specialized in anesthesia and perioperative medicine.
+    - The anesthetic used in the surgery helped the patient remain unconscious throughout the procedure.
+    - It's important to properly anesthetize the patient before starting any surgical operation.
+    - The anesthetist carefully monitors the patient's vital signs during anesthesia administration.
+    - Anesthetization is the process of inducing anesthesia in a patient.
+    - The patient was fully anesthetized before the surgery began.
+    - Anesthetizing the area around the wound helped reduce pain during the procedure.
+    - Different anesthetics have varying effects and durations of action.
+    - The operating room was set up with all necessary anesthetic equipment.
+    - The patient woke up feeling groggy after being anesthetized for several hours.
+    - An anesthetically pleasing environment can help reduce patient anxiety before surgery.
+    - The anesthesize function of the drug numbed the area, providing relief from pain.
+    - The anesthesizes spray applied to the skin helped numb the area before the injection.
+    - Anesthesizing the patient quickly allowed the surgery to proceed smoothly.
+    - Anesthesiology is a branch of medicine dedicated to the study and practice of anesthesia.
+    - Teamwork between surgeons and anesthetists is crucial for successful surgical outcomes.
+    - The anesthetists in the hospital are highly skilled and experienced professionals.
+    - Anesthetically designed waiting rooms can help patients feel more comfortable before surgery.
+    - Anesthesiologists play a key role in pain management and critical care medicine.
+     - The anesthesiologist administered anesthesia to the patient before the surgery.
+    - Anesthesia is crucial for pain management during surgical procedures.
+    - An anesthetist specializes in administering anesthetics to patients.
+    - The anesthetic used in the operation room had a rapid onset.
+    - Anesthesiology is the medical specialty dedicated to anesthesia and perioperative care.
+    - The patient felt relieved after being anesthetized for the procedure.
+    - Anesthetizing the patient before the surgery is essential for their comfort.
+    - The anesthetization process requires careful monitoring of vital signs.
+    - The anesthetized patient showed stable vital signs throughout the surgery.
+    - The anesthetist is responsible for monitoring the patient's anesthesia during surgery.
+    - Anesthetics are substances that induce anesthesia, such as ether or propofol.
+    - Anesthetically, the procedure room was designed to promote a calming atmosphere.
+    - Anesthesize the patient before the procedure to minimize discomfort.
+    - The anesthesiologist carefully anesthesizes the patient before surgery.
+    - Anesthesizes the patient gradually to achieve the desired level of sedation.
+    - Anesthesizing the patient too quickly can lead to adverse effects.
+    - Anesthesiology involves the study of anesthetics and their effects on the body.
+    - Anesthetists play a crucial role in managing pain during and after surgery.
+    - Anesthetically, the operating room was well-lit and organized.
+    - Anesthesiologists undergo extensive training to administer anesthesia safely.
+    - Anesthetically speaking, the patient's comfort is paramount during surgery.
+    - It's important to anesthetize the patient effectively to prevent awareness during surgery.
+    - Anesthetics help block nerve signals, preventing the sensation of pain.
+    - Anesthesize the patient with precision to avoid complications.
+    - Anesthesizes the patient using a combination of drugs for optimal effect.
+    - Anesthesizing the patient requires careful titration of medication.
+    - Anesthesiology encompasses the study of pain management and anesthesia techniques.
+    - Anesthetists work closely with surgeons to ensure patients receive adequate pain relief.
+    - Anesthetically, the recovery room was designed to promote relaxation.
+    - Anesthesiologists are trained to handle emergencies related to anesthesia.
+    - Anesthetically, the patient's comfort is a top priority during surgery.
+    - Anesthetize the patient gently to minimize discomfort.
+    - Anesthesizes the patient gradually to achieve the desired level of sedation.
+    - Anesthesizing the patient requires close monitoring of vital signs.
+    - Anesthesiology is a rapidly evolving field with advancements in anesthesia techniques.
+    - Anesthetists play a vital role in ensuring patient safety during surgery.
+    - Anesthetically speaking, the operating room should be sterile and well-equipped.
+    - Anesthesiologists undergo rigorous training to administer anesthesia safely.
+    - Anesthetically, the patient should feel at ease before surgery begins.
+    - It's crucial to anesthetize the patient adequately to prevent awareness during surgery.
+    - Anesthetics are essential for managing pain and discomfort during medical procedures.
+    - Anesthesize the patient carefully to avoid overdosing.
+    - Anesthesizes the patient using a balanced approach to achieve optimal sedation.
+    - Anesthesizing the patient requires attention to detail and careful monitoring.
+    - Anesthesiology encompasses the study of pain relief and anesthesia administration.
+    - Anesthetists collaborate with other medical professionals to ensure patient comfort.
+    - Anesthetically, the recovery area should be quiet and peaceful.
+    - Anesthesiologists are responsible for evaluating patients' medical history before anesthesia.
+    - Anesthetically, the surgical environment should be sterile and well-organized.
+    - Anesthetize the patient gently to minimize discomfort during the procedure.
+    - Anesthesizes the patient gradually to achieve the desired level of sedation.
+    - Anesthesizing the patient requires precise control of anesthesia levels.
+    - Anesthesiology involves the study of anesthesia and pain management techniques.
+    - Anesthetists play a critical role in administering anesthesia safely.
+    - Anesthetically speaking, the surgical team should work efficiently and calmly.
+    - Anesthesiologists receive specialized training in managing anesthesia-related complications.
+    - Anesthetically, the patient's well-being should be the primary concern during surgery.
+    - It's essential to anesthetize the patient effectively to ensure a smooth procedure.
+    - Anesthetics help patients relax and remain comfortable during surgery.
+    - Anesthesize the patient cautiously to avoid adverse reactions.
+    - Anesthesizes the patient using a combination of medications tailored to their needs.
+    - Anesthesizing the patient requires constant monitoring of vital signs.
+    - Anesthesiology is a complex field that requires a deep understanding of physiology.
+    - Anesthetists work closely with surgeons to provide optimal pain relief.
+    - Anesthetically, the recovery area should be warm and welcoming.
+    - Anesthesiologists assess patients' responses to anesthesia to adjust dosages accordingly.
+    - Anesthetically, the operating room should be free from distractions.
+    - Anesthetize the patient gently to minimize discomfort during the procedure.
+    - Anesthesizes the patient gradually to achieve the desired level of sedation.
+    - Anesthesizing the patient requires careful observation and adjustment of medication.
+    - Anesthesiology encompasses the study of anesthesia and its effects on the body.
+    - Anesthetists play a crucial role in ensuring patient safety during surgery.
+    - Anesthetically speaking, the surgical environment should be calming and reassuring.
+    - Anesthesiologists undergo extensive training to handle complex anesthesia cases.
+
+- intent: search_in_basicmedical
+  examples: |
+    - basicmedical
+    - basic medical knowledge
+    - medical basics
+    - fundamental medical information
+    - intro to medical concepts
+    - basic healthcare understanding
+    - essentials of medicine
+    - rudimentary medical facts
+    - basics of human anatomy
+    - understanding medical terminology
+    - medical fundamentals
+    - foundational medical principles
+    - introductory medical education
+    - basic medical concepts
+    - basic medical terminology
+    - medical basics for beginners
+    - basics of medical science
+    - medical basics for non-medical professionals
+    - medical basics for laypeople
+    - basic medical skills
+    - basics of healthcare
+    - basic understanding of medical conditions
+    - basic understanding of diseases
+    - basic understanding of medical treatments
+    - basic understanding of medical procedures
+    - basic understanding of medical tests
+    - basic understanding of medical diagnosis
+    - basic understanding of medical terminology
+    - basic understanding of medical ethics
+    - basic understanding of medical research
+    - basic understanding of medical technology
+    - basic understanding of medical specialties
+    - basic understanding of medical systems
+    - basic understanding of medical records
+    - basic understanding of medical history
+    - basic understanding of medical billing
+    - basic understanding of medical coding
+    - basic understanding of medical insurance
+    - basic understanding of medical documentation
+    - basic understanding of medical confidentiality
+    - basic understanding of medical errors
+    - basic understanding of medical malpractice
+    - basic understanding of medical liability
+    - basic understanding of medical negligence
+    - basic understanding of medical standards
+    - basic understanding of medical guidelines
+    - basic understanding of medical ethics
+    - basic understanding of medical professionalism
+    - basic understanding of medical licensing
+    - basic understanding of medical certification
+    - basic understanding of medical education
+    - basic understanding of medical training
+    - basic understanding of medical practice
+    - basic understanding of medical facilities
+    - basic understanding of medical equipment
+    - basic understanding of medical supplies
+    - basic understanding of medical devices
+    - basic understanding of medical instruments
+    - basic understanding of medical technology
+    - basic understanding of medical innovations
+    - basic understanding of medical advancements
+    - basic understanding of medical breakthroughs
+    - basic understanding of medical discoveries
+    - basic understanding of medical research
+    - basic understanding of medical studies
+    - basic understanding of medical trials
+    - basic understanding of medical experiments
+    - basic understanding of medical findings
+    - basic understanding of medical literature
+    - basic understanding of medical journals
+    - basic understanding of medical publications
+    - basic understanding of medical reviews
+    - basic understanding of medical articles
+    - basic understanding of medical papers
+    - basic understanding of medical conferences
+    - basic understanding of medical symposiums
+    - basic understanding of medical seminars
+    - basic understanding of medical workshops
+    - basic understanding of medical meetings
+    - basic understanding of medical forums
+    - basic understanding of medical discussions
+    - basic understanding of medical debates
+    - basic understanding of medical conversations
+    - basic understanding of medical dialogues
+    - basic understanding of medical exchanges
+    - basic understanding of medical interactions
+    - basic understanding of medical consultations
+    - basic understanding of medical advice
+    - basic understanding of medical recommendations
+    - basic understanding of medical opinions
+    - basic understanding of medical suggestions
+    - basic understanding of medical insights
+    - basic understanding of medical perspectives
+    - basic understanding of medical viewpoints
+    - basic understanding of medical attitudes
+    - basic understanding of medical approaches
+    - basic understanding of medical strategies
+    - basic understanding of medical tactics
+    - basic understanding of medical plans
+    - basic understanding of medical interventions
+    - basic understanding of medical treatments
+    - basic understanding of medical therapies
+    - basic understanding of medical medications
+    - basic understanding of medical drugs
+    - basic understanding of medical pharmaceuticals
+    - basic understanding of medical remedies
+    - basic understanding of medical cures
+    - basic understanding of medical solutions
+    - basic understanding of medical alternatives
+    - basic understanding of medical options
+    - basic understanding of medical choices
+    - basic understanding of medical decisions
+    - basic understanding of medical judgments
+    - basic understanding of medical diagnoses
+    - basic understanding of medical conditions
+    - basic understanding of medical illnesses
+    - basic understanding of medical diseases
+    - basic understanding of medical disorders
+    - basic understanding of medical syndromes
+    - basic understanding of medical infections
+    - basic understanding of medical injuries
+    - basic understanding of medical ailments
+    - basic understanding of medical problems
+    - basic understanding of medical issues
+    - basic understanding of medical concerns
+    - basic understanding of medical challenges
+    - basic understanding of medical difficulties
+    - basic understanding of medical obstacles
+    - basic understanding of medical barriers
+    - basic understanding of medical limitations
+    - basic understanding of medical restrictions
+    - basic understanding of medical boundaries
+    - basic understanding of medical parameters
+    - basic understanding of medical criteria
+    - basic understanding of medical standards
+    - basic understanding of medical norms
+    - basic understanding of medical guidelines
+    - basic understanding of medical protocols
+    - basic understanding of medical practices
+    - basic understanding of medical procedures
+    - basic understanding of medical techniques
+    - basic understanding of medical methods
+    - basic understanding of medical approaches
+    - basic understanding of medical strategies
+    - basic understanding of medical plans
+    - basic understanding of medical systems
+    - basic understanding of medical structures
+    - basic understanding of medical organizations
+    - basic understanding of medical institutions
+    - basic understanding of medical facilities
+    - basic understanding of medical services
+    - basic understanding of medical programs
+    - basic understanding of medical initiatives
+    - basic understanding of medical campaigns
+    - basic understanding of medical projects
+    - basic understanding of medical tasks
+    - basic understanding of medical assignments
+    - basic understanding of medical duties
+    - basic understanding of medical responsibilities
+    - basic understanding of medical roles
+    - basic understanding of medical functions
+    - basic understanding of medical operations
+    - basic understanding of medical activities
+    - basic understanding of medical events
+    - basic understanding of medical occurrences
+    - basic understanding of medical incidents
+    - basic understanding of medical situations
+    - basic understanding of medical circumstances
+    - basic understanding of medical scenarios
+    - basic understanding of medical cases
+    - basic understanding of medical examples
+    - basic understanding of medical instances
+    - basic understanding of medical occurrences
+    - basic understanding of medical phenomena
+    - basic understanding of medical happenings
+    - basic understanding of medical events
+    - basic understanding of medical phenomena
+    - basic understanding of medical occurrences
+    - basic understanding of medical happenings
+    - basic understanding of medical events
+    - basic understanding of medical situations
+    - basic understanding of medical circumstances
+    - basic understanding of medical conditions
+    - basic understanding of medical ailments
+    - basic understanding of medical disorders
+    - basic understanding of medical illnesses
+    - basic understanding of medical diseases
+    - basic understanding of medical syndromes
+    - basic understanding of medical conditions
+    - basic understanding of medical issues
+    - basic understanding
+    - I'm seeking comprehensive information on basic medical concepts to enhance my understanding of healthcare.
+    - Could you provide me with introductory medical education materials covering fundamental health principles?
+    - I'm interested in learning about essential medicine and rudimentary healthcare skills to improve my knowledge base.
+    - Exploring elementary medical terminology is crucial for building a strong foundation in healthcare.
+    - Understanding primary healthcare concepts is essential for anyone interested in pursuing a career in medicine.
+    - I'm looking for resources that cover basic health education topics for beginners in the medical field.
+    - Could you recommend a guidebook that explains fundamental healthcare terminology in an easy-to-understand manner?
+    - I want to delve into introductory medicine skills to gain a better grasp of medical procedures.
+    - Learning about basic healthcare principles can help individuals make informed decisions about their well-being.
+    - Exploring fundamental medical knowledge is the first step towards becoming proficient in healthcare.
+    - Can you suggest any online courses that cover introductory health concepts comprehensively?
+    - I'm interested in attending workshops that focus on essential healthcare skills for healthcare professionals.
+    - Understanding rudimentary health terminology is crucial for effective communication in the medical field.
+    - Exploring elementary healthcare knowledge can provide insights into various aspects of the healthcare system.
+    - I'm seeking resources that explain basic medicine concepts in a clear and concise manner.
+    - Could you recommend any podcasts that discuss fundamental health principles for the general public?
+    - I want to deepen my understanding of introductory healthcare terminology to communicate better with medical professionals.
+    - Learning about primary medical skills can empower individuals to take control of their health.
+    - Exploring essential healthcare concepts can help bridge the gap between patients and healthcare providers.
+    - I'm interested in attending seminars that explore rudimentary medical education for aspiring healthcare professionals.
+    - Can you suggest any documentaries that cover elementary health topics for a lay audience?
+    - I'm looking for articles that discuss fundamental healthcare skills required for medical practitioners.
+    - Understanding basic medical terminology is essential for navigating the complexities of the healthcare industry.
+    - Exploring introductory medical knowledge can lay the groundwork for a successful career in healthcare.
+    - I want to learn about fundamental medicine principles to better understand medical advancements.
+    - Can you recommend any textbooks that cover basic health education topics comprehensively?
+    - I'm interested in participating in online forums that discuss essential healthcare terminology for medical students.
+    - Learning about rudimentary health skills can empower individuals to make healthier lifestyle choices.
+    - Exploring elementary healthcare concepts can provide a broader perspective on healthcare delivery.
+    - I'm seeking resources that delve into primary medicine terminology for non-medical professionals.
+    - Could you suggest any webinars that focus on introductory health skills for healthcare administrators?
+    - I want to deepen my understanding of fundamental healthcare principles to improve patient outcomes.
+    - Understanding basic medical knowledge is essential for advocating for one's health in medical settings.
+    - Exploring introductory healthcare concepts can foster a greater appreciation for the healthcare profession.
+    - I'm interested in attending workshops that cover essential medicine education for healthcare practitioners.
+    - Can you recommend any podcasts that discuss rudimentary health terminology for healthcare consumers?
+    - I want to learn about elementary medical skills to better care for myself and my loved ones.
+    - Exploring fundamental healthcare terminology can demystify medical jargon for the general public.
+    - I'm seeking resources that explain primary health concepts in an accessible and engaging format.
+    - Understanding essential healthcare skills is crucial for addressing public health challenges effectively.
+    - Can you suggest any documentaries that explore basic medicine principles for a general audience?
+    - I'm interested in attending seminars that delve into introductory medical education for healthcare advocates.
+    - Learning about rudimentary health knowledge can empower individuals to take charge of their well-being.
+    - Exploring elementary healthcare terminology can enhance communication between patients and healthcare providers.
+    - I want to deepen my understanding of primary medical concepts to better advocate for healthcare reform.
+    - Can you recommend any textbooks that cover fundamental health skills for healthcare policymakers?
+    - I'm seeking resources that discuss introductory healthcare principles in the context of global health disparities.
+    - Understanding basic medical terminology is essential for fostering patient-centered care in healthcare settings.
+    - Exploring introductory medical knowledge can inspire individuals to pursue careers in healthcare.
+    - I want to learn about primary medicine principles to better understand the role of innovation in healthcare.
+    - Can you suggest any webinars that focus on essential health education for community health workers?
+    - I'm interested in participating in online forums that discuss rudimentary healthcare terminology for healthcare advocates.
+    - Learning about elementary health skills can empower individuals to promote health equity in their communities.
+    - Exploring fundamental healthcare concepts can provide insights into the social determinants of health.
+    - I'm seeking resources that delve into basic medicine terminology for healthcare volunteers.
+    - Could you recommend any podcasts that cover introductory health skills for public health educators?
+    - I want to deepen my understanding of essential healthcare principles to address healthcare inequities.
+    - Understanding rudimentary medical knowledge is essential for advocating for evidence-based healthcare policies.
+    - Exploring elementary healthcare education can foster a culture of health and wellness in communities.
+    - I'm interested in attending workshops that focus on primary medical terminology for healthcare interpreters.
+    - Can you suggest any documentaries that explore fundamental health concepts for healthcare activists?
+    - I want to learn about introductory healthcare skills to better support underserved populations.
+    - Exploring basic medical principles can help individuals navigate the complexities of the healthcare system.
+    - I'm seeking resources that discuss primary health terminology for healthcare educators.
+    - Understanding essential healthcare skills is crucial for addressing healthcare access disparities.
+    - Can you recommend any textbooks that cover rudimentary medicine education for healthcare researchers?
+    - I'm interested in participating in online forums that discuss elementary health terminology for healthcare advocates.
+    - Learning about fundamental healthcare knowledge can empower individuals to advocate for health equity.
+    - Exploring introductory medicine terminology can improve communication between healthcare providers and patients.
+    - I want to deepen my understanding of basic medical skills to better serve marginalized communities.
+    - Can you suggest any webinars that focus on primary healthcare principles for healthcare administrators?
+    - I'm seeking resources that delve into essential medicine concepts for healthcare policymakers.
+    - Understanding rudimentary health knowledge is essential for promoting health literacy among diverse populations.
+    - Exploring elementary healthcare terminology can facilitate cultural competence in healthcare delivery.
+    - I want to learn about primary medical concepts to better understand the intersection of health and social justice.
+    - Can you recommend any podcasts that cover fundamental health skills for healthcare advocates?
+    - I'm interested in attending seminars that delve into introductory healthcare education for healthcare professionals.
+    - Learning about basic medicine terminology can demystify medical terminology for patients and caregivers.
+    - Exploring introductory medical knowledge can foster collaboration between healthcare providers and community organizations.
+    - I'm seeking resources that discuss primary health skills for healthcare volunteers in developing countries.
+    - Understanding essential healthcare principles is crucial for advocating for healthcare reform.
+    - Can you suggest any documentaries that explore rudimentary medicine principles for healthcare educators?
+    - I want to deepen my understanding of elementary health concepts to better address health disparities.
+    - Exploring fundamental healthcare terminology can improve communication between healthcare providers and policymakers.
+    - I'm interested in attending workshops that cover basic medical education for healthcare advocates.
+    - Learning about introductory health skills can empower individuals to promote health equity in their communities.
+
+- intent: search_in_clemedicine
+  examples: |
+    - clemedicine
+     - clemedicine
+    - clemedical
+    - clemedicinal
+    - clemedicare
+    - clemedics
+    - clemedico
+    - clemedication
+    - clemedics
+    - clemedication
+    - clemed
+    - clemeds
+    - I'm interested in clemedical services.
+    - Can you tell me more about clemedicinal treatments?
+    - Is clemedicare covered by insurance?
+    - I need to consult with a clemedical specialist.
+    - How can I access clemed services?
+    - Are there any clemedicinal herbs you recommend?
+    - What are the benefits of clemedics over traditional medicine?
+    - Can I get clemedication prescribed online?
+    - Are there any side effects associated with clemeds?
+    - I want to learn more about the latest clemedical advancements.
+    - Is clemedicinal treatment suitable for children?
+    - Can you recommend a reliable clemedic?
+    - I'm looking for information on clemedicinal practices.
+    - How do I schedule a clemedical appointment?
+    - Can I get my clemedication delivered to my home?
+    - What are the qualifications of clemedical practitioners?
+    - Are there any risks associated with clemedicinal treatments?
+    - Can I consult with a clemedical expert remotely?
+    - How effective are clemedications for chronic conditions?
+    - What are the costs of clemedicine compared to traditional healthcare?
+    - Can I receive clemedical advice over the phone?
+    - Is clemedicine suitable for managing mental health issues?
+    - Are there any age restrictions for using clemedical services?
+    - How do I find a reputable clemedical provider?
+    - Can I access clemedicine for emergency situations?
+    - What are the limitations of clemedicinal treatments?
+    - Can clemedicine be used for preventive care?
+    - How do I know if clemedicine is right for me?
+    - Can I consult with a clemedical specialist for a second opinion?
+    - Are clemedications FDA-approved?
+    - Can I receive clemedicine consultations in languages other than English?
+    - How can I provide feedback on my clemedical experience?
+    - Can I get clemedications refilled online?
+    - What are the advantages of clemedicine over in-person visits?
+    - Can I consult with a clemedical practitioner anonymously?
+    - How do I transfer my medical records to a clemedicine provider?
+    - Is clemedicine regulated by any governing bodies?
+    - Can I use clemedication for acute conditions?
+    - How are prescriptions managed in clemedicine consultations?
+    - Can I consult with a clemedical expert via video call?
+    - Are there any support groups for clemedicine users?
+    - Can I get clemedications for allergies or asthma?
+    - What are the payment options for clemedical services?
+    - Can I consult with a clemedical provider for women's health issues?
+    - How do I access clemedicine on my smartphone?
+    - Can I receive nutritional counseling through clemedicine?
+    - What are the privacy policies of clemedical providers?
+    - Can clemedicine be used for managing chronic pain?
+    - How do I cancel or reschedule a clemedical appointment?
+    - Can I use clemedicine for dermatological concerns?
+    - What are the technical requirements for clemedicine consultations?
+    - Can I get clemedications delivered internationally?
+    - How do I obtain a copy of my clemedical records?
+    - Can I consult with a clemedical provider for travel health advice?
+    - Is clemedicine covered by Medicare or Medicaid?
+    - Can I receive counseling for substance abuse through clemedicine?
+    - How do I know if a clemedical provider is licensed?
+    - Can I use clemedicine for pediatric care?
+    - What are the typical response times for clemedical inquiries?
+    - Can I consult with a clemedical provider for LGBTQ+ healthcare needs?
+    - How do I initiate a clemedicine consultation?
+    - Can clemedicine be used for post-operative care?
+    - What are the technology requirements for clemedicine consultations?
+    - Can I consult with a clemedical provider for weight management advice?
+    - How do I request a specialist referral through clemedicine?
+    - Can I receive assistance with quitting smoking through clemedicine?
+    - Is there a clemedicine app I can download?
+    - Can I consult with a clemedical provider for sleep-related issues?
+    - What are the guidelines for using clemedicine during pregnancy?
+    - Can I use clemedicine for managing diabetes or hypertension?
+    - How do I verify the credentials of a clemedical provider?
+    - Can I receive mental health support through clemedicine?
+    - Can I use clemedicine for managing autoimmune conditions?
+    - How do I ensure the security of my personal information in clemedicine consultations?
+    - Can I consult with a clemedical provider for sexual health concerns?
+    - Can you provide information on clemedicine?
+    - What are the benefits of clemedicine?
+    - Tell me about the latest developments in clemedicine.
+    - I'm interested in learning more about clemedicine.
+    - How does clemedicine work?
+    - Are there any clemedicine specialists in my area?
+    - What conditions can be treated through clemedicine?
+    - Can I get a prescription through clemedicine?
+    - Is clemedicine covered by insurance?
+    - I'm considering trying clemedicine for my health needs.
+    - Where can I find reliable resources on clemedicine?
+    - What are the risks associated with clemedicine?
+    - How effective is clemedicine compared to traditional medicine?
+    - Are there any regulations governing clemedicine practices?
+    - What technologies are used in clemedicine consultations?
+    - Can I consult with a specialist through clemedicine?
+    - Are there any limitations to clemedicine services?
+    - I want to schedule a clemedicine appointment.
+    - How can I access clemedicine services?
+    - Are there any age restrictions for using clemedicine?
+    - Can I get a second opinion through clemedicine?
+    - What types of medications can be prescribed via clemedicine?
+    - Are there any privacy concerns with clemedicine consultations?
+    - How can I ensure the quality of care in clemedicine?
+    - Can I get lab tests done through clemedicine?
+    - Is clemedicine suitable for managing chronic conditions?
+    - What are the costs associated with clemedicine consultations?
+    - Can I receive counseling or therapy through clemedicine?
+    - How do I prepare for a clemedicine appointment?
+    - Are there any dietary or lifestyle recommendations in clemedicine?
+    - Can clemedicine be used for preventive care?
+    - What are the advantages of clemedicine over in-person visits?
+    - How can I provide feedback on my clemedicine experience?
+    - Can I receive follow-up care through clemedicine?
+    - Are there any support groups or communities for clemedicine users?
+    - Is clemedicine suitable for emergency situations?
+    - Can clemedicine be used for mental health treatment?
+    - What are the credentials of clemedicine providers?
+    - Can I request a specific clemedicine provider?
+    - How can I transfer my medical records to a clemedicine provider?
+    - Are there any cultural considerations in clemedicine consultations?
+    - Can I consult with a clemedicine provider from another country?
+    - How can I verify the legitimacy of a clemedicine service?
+    - Can I receive prescriptions for controlled substances through clemedicine?
+    - What are the qualifications required to practice clemedicine?
+    - Can I use clemedicine for dermatological concerns?
+    - How is payment handled for clemedicine services?
+    - Can I access clemedicine on my mobile device?
+    - Is clemedicine available in rural areas?
+    - Can I consult with a clemedicine provider anonymously?
+    - What types of insurance plans cover clemedicine?
+    - Are there any specific requirements for clemedicine consultations?
+    - How do I know if clemedicine is right for me?
+    - Can I consult with multiple specialists through clemedicine?
+    - What languages are supported in clemedicine consultations?
+    - Can clemedicine be used for pediatric care?
+    - How are prescriptions delivered in clemedicine?
+    - Can I request a referral to a specialist through clemedicine?
+    - Are there any ongoing research studies on clemedicine?
+    - Can I access my clemedicine records online?
+    - What are the typical wait times for clemedicine appointments?
+    - Can I receive physical therapy through clemedicine?
+    - How is confidentiality maintained in clemedicine consultations?
+    - Can I request a specific time slot for my clemedicine appointment?
+    - What are the most common reasons people use clemedicine?
+    - Can I consult with a clemedicine provider on weekends or holidays?
+    - How do I report an issue with a clemedicine provider?
+    - Are there any age restrictions for using clemedicine?
+    - Can I use clemedicine for women's health issues?
+    - How do I cancel or reschedule a clemedicine appointment?
+    - Can I receive a medical excuse note through clemedicine?
+    - What are the technical requirements for clemedicine consultations?
+    - Can I receive nutritional counseling through clemedicine?
+    - How does clemedicine comply with medical privacy laws?
+    - Can I consult with a clemedicine provider while traveling?
+    - Are there any limitations to the conditions treated through clemedicine?
+    - Can I access my clemedicine records from multiple devices?
+    - How do I provide feedback on my clemedicine experience?
+    - Can I receive guidance on managing chronic pain through clemedicine?
+    - What are the most common side effects of clemedicine treatments?
+    - Can I consult with a clemedicine provider for a second opinion?
+    - How do I obtain a copy of my clemedicine records?
+    - Can I use clemedicine for minor injuries or illnesses?
+    - What are the qualifications of clemedicine support staff?
+    - Can I receive counseling for substance abuse issues through clemedicine?
+    - How do I transfer my prescriptions to a clemedicine provider?
+    - Can I use clemedicine for dental consultations?
+    - What are the accessibility options for clemedicine services?
+    - Can I consult with a clemedicine provider for fertility concerns?
+    - How do I know if a clemedicine provider is licensed?
+    - Can I receive assistance with managing chronic conditions through clemedicine?
+    - What are the typical response times for clemedicine inquiries?
+    - Can I consult with a clemedicine provider for pregnancy-related questions?
+    - How do I obtain a prescription refill through clemedicine?
+    - Can I consult with a clemedicine provider for travel health advice?
+    - What are the hours of operation for clemedicine services?
+    - Can I use clemedicine for minor surgical consultations?
+    - How do I initiate a clemedicine consultation?
+    - Can I consult with a clemedicine provider for LGBTQ+ healthcare needs?
+    - What are the procedures for transferring care to a clemedicine provider?
+    - Can I use clemedicine for managing allergies or asthma?
+    - How do I access my clemedicine records securely?
+    - Can I receive guidance on managing stress or anxiety through clemedicine?
+    - What are the options for urgent care through clemedicine?
+    - Can I consult with a clemedicine provider for weight management advice?
+    - How do I request a specialist referral through clemedicine?
+    - Can I use clemedicine for post-operative care?
+    - What are the technology requirements for clemedicine consultations?
+    - Can I receive assistance with quitting smoking through clemedicine?
+    - How do I verify the credentials of a clemedicine provider?
+    - Can I consult with a clemedicine provider for sleep-related issues?
+    - What are the guidelines for using clemedicine during pregnancy?
+    - Can I use clemedicine for managing diabetes or hypertension?
+    - How do I know if a clemedicine provider accepts my insurance?
+    - Can I consult with a clemedicine provider for pediatric developmental concerns?
+    - What are the options for mental health support through clemedicine?
+    - Can I use clemedicine for managing autoimmune conditions?
+    - How do I ensure the security of my personal information in clemedicine consultations?
+    - Can I consult with a clemedicine provider for sexual
+
+- intent: search_in_entokey
+  examples: |
+    - clemedicine
+    - entomology
+    - entomological
+    - entomologist
+    - entomologists
+    - entomb
+    - entombment
+    - entombs
+    - entombed
+    - entombed's
+    - entombing
+    - entombings
+    - entombment's
+    - entombments
+    - entourage
+    - entourages
+    - entombed
+    - entomic
+    - entomere
+    - entomostracan
+    - entomostracous
+    - entomotomy
+    - entomophagan
+    - entomophaga
+    - entomophagous
+    - entomophily
+    - entomophily's
+    - entomophilous
+    - entomophilousness
+    - entomophthoraceae
+    - entomophthorales
+    - entomophthoras
+    - entomophthorales
+    - entomophthoras
+    - entomophthoraceae's
+    - entomophthoraceas
+    - entomophthorales's
+    - entomophthoraceous
+    - entomophthorous
+    - entomophthoroid
+    - entomophthoroids
+    - entomophthorosis
+    - entomopoxvirinae
+    - entomopoxvirus
+    - entomopoxviruses
+    - entomopoxvirus's
+    - entomopoxviruses
+    - entomos
+    - entomotaxy
+    - entomotomy
+    - entomotropic
+    - entomotropically
+    - entomotropism
+    - entomotropism's
+    - entomotropisms
+    - entomoty
+    - entomophilous
+    - entomophilously
+    - entomophily
+    - entomophobous
+    - entomophobousness
+    - entomophthora
+    - entomophthora's
+    - entomophthoras
+    - entomophthoraceae
+    - entomophthoraceae's
+    - entomophthoras
+    - entomophthorales
+    - entomophthorales's
+    - entomophthoraceas
+    - entomophthoroids
+    - entomophthoroid
+    - entomophthoroids
+    - entomophthorosis
+    - entomophthorosis's
+    - entomophthoroses
+    - entomophthoroses's
+    - entomopoxvirus
+    - entomopoxvirus's
+    - entomopoxviruses
+    - entomopoxvirus
+    - entomotaxy
+    - entomotomist
+    - entomotomists
+    - entomotropal
+    - entomotropalism
+    - entomotropalisms
+    - entomotropal's
+    - entomotropals
+    - entomotrophic
+    - entomotropically
+    - entomotropism
+    - entomotropisms
+    - entomoty
+    - entomophilous
+    - entomophilously
+    - entomophily
+    - entomophobous
+    - entomophobousness
+    - entomophthora
+    - entomophthora's
+    - entomophthoras
+    - entomophthoraceae
+    - entomophthoraceae's
+    - entomophthoras
+    - entomophthorales
+    - entomophthorales's
+    - entomophthoraceas
+    - entomophthoroids
+    - entomophthoroid
+    - entomophthoraceae's
+    - entomophthorales
+    - entomophthoroid
+    - entomophthoroids
+    - entomophthorosis
+    - entomophthorosis's
+    - entomophthoroses
+    - entomophthoroses's
+    - entomopoxvirus
+    - entomopoxvirus's
+    - entomopoxviruses
+    - entomopoxvirus
+    - entomotaxy
+    - entomotomist
+    - entomotomists
+    - entomotropal
+    - entomotropalism
+    - entomotropalisms
+    - entomotropal's
+    - entomotropals
+    - entomotrophic
+    - entomotropically
+    - entomotropism
+    - entomotropisms
+    - entomoty
+    - entomophagy
+    - entomophagous
+    - entomophagously
+    - entomophagy
+    - entomophagous
+    - entomophagously
+    - entomophagies
+    - entomophagism
+    - entomophagisms
+    - entomophagist
+    - entomophagists
+    - entomophagy's
+    - entomophagousness
+    - entomophagousness's
+    - entomophagousnesses
+    - entomophagy
+    - entomophagous
+    - entomophagously
+    - entomophagy
+    - entomophagous
+    - entomophagously
+    - entomophagies
+    - entomophagism
+    - entomophagisms
+    - entomophagist
+    - entomophagists
+    - entomophagy's
+    - entomophagousness
+    - entomophagousness's
+    - entomophagousnesses
+    - entomophilous
+    - entomophilously
+    - entomophily
+    - entomophobous
+    - entomophobousness
+    - entomophthora
+    - entomophthora's
+    - entomophthoras
+    - entomophthoraceae
+    - entomophthoraceae's
+    - entomophthoras
+    - entomophthorales
+    - entomophthorales's
+    - entomophthoraceas
+    - entomophthoroids
+    - entomophthoroid
+    - The study of insects is called entomology.
+    - An entomologist studies insects.
+    - Entomologists conduct research on various insect species.
+    - Entomological surveys help in understanding insect populations.
+    - Some entomologists specialize in entomophagy, studying insect consumption.
+    - Entomophagists explore the nutritional benefits of consuming insects.
+    - Entomophagous insects feed on other insects.
+    - Entomophagy is becoming popular as a sustainable food source.
+    - Entomophagousness refers to the habit of consuming insects.
+    - Entomophagousnesses vary among different cultures.
+    - The entomophagousness of certain tribes has been documented.
+    - Entomophagies have been practiced for centuries in some regions.
+    - The entomophagousness of certain species is being researched.
+    - Entomophagism involves the deliberate consumption of insects.
+    - Some societies have taboos against entomophagism.
+    - Entomophagists advocate for the nutritional value of insects.
+    - Entomophagy's potential as a protein source is being explored.
+    - Entomophagous insects play a crucial role in pest control.
+    - Entomophagousness contributes to ecological balance.
+    - The entomophagousness of ladybugs makes them valuable in agriculture.
+    - Entomophagists study the behavior of insects.
+    - Entomophagousness varies depending on environmental factors.
+    - The entomophagousness of certain birds affects insect populations.
+    - Entomophagy's environmental benefits are being recognized.
+    - Some entomologists specialize in entomophthorales, a fungal order.
+    - Entomophthorales are parasites of insects.
+    - Entomophthoras cause disease in insect populations.
+    - Entomophthoralean fungi have been used in biological pest control.
+    - Entomophthora is a genus of entomopathogenic fungi.
+    - Entomophthora fungi infect their insect hosts.
+    - Entomophthora's life cycle involves infecting and killing insects.
+    - Entomophthora's impact on insect populations has been studied.
+    - Entomophthora's spores spread through insect populations.
+    - Entomophthoras are common pathogens of certain insect species.
+    - Entomophthoraceae is a family of fungi that includes entomophthorales.
+    - Entomophthoraceae's taxonomy is based on molecular data.
+    - Entomophthoraceae fungi are widespread in nature.
+    - Entomophthoraceas are known for their ability to control insect pests.
+    - Entomophthoraceae fungi produce infectious spores.
+    - Entomophthoraceae's spores are dispersed by wind and insects.
+    - Entomophthoraceas infect their insect hosts through spore germination.
+    - Entomophthoraceae's life cycle involves host penetration and reproduction.
+    - Entomophthoraceae fungi cause systemic infections in insects.
+    - Entomophthoraceae's infections can lead to mass mortality in insect populations.
+    - Entomophthoraceae's natural enemies include parasitic wasps.
+    - Entomophthorales are characterized by their ability to kill insects rapidly.
+    - Entomophthorales' infections are often fatal to their hosts.
+    - Entomophthorales' host range varies among different fungal species.
+    - Entomophthorales' spores are highly infectious to susceptible insects.
+    - Entomophthorales' control methods include biological and chemical approaches.
+    - Entomophthorales' effectiveness as biocontrol agents depends on environmental conditions.
+    - Entomophthorales' application requires careful consideration of non-target species.
+    - Entomophthorales' development as biopesticides is ongoing.
+    - Entomophthorales' spores are sensitive to environmental factors.
+    - Entomophthorales' infections can be managed through cultural practices.
+    - Entomophthorales' pathogenicity varies depending on host susceptibility.
+    - Entomophthorales' interactions with other microorganisms affect their efficacy.
+    - Entomophthorales' potential as biocontrol agents is being evaluated.
+    - Entomophthoralean fungi have evolved mechanisms for host invasion.
+    - Entomophthoralean infections result in characteristic symptoms in insects.
+    - Entomophthoralean fungi produce secondary metabolites with biological activity.
+    - Entomophthoralean pathogens have developed resistance to some fungicides.
+    - Entomophthoralean diseases can be diagnosed through microscopic examination.
+    - Entomophthoralean infections require specific management strategies.
+    - Entomophthoralean fungi have complex life cycles involving multiple stages.
+    - Entomophthoralean pathogens interact with their insect hosts at various levels.
+    - Entomophthoralean infections often lead to behavioral changes in insects.
+    - Entomophthoralean fungi produce enzymes that facilitate host invasion.
+    - Entomophthoralean pathogens modulate insect immune responses.
+    - Entomophthoralean diseases can spread rapidly in insect populations.
+    - Entomophthoralean control measures aim to minimize environmental impact.
+    - Entomophthoralean fungi have potential applications in integrated pest management.
+    - Entomophthoralean infections are influenced by host physiology and behavior.
+    - Entomophthoralean pathogens are important regulators of insect populations.
+    - Entomophthoralean diseases have been observed in diverse insect taxa.
+    - Entomophthoralean fungi exhibit host specificity in some cases.
+    - Entomophthoralean infections can be transmitted horizontally or vertically.
+    - Entomophthoralean diseases have been documented in both wild and cultivated insect species.
+    - Entomophthoralean fungi play a crucial role in natural ecosystems.
+    - Entomophthoralean pathogens have potential applications in biological control.
+    - Entomophthoralean infections are influenced by environmental conditions.
+    - Entomophthoralean diseases can have significant economic impacts on agriculture.
+    - Entomophthoralean fungi are subject to ongoing research for their biocontrol potential.
+    - Entomophthoralean infections are a focus of study for understanding insect-fungal interactions.
+
+- intent: search_in_oncohemakey
+  examples: |
+    - oncohema
+    - oncohematic
+    - oncohemal
+    - oncohemas
+    - oncohemic
+    - oncohemo
+    - oncohemoid
+    - oncohemalike
+    - oncohematous
+    - oncohemally
+    - oncohemically
+    - non-oncohema
+    - anti-oncohema
+    - preoncohema
+    - oncohemaic
+    - oncohematosis
+    - oncoheman
+    - oncoheme
+    - oncohemization
+    - oncohemized
+    - oncohemizing
+    - oncohemaist
+    - oncohemaism
+    - oncohemoidally
+    - oncohemalism
+    - oncohemalistic
+    - oncohematics
+    - oncohemaed
+    - oncohemaing
+    - oncohemoes
+    - oncohemalize
+    - oncohemallyzing
+    - oncohemizationally
+    - oncohemoesque
+    - oncohemoic
+    - oncohemiologist
+    - oncohemiology
+    - oncohemicology
+    - oncohematologist
+    - oncohematological
+    - oncohematologic
+    - oncohematologically
+    - oncohematologies
+    - oncohematologicity
+    - oncohematologicist
+    - oncohematogen
+    - oncohematogenesis
+    - oncohematogenetic
+    - oncohematogenic
+    - oncohematogenically
+    - oncohematogeny
+    - oncohematogenicallyness
+    - oncohematogenicallyesque
+    - oncohematogenesist
+    - oncohematogenesistic
+    - oncohematogenesistically
+    - oncohematogenesisally
+    - oncohematogenologist
+    - oncohematogenology
+    - oncohematogenist
+    - oncohematogenicity
+    - oncohematogenicist
+    - oncohematologicologist
+    - oncohematologicology
+    - oncohematologicalist
+    - oncohematologicist
+    - oncohematologistical
+    - oncohematologicallyness
+    - oncohematologicallyesque
+    - oncohematopathologist
+    - oncohematopathology
+    - oncohematopathy
+    - What is oncohema?
+    - Tell me about oncohema.
+    - Can you provide information on oncohema?
+    - Explain oncohema to me.
+    - I'm interested in learning about oncohema.
+    - What does oncohema mean?
+    - Define oncohema.
+    - Give me details on oncohema.
+    - oncohema information
+    - oncohema details
+    - oncohema description
+    - Could you elaborate on oncohema?
+    - Describe oncohema.
+    - I need to know about oncohema.
+    - Teach me about oncohema.
+    - Can you tell me more about oncohema?
+    - What are the characteristics of oncohema?
+    - Is there any research on oncohema?
+    - Any studies on oncohema?
+    - Where can I find resources on oncohema?
+    - Who coined the term oncohema?
+    - What are the components of oncohema?
+    - How is oncohema diagnosed?
+    - Can oncohema be prevented?
+    - What are the risk factors for oncohema?
+    - Are there any treatments for oncohema?
+    - How common is oncohema?
+    - What are the symptoms of oncohema?
+    - Is oncohema hereditary?
+    - Is there a cure for oncohema?
+    - Can oncohema be fatal?
+    - Are there any support groups for oncohema patients?
+    - What are the survival rates for oncohema?
+    - Are there any clinical trials for oncohema?
+    - What is the prognosis for oncohema patients?
+    - How does oncohema affect quality of life?
+    - Can oncohema spread to other parts of the body?
+    - Is there a genetic predisposition to oncohema?
+    - What lifestyle changes can help manage oncohema?
+    - How does oncohema affect children?
+    - Can oncohema be detected early?
+    - Are there any screening tests for oncohema?
+    - What imaging tests are used to diagnose oncohema?
+    - What are the different stages of oncohema?
+    - What are the treatment options for advanced oncohema?
+    - What is the role of chemotherapy in treating oncohema?
+    - Are there any alternative therapies for oncohema?
+    - How does radiation therapy help in treating oncohema?
+    - What are the side effects of oncohema treatments?
+    - How long does it take to recover from oncohema treatment?
+    - Is there a risk of recurrence after treatment for oncohema?
+    - What are the long-term effects of oncohema?
+    - Can oncohema lead to other complications?
+    - What research is being done on oncohema?
+    - How can I support a loved one with oncohema?
+    - Are there any dietary recommendations for oncohema patients?
+    - What should I avoid if I have oncohema?
+    - Can stress worsen oncohema symptoms?
+    - How does exercise impact oncohema?
+    - What should I do if I suspect I have oncohema?
+    - What specialists should I see for oncohema diagnosis and treatment?
+    - What questions should I ask my doctor about oncohema?
+    - What are the latest advancements in oncohema research?
+    - How does age affect the prognosis of oncohema?
+    - What is the role of genetics in oncohema development?
+    - Can oncohema be misdiagnosed?
+    - Are there any complementary therapies for oncohema?
+    - How does oncohema affect mental health?
+    - What organizations can provide support for oncohema patients?
+    - Can oncohema be managed with medication alone?
+    - How does oncohema affect fertility?
+    - What should I expect during oncohema treatment?
+    - Can oncohema cause complications during pregnancy?
+    - What precautions should oncohema patients take during treatment?
+    - How does oncohema affect the immune system?
+    - Are there any experimental treatments for oncohema?
+    - What is the link between oncohema and inflammation?
+    - Can oncohema be triggered by environmental factors?
+    - How does oncohema affect the body's ability to heal?
+    - Can oncohema affect cognitive function?
+    - What is the impact of oncohema on daily life?
+    - How does oncohema affect sleep patterns?
+    - What is the connection between oncohema and other autoimmune diseases?
+    - Can oncohema cause complications with surgery?
+    - What role does stress play in the progression of oncohema?
+    - How does oncohema affect appetite?
+    - What are the psychological effects of living with oncohema?
+    - Can oncohema cause hair loss?
+    - How does oncohema impact social interactions?
+    - Are there any natural remedies for oncohema?
+    - What is the role of diet in managing oncohema symptoms?
+    - How does oncohema affect weight?
+    - What is the relationship between oncohema and fatigue?
+    - Can oncohema affect hormone levels?
+    - How does oncohema affect bone health?
+    - Are there any dietary supplements that can help with oncohema?
+    - What is the connection between oncohema and vitamin D?
+    - How does oncohema affect the cardiovascular system?
+    - Can oncohema cause nerve damage?
+    - What is the role of inflammation in oncohema?
+    - How does oncohema affect mobility?
+    - What are the risk factors for developing oncohema?
+    - Can oncohema be triggered by infection?
+    - How does oncohema affect children's growth and development?
+    - What is the link between oncohema and stress hormones?
+    - Can oncohema cause changes in vision?
+    - How does oncohema affect the gastrointestinal system?
+    - What is the connection between oncohema and sleep disorders?
+    - Can oncohema cause memory problems?
+    - How does oncohema affect the reproductive system?
+    - Are there any specific exercises that can help with oncohema?
+    - What is the impact of oncohema on joint health?
+    - Can oncohema cause skin problems?
+    - How does oncohema affect wound healing?
+    - What is the relationship between oncohema and allergies?
+    - Can oncohema cause changes in taste and smell?
+    - How does oncohema affect the liver?
+    - What is the connection between oncohema and kidney function?
+    - Can oncohema affect lung health?
+    - How does oncohema affect blood sugar levels?
+    - What is the role of inflammation in oncohema-related pain?
+    - Can oncohema cause mood swings?
+    - How does oncohema impact the ability to work?
+    - What is the connection between oncohema and depression?
+    - Can oncohema affect the ability to drive?
+    - How does oncohema affect cognitive abilities?
+    - What is the link between oncohema and
+
+- intent: search_in_obgynkey
+  examples: |
+    - obgyn
+    - obstetrics and gynecology
+    - gynecologist
+    - obstetrician
+    - women's health
+    - pregnancy care
+    - reproductive health
+    - prenatal care
+    - postpartum care
+    - pelvic exam
+    - Pap smear
+    - mammogram
+    - fertility treatment
+    - birth control options
+    - menopause management
+    - menstrual disorders
+    - vaginal health
+    - cervical cancer screening
+    - endometriosis treatment
+    - ovarian cyst management
+    - uterine fibroid treatment
+    - sexual health
+    - contraceptive counseling
+    - family planning
+    - labor and delivery
+    - cesarean section
+    - vaginal birth after cesarean (VBAC)
+    - high-risk pregnancy management
+    - prenatal testing
+    - ultrasound
+    - fetal monitoring
+    - perinatal care
+    - childbirth education
+    - lactation support
+    - breastfeeding counseling
+    - infant care
+    - postpartum depression
+    - pelvic floor disorders
+    - incontinence treatment
+    - vaginal rejuvenation
+    - sexually transmitted infection (STI) testing
+    - HPV vaccination
+    - genetic counseling
+    - preconception counseling
+    - ectopic pregnancy management
+    - miscarriage management
+    - abortion services
+    - hysteroscopy
+    - colposcopy
+    - laparoscopy
+    - myomectomy
+    - hysterectomy
+    - tubal ligation
+    - oophorectomy
+    - hormone replacement therapy
+    - polycystic ovary syndrome (PCOS) treatment
+    - pelvic inflammatory disease (PID) treatment
+    - vaginal birth
+    - infertility evaluation
+    - assisted reproductive technologies (ART)
+    - egg freezing
+    - surrogacy
+    - reproductive surgery
+    - minimally invasive surgery
+    - contraception counseling
+    - natural family planning
+    - sexually transmitted disease (STD) testing
+    - menopause symptoms management
+    - menstrual irregularities treatment
+    - contraception methods
+    - postmenopausal bleeding evaluation
+    - hormonal therapy
+    - pelvic pain management
+    - endometrial biopsy
+    - cervical polyp removal
+    - vulvar biopsy
+    - vulvar disorders treatment
+    - breast exam
+    - breast health
+    - ovarian cancer screening
+    - pelvic organ prolapse treatment
+    - uterine prolapse treatment
+    - vaginal bleeding evaluation
+    - abnormal Pap smear follow-up
+    - menopausal hormone therapy
+    - hormone replacement treatment
+    - colpocleisis
+    - pessary fitting
+    - vulvodynia treatment
+    - genital warts treatment
+    - sexual dysfunction treatment
+    - premenstrual syndrome (PMS) management
+    - ovarian reserve testing
+    - endometrial ablation
+    - hysterosalpingography
+    - uterine artery embolization
+    - endometrial polyp removal
+    - menstrual suppression
+    - premenstrual dysphoric disorder (PMDD) treatment
+    - vulvar cancer screening
+    - vaginal atrophy treatment
+    - female sterilization
+    - miscarriage prevention
+    - contraceptive implant insertion
+    - emergency contraception
+    - tubal sterilization
+    - menorrhagia treatment
+    - perimenopause management
+    - endometrial cancer screening
+    - recurrent pregnancy loss evaluation
+    - Bartholin's cyst treatment
+    - endometrial hyperplasia treatment
+    - gynecologic oncology
+    - menopausal management
+    - preterm labor prevention
+    - vaginal infection treatment
+    - ovarian cancer treatment
+    - breast cancer screening
+    - pelvic inflammatory disease (PID) prevention
+    - sexually transmitted infection (STI) prevention
+    - pregnancy planning
+    - gestational diabetes screening
+    - prenatal vitamins
+    - postpartum check-up
+    - contraception education
+    - breast pain evaluation
+    - infertility treatment options
+    - tubal factor infertility treatment
+    - endometriosis diagnosis
+    - vulvovaginal disorders treatment
+    - preconception care
+    - pregnancy termination counseling
+    - gestational surrogacy
+    - reproductive endocrinology
+    - preterm birth prevention
+    - uterine anomaly correction
+    - menstrual cycle regulation
+    - hormone imbalance treatment
+    - prenatal ultrasound
+    - postpartum complications management
+    - pelvic floor physical therapy
+    - menopausal symptom relief
+    - contraceptive patch application
+    - intrauterine device (IUD) insertion
+    - uterine fibroid embolization
+    - female condom use
+    - sexual assault examination
+    - perineal tear repair
+    - episiotomy repair
+    - ovulation induction
+    - endometrial thickness evaluation
+    - hysteroscopic myomectomy
+    - salpingectomy
+    - laparoscopic hysterectomy
+    - endometrial cancer treatment
+    - gestational carrier screening
+    - maternal-fetal medicine
+    - prenatal genetic testing
+    - labor induction
+    - umbilical cord blood banking
+    - childbirth complications management
+    - ectopic pregnancy diagnosis
+    - miscarriage prevention methods
+    - contraception side effects
+    - cervical dysplasia treatment
+    - pelvic adhesions treatment
+    - ovarian torsion management
+    - vaginal septum resection
+    - hymenectomy
+    - infertility counseling
+    - premature ovarian failure treatment
+    - contraception options counseling
+    - menopausal hormone replacement
+    - colpocentesis
+    - pelvic congestion syndrome treatment
+    - genital herpes treatment
+    - bacterial vaginosis treatment
+    - uterine anomaly repair
+    - menstruation tracking
+    - endometrial biopsy procedure
+    - ovarian cystectomy
+    - uterine polyp removal
+    - tubal reanastomosis
+    - endometrial ablation procedure
+    - hysterosalpingectomy
+    - cervical cerclage placement
+    - prenatal screening tests
+    - labor support
+    - cord blood banking
+    - placenta previa management
+    - perinatal depression treatment
+    - prenatal yoga
+    - childbirth classes
+    - breastfeeding techniques
+    - postpartum exercises
+    - fertility preservation options
+    - prenatal nutrition counseling
+    - postpartum contraception
+    - fertility awareness methods
+    - surrogacy process
+    - egg donation process
+    - menstrual cycle disorders treatment
+    - uterine artery embolization procedure
+    - endometriosis surgery
+    - reproductive system imaging
+    - tubal ligation reversal
+    - male infertility evaluation
+    - ovarian cyst aspiration
+    - uterine fibroid embolization procedure
+    - menopause hormone therapy
+    - postpartum depression screening
+    - pelvic organ prolapse surgery
+    - uterine fibroid removal
+    - endometrial hyperplasia management
+    - infertility support groups
+    - sperm donation process
+    - embryo donation process
+    - ovulation
+    - I need information about obstetrics and gynecology.
+    - Can you provide details about gynecologists?
+    - What services do obstetricians offer?
+    - Where can I find assistance for women's health issues?
+    - Do you have information on pregnancy care?
+    - I'm looking for advice on reproductive health.
+    - Could you tell me about prenatal care options?
+    - How about postpartum care services?
+    - Can you explain what happens during a pelvic exam?
+    - What is a Pap smear and why is it important?
+    - Where can I get a mammogram done?
+    - What are my options for fertility treatment?
+    - I'm interested in learning about different birth control methods.
+    - How do you manage menopause symptoms?
+    - Do you treat menstrual disorders?
+    - Can you provide information on vaginal health?
+    - What is involved in cervical cancer screening?
+    - How do you treat endometriosis?
+    - What are the options for managing ovarian cysts?
+    - Do you offer treatments for uterine fibroids?
+    - Can you provide guidance on sexual health matters?
+    - I need counseling on contraceptive options.
+    - What services do you offer for family planning?
+    - What happens during labor and delivery?
+    - Can you explain the process of a cesarean section?
+    - Is vaginal birth after cesarean (VBAC) an option for me?
+    - How do you manage high-risk pregnancies?
+    - Can you tell me about prenatal testing procedures?
+    - What is involved in an ultrasound during pregnancy?
+    - How do you monitor the fetus during pregnancy?
+    - Can you explain what perinatal care entails?
+    - Where can I find childbirth education classes?
+    - Do you offer support for lactation and breastfeeding?
+    - How can I get help with postpartum depression?
+    - Do you treat pelvic floor disorders?
+    - What options are available for incontinence treatment?
+    - Can you explain what vaginal rejuvenation is?
+    - Where can I get tested for sexually transmitted infections (STIs)?
+    - Is HPV vaccination available here?
+    - Do you provide genetic counseling services?
+    - Can you help with preconception counseling?
+    - What should I do if I suspect an ectopic pregnancy?
+    - How do you manage miscarriages?
+    - Do you offer abortion services?
+    - What is a hysteroscopy and why might I need one?
+    - When is a colposcopy performed?
+    - What is involved in a laparoscopy procedure?
+    - How is a myomectomy performed?
+    - What are the indications for a hysterectomy?
+    - Can you explain tubal ligation?
+    - What is an oophorectomy and when is it necessary?
+    - How does hormone replacement therapy work?
+    - What treatments are available for polycystic ovary syndrome (PCOS)?
+    - How do you treat pelvic inflammatory disease (PID)?
+    - What are the benefits of vaginal birth?
+    - How do you evaluate infertility?
+    - What are the options for assisted reproductive technologies (ART)?
+    - Can you explain the process of egg freezing?
+    - What is involved in surrogacy?
+    - Do you perform reproductive surgeries?
+    - What are the advantages of minimally invasive surgery?
+    - Can you help with contraception counseling?
+    - What is natural family planning?
+    - Where can I get tested for sexually transmitted diseases (STDs)?
+    - How do you manage menopause symptoms?
+    - What treatments are available for menstrual irregularities?
+    - What are the different contraception methods?
+    - How do you evaluate postmenopausal bleeding?
+    - Can hormone therapy help with menopausal symptoms?
+    - What is colpocleisis?
+    - How is a pessary fitted?
+    - What treatments are available for vulvodynia?
+    - How are genital warts treated?
+    - What options are there for sexual dysfunction treatment?
+    - How do you manage premenstrual syndrome (PMS)?
+    - What is ovarian reserve testing?
+    - How is endometrial ablation performed?
+    - What is hysterosalpingography used for?
+    - When is uterine artery embolization necessary?
+    - How do you remove endometrial polyps?
+    - What are the options for menstrual suppression?
+    - Can you help with premenstrual dysphoric disorder (PMDD)?
+    - Do you offer screening for vulvar cancer?
+    - How is vaginal atrophy treated?
+    - What are the options for female sterilization?
+    - How can miscarriages be prevented?
+    - What is involved in contraceptive implant insertion?
+    - How does emergency contraception work?
+    - Can you explain tubal sterilization?
+    - What treatments are available for menorrhagia?
+    - How do you manage perimenopause?
+    - What is involved in endometrial cancer screening?
+    - How do you evaluate recurrent pregnancy loss?
+    - What treatments are available for Bartholin's cysts?
+    - How is endometrial hyperplasia treated?
+    - What is gynecologic oncology?
+    - How do you manage menopause?
+    - What measures can be taken to prevent preterm labor?
+    - What treatments are available for vaginal infections?
+    - How is ovarian cancer treated?
+    - How often should breast cancer screening be done?
+    - What can be done to prevent pelvic inflammatory disease (PID)?
+    - How can sexually transmitted infections (STIs) be prevented?
+    - What should I consider when planning for pregnancy?
+    - What is involved in gestational diabetes screening?
+    - Are prenatal vitamins necessary during pregnancy?
+    - When should I schedule a postpartum check-up?
+    - Can you provide education on contraception?
+    - How do you evaluate breast pain?
+    - What options are available for infertility treatment?
+    - How is tubal factor infertility treated?
+    - What is involved in diagnosing endometriosis?
+    - How are vulvovaginal disorders treated?
+    - What is included in preconception care?
+    - Can you provide counseling on pregnancy termination?
+    - What is involved in the gestational surrogacy process?
+    - What is reproductive endocrinology?
+    - How can preterm birth be prevented?
+    - What options are there for correcting uterine anomalies?
+    - How can menstrual cycles be regulated?
+    - What treatments are available for hormone imbalances?
+    - What happens during a prenatal ultrasound?
+    - How do you manage postpartum complications?
+    - What is pelvic floor physical therapy?
+    - How can menopausal symptoms be relieved?
+    - What is the process for applying a contraceptive patch?
+    - How is an intrauterine device (IUD) inserted?
+    - What is involved in uterine fibroid embolization?
+    - How do you use a female condom?
+    - What happens during a sexual assault examination?
+    - How are perineal tears repaired?
+    - What is the procedure for repairing an episiotomy?
+    - How is ovulation induction performed?
+    - What is evaluated in endometrial thickness?
+    - How is a hysteroscopic myomectomy done?
+    - When is a salpingectomy performed?
+  
+- intent: search_in_nursekey
+  examples: |
+    - nurse
+    - What is the role of a nurse?
+    - How do I become a registered nurse?
+    - What are the responsibilities of a nurse?
+    - Can you tell me more about pediatric nurses?
+    - What qualifications do I need to be a nurse?
+    - How long does it take to become a nurse?
+    - What are the duties of a nurse in a hospital?
+    - What is the average salary of a nurse?
+    - How do nurses handle emergencies?
+    - What is the difference between a nurse and a doctor?
+    - Can a nurse prescribe medication?
+    - What is the importance of nurses in healthcare?
+    - How do nurses manage patient care?
+    - What is a nurse practitioner?
+    - What are the different types of nurses?
+    - How do I become a licensed practical nurse?
+    - What is the role of a nurse in surgery?
+    - Can a nurse perform medical procedures?
+    - What are the education requirements for a nurse?
+    - How do nurses stay updated with medical knowledge?
+    - What is the nurse-to-patient ratio?
+    - How do nurses handle patient records?
+    - What is a nurse residency program?
+    - What skills are essential for a nurse?
+    - How do nurses support patient families?
+    - What is the job outlook for nurses?
+    - How do nurses manage their shifts?
+    - What is a travel nurse?
+    - How do nurses handle stress at work?
+    - What is a nurse's role in patient advocacy?
+    - How do I find a good nursing school?
+    - What is a clinical nurse specialist?
+    - How do nurses prevent infections in hospitals?
+    - What is the role of a nurse in a community health setting?
+    - Can nurses specialize in certain medical fields?
+    - What are the common challenges nurses face?
+    - How do nurses contribute to patient recovery?
+    - What is a nurse anesthetist?
+    - How do nurses handle patient confidentiality?
+    - What is the importance of continuing education for nurses?
+    - How do nurses work with doctors?
+    - What is a nurse's role in mental health care?
+    - How do nurses handle difficult patients?
+    - What is the process for renewing a nursing license?
+    - How do nurses participate in healthcare research?
+    - What is the role of a nurse in hospice care?
+    - How do nurses use technology in their work?
+    - What is a nurse's role in patient education?
+    - How do nurses manage chronic conditions in patients?
+    - What is a nurse midwife?
+    - How do nurses provide emotional support to patients?
+    - What is the difference between an RN and an LPN?
+    - How do nurses ensure patient safety?
+    - What is a nurse's role in disaster response?
+    - How do nurses work in rural areas?
+    - What is a nurse's role in the operating room?
+    - How do nurses prepare for their certification exams?
+    - What are the ethical responsibilities of a nurse?
+    - How do nurses handle patient assessments?
+    - What is a nurse's role in health promotion?
+    - How do nurses deal with end-of-life care?
+    - What is a nurse's role in pain management?
+    - How do nurses collaborate with other healthcare professionals?
+    - What is the role of a nurse in critical care?
+    - How do nurses handle patient discharge planning?
+    - What is a nurse educator?
+    - How do nurses manage patient nutrition?
+    - What is the role of a nurse in primary care?
+    - How do nurses handle medical emergencies?
+    - What is a nurse's role in vaccination programs?
+    - How do nurses support patient families during treatment?
+    - What is the role of a nurse in a rehabilitation center?
+    - How do nurses handle patient complaints?
+    - What is a nurse's role in a nursing home?
+    - How do nurses manage patient medications?
+    - What is a forensic nurse?
+    - How do nurses help with patient mobility?
+    - What is the role of a nurse in telehealth?
+    - How do nurses handle patient admissions?
+    - What is a nurse's role in prenatal care?
+    - How do nurses support post-operative care?
+    - What is a nurse's role in public health?
+    - How do nurses perform wound care?
+    - What is the role of a nurse in a school setting?
+    - How do nurses handle patient education about chronic diseases?
+    - What is a nurse's role in a clinical trial?
+    - How do nurses support cancer patients?
+    - What is a nurse's role in a burn unit?
+    - How do nurses handle patient transfers?
+    - What is a nurse's role in a dialysis center?
+    - How do nurses manage patient pain?
+    - What is the role of a nurse in a trauma center?
+    - How do nurses support patients with disabilities?
+    - What is a nurse's role in an urgent care center?
+    - How do nurses manage patient follow-up care?
+    - What is a nurse's role in a cardiac care unit?
+    - How do nurses support patients with mental health issues?
+    - What is a nurse's role in an oncology department?
+    - How do nurses assist in labor and delivery?
+    - What is a nurse's role in a neonatal unit?
+    - How do nurses handle patient advocacy?
+    - What is the role of a nurse in infection control?
+    - How do nurses support patients with chronic pain?
+    - What is a nurse's role in a fertility clinic?
+    - How do nurses manage patient anxiety?
+    - What is the role of a nurse in an outpatient clinic?
+    - How do nurses support patients with substance abuse issues?
+    - What is a nurse's role in an immunization clinic?
+    - How do nurses handle patient triage?
+    - What is the role of a nurse in a pediatric ward?
+    - How do nurses manage patient hydration?
+    - What is a nurse's role in a geriatrics unit?
+    - How do nurses support patients with respiratory issues?
+    - What is a nurse's role in a surgical recovery room?
+    - How do nurses handle patient nutrition counseling?
+    - What is a nurse's role in a pain management clinic?
+    - How do nurses support patients with diabetes?
+    - What is the role of a nurse in a stroke unit?
+    - How do nurses handle patient rehabilitation?
+    - What is a nurse's role in a community health fair?
+    - How do nurses support patients with heart disease?
+    - What is a nurse's role in a family practice?
+    - How do nurses manage patient care plans?
+    - What is a nurse's role in a respiratory therapy unit?
+    - How do nurses handle patient intake interviews?
+    - What is the role of a nurse in an endocrinology clinic?
+    - How do nurses support patients with autoimmune diseases?
+    - What is a nurse's role in a dermatology clinic?
+    - How do nurses manage patient referrals?
+    - What is a nurse's role in a pain clinic?
+    - How do nurses support patients with kidney disease?
+    - What is a nurse's role in a cardiology clinic?
+    - How do nurses handle patient health screenings?
+    - What is the role of a nurse in a palliative care unit?
+    - How do nurses support patients with chronic fatigue?
+    - What is a nurse's role in a blood donation center?
+    - How do nurses manage patient immunizations?
+    - What is a nurse's role in a gastrointestinal clinic?
+    - How do nurses support patients with arthritis?
+    - What is a nurse's role in a sleep clinic?
+    - How do nurses handle patient stress management?
+    - What is the role of a nurse in a genetics clinic?
+    - How do nurses support patients with epilepsy?
+    - What is a nurse's role in a pain management team?
+    - How do nurses manage patient lifestyle changes?
+    - What is the role of a nurse in a vascular clinic?
+    - How do nurses support patients with multiple sclerosis?
+    - What is a nurse's role in an infusion center?
+    - How do nurses handle patient fitness counseling?
+    - What is the role of a nurse in a rehab facility?
+    - How do nurses support patients with COPD?
+    - What is a nurse's role in a wellness program?
+    - How do nurses manage patient exercise plans?
+    - What is the role of a nurse in a hormone therapy clinic?
+    - How do nurses support patients with Parkinson's disease?
+    - What is a nurse's role in a chronic pain clinic?
+    - How do nurses handle patient lifestyle coaching?
+    - What is the role of a nurse in a rheumatology clinic?
+    - How do nurses support patients with fibromyalgia?
+    - What is a nurse's role in a bone marrow transplant unit?
+    - How do nurses manage patient weight loss programs?
+    - What is the role of a nurse in a transplant center?
+    - How do nurses support patients with ALS?
+    - What is a nurse's role in a lactation consultancy?
+    - How do nurses handle patient dietary counseling?
+    - What is the role of a nurse in a HIV/AIDS clinic?
+    - How do nurses support patients with chronic infections?
+    - What is a nurse's role in a wound care center?
+    - How do nurses manage patient physical therapy?
+    - What is the role of a nurse in an allergy clinic?
+    - How do nurses support patients with chronic inflammation?
+    - What is a nurse's role in a pulmonary clinic?
+    - How do nurses handle patient sleep apnea?
+    - What is the role of a nurse in a men's health clinic?
+    - How do nurses support patients with osteoporosis?
+    - What is a nurse's role in a sports medicine clinic?
+    - How do nurses manage patient fall prevention?
+    - What is the role of a nurse in a bariatric clinic?
+    - How do nurses support patients with chronic headaches?
+    - What is a nurse's role in a dialysis unit?
+    - How do nurses handle patient mobility issues?
+    - What is the role of a nurse in a weight management clinic?
+    - How do nurses support patients with chronic fatigue syndrome?
+    - nursing
+    - registered nurse
+    - nursing assistant
+    - nurse practitioner
+    - licensed practical nurse
+    - head nurse
+    - staff nurse
+    - senior nurse
+    - pediatric nurse
+    - travel nurse
+    - critical care nurse
+    - nurse manager
+    - school nurse
+    - clinical nurse
+    - nurse anesthetist
+    - nurse midwife
+    - nurse educator
+    - nurse specialist
+    - psychiatric nurse
+    - hospice nurse
+    - home health nurse
+    - surgical nurse
+    - nurse aide
+    - geriatric nurse
+    - neonatal nurse
+    - oncology nurse
+    - emergency nurse
+    - cardiac nurse
+    - trauma nurse
+    - dialysis nurse
+    - forensic nurse
+    - flight nurse
+    - public health nurse
+    - research nurse
+    - perioperative nurse
+    - community nurse
+    - infusion nurse
+    - telehealth nurse
+    - infection control nurse
+    - occupational health nurse
+    - rehabilitation nurse
+    - military nurse
+    - nurse consultant
+    - nurse case manager
+    - nurse coordinator
+    - nurse clinician
+    - legal nurse consultant
+    - nurse navigator
+    - telenurse
+    - perioperative nursing
+    - nurse manager's role
+    - duties of a nurse practitioner
+    - nursing education programs
+    - nursing care plans
+    - nurse's daily tasks
+    - nursing shift work
+    - nursing in emergency settings
+    - nurse's responsibility
+    - nursing practice
+    - pediatric nursing
+    - critical care nursing
+    - nursing administration
+    - nursing ethics
+    - nursing specialties
+    - nursing roles in healthcare
+    - nursing assessments
+    - nursing care for chronic patients
+    - nursing interventions
+    - nursing documentation
+    - nursing in mental health
+    - nursing care for the elderly
+    - nursing in rural areas
+    - nursing skills development
+    - nursing certification exams
+    - nursing job opportunities
+    - nursing support for families
+    - nursing teamwork
+    - nursing in surgery
+    - nursing research contributions
+    - nursing leadership
+    - nursing and patient safety
+    - nursing care for children
+    - nursing in community health
+    - nursing for critical patients
+    - nursing technology use
+    - nursing care management
+    - nursing and pain management
+    - nursing stress management
+    - nursing advocacy
+    - nursing career path
+    - nursing programs
+    - nursing field
+    - nursing knowledge
+    - nursing practice standards
+    - nursing profession
+    - nursing experience
+    - nursing duties
+    - nursing job description
+    - nursing work environment
+    - nursing care coordination
+    - nursing patient care
+    - nursing job satisfaction
+    - nursing workload
+    - nursing shift duties
+    - nursing work-life balance
+    - nursing education requirements
+    - nursing license renewal
+    - nursing continuing education
+    - nursing and patient outcomes
+    - nursing job market
+    - nursing staff support
+    - nursing care techniques
+    - nursing in health promotion
+    - nursing in chronic disease management
+    - nursing documentation practices
+    - nursing in patient education
+    - nursing patient assessments
+    - nursing in rehabilitation
+    - nursing home care
+    - nursing care for terminal patients
+    - nursing emergency response
+    - nursing in a clinical setting
+    - nursing in patient advocacy
+    - nursing care for newborns
+    - nursing teamwork and collaboration
+    - nursing patient communication
+    - nursing clinical skills
+    - nursing in special care units
+    - nursing in outpatient care
+    - nursing patient monitoring
+    - nursing therapeutic interventions
+    - nursing in healthcare teams
+    - nursing leadership skills
+    - nursing care in mental health
+    - nursing family support
+    - nursing in medical research
+    - nursing care standards
+    - nursing care plans development
+    - nursing in patient recovery
+    - nursing interventions for pain
+    - nursing critical thinking
+    - nursing in primary care
+    - nursing infection prevention
+    - nursing care in critical situations
+    - nursing community support
+    - nursing in preventive care
+    - nursing chronic care management
+    - nursing in patient mobility
+    - nursing care for surgical patients
+    - nursing health assessments
+    - nursing in emergency care
+    - nursing clinical practices
+    - nursing for special populations
+    - nursing patient follow-ups
+    - nursing support for chronic conditions
+    - nursing home visits
+    - nursing and healthcare technology
+    - nursing care in diverse settings
+    - nursing pain assessment
+    - nursing job responsibilities
+    - nursing in health education
+    - nursing care planning
+    - nursing patient-centered care
+    - nursing interventions in critical care
+    - nursing roles in patient care
+    - nursing care for children with special needs
+    - nursing stress management techniques
+    - nursing patient support systems
+    - nursing roles in hospitals
+    - nursing care in palliative settings
+    - nursing in intensive care units
+    - nursing education and training
+    - nursing care for chronic illnesses
+    - nursing roles in primary care
+    - nursing therapeutic practices
+    - nursing in telemedicine
+    - nursing for vulnerable populations
+    - nursing patient care strategies
+    - nursing care coordination and management
+    - nursing care for elderly patients
+    - nursing in public health initiatives
+    - nursing in clinical trials
+    - nursing patient care techniques
+    - nursing home health care
+    - nursing care for cancer patients
+    - nursing interventions in emergencies
+    - nursing and family communication
+    - nursing care in rural health
+    - nursing in patient rehabilitation programs
+    - nursing health education roles
+    - nursing and chronic disease care
+    - nursing in medical procedures
+    - nursing ethical considerations
+    - nursing in specialty care units
+    - nursing roles in outpatient clinics
+    - nursing patient advocacy and support
+    - nursing care in pain management
+    - nursing interventions for patient care
+    - nursing care in acute settings
+    - nursing health promotion and disease prevention
+    - nursing for special needs populations
+    - nursing patient care protocols
+    - nursing clinical rotations
+    - nursing job roles and functions
+
+- intent: search_in_neupsykey
+  examples: |
+    - Can you find me information about Neupsy?
+    - What is the latest update on Neupsy?
+    - Is there any new research on Neupsy?
+    - Tell me about the Neupsy project.
+    - I need details on Neupsy's latest findings.
+    - Where can I read about Neupsy?
+    - What is Neupsy's primary focus?
+    - How can I get involved with Neupsy?
+    - Can I contribute to Neupsy research?
+    - Who is leading the Neupsy initiative?
+    - Are there any upcoming events related to Neupsy?
+    - What are the goals of Neupsy?
+    - How does Neupsy impact mental health research?
+    - What organizations are partnering with Neupsy?
+    - Can you provide a summary of Neupsy's recent work?
+    - I am interested in Neupsy. How can I learn more?
+    - Is there a Neupsy newsletter I can subscribe to?
+    - What topics does Neupsy cover?
+    - Does Neupsy have a social media presence?
+    - Can you tell me about Neupsy's history?
+    - How has Neupsy evolved over the years?
+    - Are there any books published on Neupsy?
+    - What conferences discuss Neupsy?
+    - Is Neupsy a part of any larger organization?
+    - How does Neupsy contribute to neuroscience?
+    - Where can I find Neupsy-related articles?
+    - What is the mission statement of Neupsy?
+    - Who are the key researchers in Neupsy?
+    - Are there any podcasts featuring Neupsy experts?
+    - What kind of studies does Neupsy conduct?
+    - How is Neupsy funded?
+    - Can I donate to Neupsy?
+    - Does Neupsy offer internships?
+    - What are the recent discoveries by Neupsy?
+    - How can I volunteer for Neupsy?
+    - Is there a Neupsy journal?
+    - What are the ethical considerations of Neupsy research?
+    - How does Neupsy handle data privacy?
+    - Are there any Neupsy webinars available?
+    - Can you send me the latest Neupsy newsletter?
+    - What impact has Neupsy had on mental health policies?
+    - How can I access Neupsy's research papers?
+    - Are there any online courses about Neupsy?
+    - What methodologies does Neupsy use in research?
+    - Who funds Neupsy research?
+    - What are the benefits of joining Neupsy?
+    - Are there any case studies from Neupsy?
+    - How often does Neupsy publish new research?
+    - What is the vision of Neupsy for the future?
+    - How does Neupsy collaborate with other institutions?
+    - What are the core values of Neupsy?
+    - Can I request a specific study from Neupsy?
+    - How is Neupsy making a difference in mental health?
+    - Are there any job openings at Neupsy?
+    - What are the educational resources provided by Neupsy?
+    - How can I stay updated on Neupsy's activities?
+    - Is Neupsy active in any specific countries?
+    - What are the recent publications from Neupsy?
+    - How does Neupsy measure its success?
+    - Are there any documentaries about Neupsy?
+    - What is the organizational structure of Neupsy?
+    - How does Neupsy ensure the quality of its research?
+    - Can I access Neupsy's database?
+    - Does Neupsy collaborate with universities?
+    - What are the upcoming projects of Neupsy?
+    - How does Neupsy train its researchers?
+    - Are there any awards won by Neupsy?
+    - How can I submit my research to Neupsy?
+    - What is the contact information for Neupsy?
+    - How does Neupsy handle ethical concerns?
+    - Are there any grants available from Neupsy?
+    - How can I network with Neupsy professionals?
+    - Does Neupsy offer scholarships?
+    - What is Neupsy's stance on mental health awareness?
+    - How can I give feedback to Neupsy?
+    - Are there any forums discussing Neupsy?
+    - What is Neupsy's approach to community engagement?
+    - Can you send me Neupsy's annual report?
+    - How does Neupsy collaborate with healthcare providers?
+    - Are there any Neupsy online communities?
+    - How does Neupsy support mental health advocacy?
+    - Can I watch videos from Neupsy conferences?
+    - What is Neupsy's strategy for data collection?
+    - How does Neupsy protect participant confidentiality?
+    - Are there any Neupsy mobile apps?
+    - What are the success stories from Neupsy?
+    - How does Neupsy address global mental health issues?
+    - Can I attend a Neupsy workshop?
+    - What is the process for joining Neupsy?
+    - How does Neupsy engage with policymakers?
+    - Can you provide links to Neupsy publications?
+    - How does Neupsy impact local communities?
+    - What technologies does Neupsy use in research?
+    - Are there any blogs about Neupsy?
+    - How can I participate in a Neupsy study?
+    - Does Neupsy offer training programs?
+    - What are the challenges faced by Neupsy?
+    - How can I connect with Neupsy researchers?
+    - Are there any Neupsy support groups?
+    - What is the focus of Neupsy's latest research?
+    - How does Neupsy handle research ethics?
+    - What partnerships does Neupsy have?
+    - How does Neupsy influence public health policies?
+    - Are there any documentaries produced by Neupsy?
+    - How does Neupsy validate its research findings?
+    - What is the application process for Neupsy grants?
+    - How can I learn about Neupsy's research methods?
+    - Does Neupsy provide mental health resources?
+    - How does Neupsy ensure research transparency?
+    - Are there any Neupsy internships available?
+    - How does Neupsy impact educational institutions?
+    - Can I visit the Neupsy headquarters?
+    - What is the role of Neupsy in global health?
+    - How does Neupsy train its volunteers?
+    - What is Neupsy's impact on policy making?
+    - Are there any virtual tours of Neupsy facilities?
+    - How can I become a Neupsy ambassador?
+    - Does Neupsy offer online webinars?
+    - How does Neupsy support early-career researchers?
+    - What is the future direction of Neupsy?
+    - How does Neupsy address mental health stigma?
+    - Are there any Neupsy events I can attend?
+    - How can I get updates on Neupsy's work?
+    - What are the main areas of research for Neupsy?
+    - How does Neupsy collaborate with NGOs?
+    - Are there any success metrics for Neupsy?
+    - How does Neupsy engage with the public?
+    - Can I receive alerts for new Neupsy research?
+    - What are the benefits of Neupsy membership?
+    - How can I suggest research topics to Neupsy?
+    - Does Neupsy provide mentorship programs?
+    - How does Neupsy handle data analysis?
+    - Are there any Neupsy research fellowships?
+    - How can I join a Neupsy focus group?
+    - What is the application process for Neupsy internships?
+    - How does Neupsy contribute to public awareness?
+    - Can I access Neupsy's digital archives?
+    - How does Neupsy ensure diversity in research?
+    - Are there any Neupsy online courses available?
+    - How does Neupsy engage with youth?
+    - What are the criteria for Neupsy grants?
+    - How can I follow Neupsy's updates?
+    - What is Neupsy's role in international health?
+    - How does Neupsy evaluate its programs?
+    - Are there any interactive Neupsy tools?
+    - What are the benefits of attending Neupsy conferences?
+    - How does Neupsy impact healthcare policy?
+    - How can I connect with other Neupsy members?
+    - Are there any Neupsy training workshops?
+    - How does Neupsy manage its projects?
+    - What is the scope of Neupsy's research?
+    - How does Neupsy support mental health professionals?
+    - Are there any Neupsy-led initiatives?
+    - How can I stay informed about Neupsy's activities?
+    - What are the latest innovations from Neupsy?
+    - How does Neupsy address ethical challenges?
+    - What is the structure of Neupsy's research teams?
+    - How does Neupsy influence mental health education?
+    - Can I join Neupsy's mailing list?
+    - How does Neupsy support patient advocacy?
+    - What is the timeline for Neupsy projects?
+    - Are there any Neupsy information sessions?
+    - How does Neupsy ensure research inclusivity?
+    - What is Neupsy's approach to interdisciplinary research?
+    - How does Neupsy utilize technology in its studies?
+    - What are the priorities for Neupsy in the coming years?
+    - How can I collaborate with Neupsy on a project?
+    - Are there any Neupsy scholarships for students?
+    - How does Neupsy work with community organizations?
+    - What are the themes of Neupsy's annual report?
+    - How can I attend a Neupsy lecture?
+    - How does Neupsy address mental health disparities?
+    - What are the outcomes of Neupsy's recent studies?
+    - Can you find me information about Neupsy?
+    - What is the latest update on Neupsy research?
+    - Is there any new research on Neu-Psy?
+    - Tell me about the NeuPsy project.
+    - I need details on Neupsy's latest findings.
+    - Where can I read about the NeuPsy initiative?
+    - What is NeuPsy's primary focus?
+    - How can I get involved with Neu-Psy?
+    - Can I contribute to Neuropsy research?
+    - Who is leading the Neupsy initiative?
+    - Are there any upcoming events related to Neuro-Psy?
+    - What are the goals of Neupsy?
+    - How does Neupsy impact mental health research?
+    - What organizations are partnering with NeuroPsy?
+    - Can you provide a summary of Neu-Psy's recent work?
+    - I am interested in Neuropsy. How can I learn more?
+    - Is there a NeuroPsy newsletter I can subscribe to?
+    - What topics does Neupsy cover?
+    - Does Neuro-Psy have a social media presence?
+    - Can you tell me about Neuropsy's history?
+    - How has NeuPsy evolved over the years?
+    - Are there any books published on Neupsy?
+    - What conferences discuss NeuroPsy?
+    - Is Neupsy a part of any larger organization?
+    - How does Neupsy contribute to neuroscience?
+    - Where can I find Neupsy-related articles?
+    - What is the mission statement of Neuropsy?
+    - Who are the key researchers in Neuro-Psy?
+    - Are there any podcasts featuring NeuPsy experts?
+    - What kind of studies does Neuropsy conduct?
+    - How is Neupsy funded?
+    - Can I donate to Neuropsy?
+    - Does NeuPsy offer internships?
+    - What are the recent discoveries by NeuroPsy?
+    - How can I volunteer for Neu-Psy?
+    - Is there a NeuPsy journal?
+    - What are the ethical considerations of Neuropsy research?
+    - How does NeuPsy handle data privacy?
+    - Are there any Neuro-Psy webinars available?
+    - Can you send me the latest Neuropsy newsletter?
+    - What impact has NeuPsy had on mental health policies?
+    - How can I access Neuropsy's research papers?
+    - Are there any online courses about NeuPsy?
+    - What methodologies does Neuro-Psy use in research?
+    - Who funds Neuropsy research?
+    - What are the benefits of joining Neupsy?
+    - Are there any case studies from NeuroPsy?
+    - How often does Neuropsy publish new research?
+    - What is the vision of Neuro-Psy for the future?
+    - How does Neupsy collaborate with other institutions?
+    - What are the core values of NeuPsy?
+    - Can I request a specific study from NeuroPsy?
+    - How is Neuropsy making a difference in mental health?
+    - Are there any job openings at Neuro-Psy?
+    - What are the educational resources provided by Neuropsy?
+    - How can I stay updated on NeuPsy's activities?
+    - Is Neuropsy active in any specific countries?
+    - What are the recent publications from Neu-Psy?
+    - How does Neuropsy measure its success?
+    - Are there any documentaries about Neuro-Psy?
+    - What is the organizational structure of NeuroPsy?
+    - How does Neupsy ensure the quality of its research?
+    - Can I access Neuropsy's database?
+    - Does Neu-Psy collaborate with universities?
+    - What are the upcoming projects of Neuropsy?
+    - How does Neupsy train its researchers?
+    - Are there any awards won by Neuropsy?
+    - How can I submit my research to NeuPsy?
+    - What is the contact information for Neuropsy?
+    - How does NeuPsy handle ethical concerns?
+    - Are there any grants available from Neuro-Psy?
+    - How can I network with Neuropsy professionals?
+    - Does NeuroPsy offer scholarships?
+    - What is NeuroPsy's stance on mental health awareness?
+    - How can I give feedback to Neuropsy?
+    - Are there any forums discussing Neuropsy?
+    - What is NeuroPsy's approach to community engagement?
+    - Can you send me Neuropsy's annual report?
+    - How does Neuropsy collaborate with healthcare providers?
+    - Are there any Neuro-Psy online communities?
+    - How does Neuropsy support mental health advocacy?
+    - Can I watch videos from Neuropsy conferences?
+    - What is Neu-Psy's strategy for data collection?
+    - How does Neuropsy protect participant confidentiality?
+    - Are there any Neuropsy mobile apps?
+    - What are the success stories from NeuPsy?
+    - How does NeuPsy address global mental health issues?
+    - Can I attend a NeuroPsy workshop?
+    - What is the process for joining Neuro-Psy?
+    - How does Neuropsy engage with policymakers?
+    - Can you provide links to NeuPsy publications?
+    - How does Neupsy impact local communities?
+    - What technologies does NeuPsy use in research?
+    - Are there any blogs about NeuroPsy?
+    - How can I participate in a Neuropsy study?
+    - Does NeuPsy offer training programs?
+    - What are the challenges faced by Neuro-Psy?
+    - How can I connect with Neuropsy researchers?
+    - Are there any Neuropsy support groups?
+    - What is the focus of NeuroPsy's latest research?
+    - How does NeuPsy handle research ethics?
+    - What partnerships does Neuropsy have?
+    - How does Neuro-Psy influence public health policies?
+    - Are there any documentaries produced by NeuPsy?
+    - How does Neuropsy validate its research findings?
+    - What is the application process for NeuroPsy grants?
+    - How can I learn about Neuropsy's research methods?
+    - Does NeuPsy provide mental health resources?
+    - How does Neuro-Psy ensure research transparency?
+    - Are there any Neuropsy internships available?
+    - How does Neuropsy impact educational institutions?
+    - Can I visit the Neuropsy headquarters?
+    - What is the role of NeuPsy in global health?
+    - How does Neuropsy train its volunteers?
+    - What is NeuroPsy's impact on policy making?
+    - Are there any virtual tours of Neuropsy facilities?
+    - How can I become a Neuropsy ambassador?
+    - Does Neuropsy offer online webinars?
+    - How does Neuropsy support early-career researchers?
+    - What is the future direction of NeuroPsy?
+    - How does Neuro-Psy address mental health stigma?
+    - Are there any Neuropsy events I can attend?
+    - How can I get updates on NeuroPsy's work?
+    - What are the main areas of research for Neuropsy?
+    - How does Neuropsy collaborate with NGOs?
+    - Are there any success metrics for Neuropsy?
+    - How does Neuropsy engage with the public?
+    - Can I receive alerts for new Neuropsy research?
+    - What are the benefits of Neuropsy membership?
+    - How can I suggest research topics to Neuropsy?
+    - Does NeuroPsy provide mentorship programs?
+    - How does Neuro-Psy handle data analysis?
+    - Are there any Neuropsy research fellowships?
+    - How can I join a Neuropsy focus group?
+    - What is the application process for NeuPsy internships?
+    - How does NeuPsy contribute to public awareness?
+    - Can I access Neuropsy's digital archives?
+    - How does Neuropsy ensure diversity in research?
+    - Are there any Neuropsy online courses available?
+    - How does Neuro-Psy engage with youth?
+    - What are the criteria for Neuropsy grants?
+    - How can I follow Neuropsy's updates?
+    - What is NeuroPsy's role in international health?
+    - How does Neuropsy evaluate its programs?
+    - Are there any interactive Neuropsy tools?
+    - What are the benefits of attending Neuro-Psy conferences?
+    - How does Neuropsy impact healthcare policy?
+    - How can I connect with other Neuropsy members?
+    - Are there any Neuropsy training workshops?
+    - How does Neuropsy manage its projects?
+    - What is the scope of NeuroPsy's research?
+    - How does Neuro-Psy support mental health professionals?
+    - Are there any Neuropsy-led initiatives?
+    - How can I stay informed about Neuropsy's activities?
+    - What are the latest innovations from Neuropsy?
+    - How does Neuropsy address ethical challenges?
+    - What is the structure of NeuroPsy's research teams?
+    - How does Neuropsy influence mental health education?
+    - Can I join Neuropsy's mailing list?
+    - How does Neuropsy support patient advocacy?
+    - What is the timeline for Neuropsy projects?
+    - Are there any Neuropsy information sessions?
+    - How does Neuropsy ensure research inclusivity?
+    - What is NeuroPsy's approach to interdisciplinary research?
+    - How does Neuro-Psy utilize technology in its studies?
+    - What are the priorities for Neuropsy in the coming years?
+    - How can I collaborate with Neuropsy on a project?
+    - Are there any Neuropsy scholarships for students?
+    - How does Neuropsy work with community organizations?
+    - What are the themes of Neuropsy's annual report?
+    - How can I attend a NeuroPsy lecture?
+    - How does Neuropsy address mental health disparities?
+    - What are the outcomes of Neuropsy's recent studies?
+    - Neuro-Psy
+  
+- intent: search_in_veteriankey
+  examples: |
+    - veterian
+    - I need a veterian
+    - Are there any veterians nearby?
+    - Where is the closest veterian?
+    - Can you recommend a good veterian?
+    - My pet needs a veterian
+    - How can I find a veterian?
+    - What services does a veterian offer?
+    - Is there an emergency veterian?
+    - I need a 24-hour veterian
+    - How do I book an appointment with a veterian?
+    - veterian services
+    - Find me a veterian
+    - veterian clinic
+    - veterian hospital
+    - Local veterian
+    - veterian office
+    - veterian for dogs
+    - veterian for cats
+    - What is a veterian?
+    - veterian near me
+    - Best veterian
+    - Affordable veterian
+    - Emergency veterian services
+    - Contact a veterian
+    - veterian appointment
+    - veterian consultation
+    - veterian checkup
+    - veterian care
+    - Need a veterian now
+    - veterian phone number
+    - Book a veterian online
+    - veterian for pets
+    - Nearby veterian clinic
+    - Find veterian clinics
+    - List of veterians
+    - Top-rated veterian
+    - Reliable veterian
+    - veterian for small animals
+    - veterian for exotic pets
+    - veterian practice
+    - Experienced veterian
+    - veterian in my area
+    - veterian reviews
+    - Professional veterian
+    - Trustworthy veterian
+    - veterian recommendation
+    - veterian availability
+    - veterian services list
+    - veterian working hours
+    - veterian specialties
+    - Where is the veterian?
+    - veterian for rabbits
+    - veterian for birds
+    - veterian for reptiles
+    - veterian for fish
+    - Animal veterian
+    - Pet veterian
+    - My veterian
+    - Your veterian
+    - Good veterian
+    - Cheap veterian
+    - Emergency veterian care
+    - Urgent veterian
+    - veterian for surgery
+    - veterian for dental care
+    - veterian for vaccinations
+    - veterian for spaying
+    - veterian for neutering
+    - veterian for wellness checks
+    - veterian for sick pets
+    - veterian for injured pets
+    - veterian for elderly pets
+    - veterian for newborn pets
+    - veterian for pregnant pets
+    - How to contact a veterian
+    - 24/7 veterian
+    - After-hours veterian
+    - Mobile veterian
+    - On-call veterian
+    - veterian directory
+    - veterian map
+    - veterian locator
+    - veterian opening hours
+    - veterian emergency number
+    - veterian helpline
+    - veterian hotline
+    - veterian advice
+    - veterian consultation fee
+    - veterian visit cost
+    - veterian examination
+    - veterian treatment
+    - veterian therapy
+    - veterian surgery
+    - veterian medication
+    - veterian prescriptions
+    - veterian follow-up
+    - Find a veterian near me
+    - veterian search
+    - Local veterian offices
+    - veterian for pets near me
+    - veterian clinic hours
+    - veterian with good reviews
+    - Best local veterian
+    - Affordable local veterian
+    - Emergency pet veterian
+    - Contact local veterian
+    - Book veterian appointment
+    - Consult with a veterian
+    - Pet veterian services
+    - Where can I find a veterian?
+    - veterian for my dog
+    - veterian for my cat
+    - veterian for my pet
+    - veterian services near me
+    - Nearest veterian office
+    - Locate a veterian
+    - veterian for small pets
+    - veterian for exotic animals
+    - Local veterian practice
+    - veterian nearby
+    - Local veterian reviews
+    - Professional local veterian
+    - Trusted local veterian
+    - Recommend a veterian
+    - veterian service hours
+    - veterian specialties list
+    - Veterian for my rabbit
+    - Veterian for my bird
+    - Veterian for my reptile
+    - Veterian for my fish
+    - Animal health veterian
+    - Best pet veterian
+    - Cheap pet veterian
+    - Emergency animal veterian
+    - Urgent pet veterian
+    - Veterian for pet surgery
+    - Veterian for pet dental care
+    - Veterian for pet vaccinations
+    - Veterian for spaying my pet
+    - Veterian for neutering my pet
+    - Veterian for wellness checkups
+    - Veterian for sick animals
+    - Veterian for injured animals
+    - Veterian for senior pets
+    - Veterian for baby animals
+    - Veterian for pregnant animals
+    - Contact an emergency veterian
+    - 24-hour veterian service
+    - After-hours pet veterian
+    - Mobile pet veterian
+    - On-call pet veterian
+    - Veterian directory search
+    - Veterian map search
+    - Veterian locator service
+    - Veterian opening times
+    - Veterian emergency contact
+    - Veterian advice line
+    - Veterian consultation cost
+    - Veterian visit price
+    - Veterian exam
+    - Veterian pet treatment
+    - Veterian pet therapy
+    - Veterian pet surgery services
+    - Veterian medication for pets
+    - Veterian prescriptions for pets
+    - Veterian follow-up visit
+    - Search for a veterian
+    - Local veterian search
+    - Veterian clinics nearby
+    - Veterian office hours
+    - Find a pet veterian
+    - Local pet veterian offices
+    - Veterian for my dog near me
+    - Veterian for my cat near me
+    - Veterian for my pet nearby
+    - Pet veterian services close to me
+    - Nearest veterian clinic
+    - Veterian locator map
+    - Veterian for small pets near me
+    - Veterian for exotic animals nearby
+    - Best veterian practice near me
+    - Veterian services in my area
+    - Local veterian reviews online
+    - Professional veterian services
+    - Trusted veterian reviews
+    - Recommend a good veterian
+    - Veterian service availability
+    - Veterian specialties offered
+    - Veterian for rabbits in my area
+    - Veterian for birds in my area
+    - Veterian for reptiles in my area
+    - Veterian for fish in my area
+    - Animal health services by veterian
+    - Top-rated pet veterian near me
+    - Affordable veterian services
+    - Emergency veterian care near me
+    - Urgent pet veterian service
+    - veterinary
+    - veterinarian
+    - animal doctor
+    - pet doctor
+    - animal healthcare provider
+    - pet healthcare specialist
+    - animal care professional
+    - pet care specialist
+    - vet
+    - animal physician
+    - pet physician
+    - animal surgeon
+    - pet surgeon
+    - animal medical practitioner
+    - pet medical practitioner
+    - animal healthcare expert
+    - pet healthcare expert
+    - animal health professional
+    - pet health professional
+    - animal clinician
+    - pet clinician
+    - animal practitioner
+    - pet practitioner
+    - animal specialist
+    - pet specialist
+    - animal doctor
+    - pet doctor
+    - animal caregiver
+    - pet caregiver
+    - animal nurse
+    - pet nurse
+    - animal surgeon
+    - pet surgeon
+    - animal therapist
+    - pet therapist
+    - animal healer
+    - pet healer
+    - animal consultant
+    - pet consultant
+    - animal expert
+    - pet expert
+    - animal medical expert
+    - pet medical expert
+    - animal health consultant
+    - pet health consultant
+    - animal care provider
+    - pet care provider
+    - animal service provider
+    - pet service provider
+    - animal healthcare worker
+    - pet healthcare worker
+    - animal healthcare professional
+    - pet healthcare professional
+    - animal care professional
+    - pet care professional
+    - animal medicine practitioner
+    - pet medicine practitioner
+    - animal welfare expert
+    - pet welfare expert
+    - animal health worker
+    - pet health worker
+    - animal health specialist
+    - pet health specialist
+    - animal doctor's office
+    - pet doctor's office
+    - animal clinic
+    - pet clinic
+    - animal hospital
+    - pet hospital
+    - animal medical center
+    - pet medical center
+    - animal healthcare facility
+    - pet healthcare facility
+    - veterinary clinic
+    - veterinary hospital
+    - veterinary office
+    - vet clinic
+    - vet hospital
+    - vet office
+    - veterinary care
+    - animal healthcare
+    - pet healthcare
+    - animal medicine
+    - pet medicine
+    - veterinary medicine
+    - animal surgery
+    - pet surgery
+    - veterinary surgery
+    - animal health
+    - pet health
+    - veterinary health
+    - animal wellness
+    - pet wellness
+    - veterinary wellness
+    - animal medical treatment
+    - pet medical treatment
+    - veterinary treatment
+    - animal medical care
+    - pet medical care
+    - veterinary care
+    - animal emergency care
+    - pet emergency care
+    - veterinary emergency care
+    - animal emergency services
+    - pet emergency services
+    - veterinary emergency services
+    - animal emergency treatment
+    - pet emergency treatment
+    - veterinary emergency treatment
+    - animal emergency clinic
+    - pet emergency clinic
+    - veterinary emergency clinic
+    - animal emergency hospital
+    - pet emergency hospital
+    - veterinary emergency hospital
+    - animal emergency room
+    - pet emergency room
+    - veterinary emergency room
+    - animal emergency vet
+    - pet emergency vet
+    - veterinary emergency vet
+    - animal after-hours care
+    - pet after-hours care
+    - veterinary after-hours care
+    - animal after-hours clinic
+    - pet after-hours clinic
+    - veterinary after-hours clinic
+    - animal after-hours services
+    - pet after-hours services
+    - veterinary after-hours services
+    - animal after-hours treatment
+    - pet after-hours treatment
+    - veterinary after-hours treatment
+    - animal after-hours vet
+    - pet after-hours vet
+    - veterinary after-hours vet
+    - animal mobile vet
+    - pet mobile vet
+    - veterinary mobile vet
+    - animal on-call vet
+    - pet on-call vet
+    - veterinary on-call vet
+    - animal house call vet
+    - pet house call vet
+    - veterinary house call vet
+    - animal telemedicine vet
+    - pet telemedicine vet
+    - veterinary telemedicine vet
+    - Veterinary
+    - veterinarian
+
+- intent: search_in_thoracickey
+  examples: |
+    - thoracic
+    - What are common thoracic diseases?
+    - Can you explain thoracic anatomy?
+    - How is thoracic surgery performed?
+    - Any updates on thoracic research?
+    - I need information about thoracic vertebrae.
+    - What's the function of the thoracic cavity?
+    - Are there any thoracic specialists available?
+    - Tell me about thoracic spine disorders.
+    - I'm looking for thoracic imaging techniques.
+    - Are there thoracic exercises I can do?
+    - Can you list thoracic symptoms?
+    - What's the difference between thoracic and lumbar?
+    - How does thoracic mobility affect posture?
+    - Can thoracic pain radiate to other areas?
+    - What causes thoracic outlet syndrome?
+    - Can you recommend thoracic stretches?
+    - Are there any thoracic congenital anomalies?
+    - I'm interested in thoracic oncology.
+    - Is there a thoracic trauma center nearby?
+    - Tell me about thoracic organ transplantation.
+    - Do you have information on thoracic deformities?
+    - How does thoracic scoliosis affect breathing?
+    - Are there any thoracic support groups?
+    - Can you explain thoracic outlet anatomy?
+    - What are common thoracic injuries?
+    - Tell me about thoracic outlet treatment options.
+    - How does thoracic pain differ from cardiac pain?
+    - Is there a thoracic rehabilitation program?
+    - Are there any thoracic health screenings?
+    - What's the prognosis for thoracic fractures?
+    - Can thoracic conditions affect heart health?
+    - Tell me about thoracic epidural injections.
+    - Are there any thoracic health guidelines?
+    - I'm curious about thoracic biomechanics.
+    - Can you explain thoracic vertebrae numbering?
+    - What are the causes of thoracic kyphosis?
+    - How does thoracic surgery recovery work?
+    - Can thoracic conditions cause neurological symptoms?
+    - Tell me about thoracic outlet syndrome diagnosis.
+    - What are the signs of thoracic injury?
+    - Can thoracic exercises improve posture?
+    - Is there a thoracic pain management clinic?
+    - What's the role of the thoracic diaphragm?
+    - Can you explain thoracic outlet syndrome symptoms?
+    - How is thoracic outlet syndrome diagnosed?
+    - Tell me about thoracic outlet syndrome surgery.
+    - Are there any thoracic disorders in children?
+    - What's the prognosis for thoracic outlet syndrome?
+    - Can you recommend thoracic strengthening exercises?
+    - How does thoracic mobility affect athletic performance?
+    - Tell me about thoracic outlet syndrome physical therapy.
+    - What are the complications of thoracic surgery?
+    - Is there a thoracic outlet syndrome specialist?
+    - Are there any thoracic exercises for pain relief?
+    - Can you explain thoracic spine anatomy?
+    - What's the difference between thoracic and cervical?
+    - Tell me about thoracic outlet syndrome causes.
+    - How does thoracic outlet syndrome affect daily life?
+    - What are the risk factors for thoracic surgery?
+    - Can thoracic conditions cause respiratory problems?
+    - Tell me about thoracic outlet syndrome prevention.
+    - Are there any thoracic conditions that affect pregnancy?
+    - What's the role of the thoracic cage?
+    - Can thoracic exercises prevent injury?
+    - How does thoracic outlet syndrome affect arm movement?
+    - Tell me about thoracic outlet syndrome exercises.
+    - What are the long-term effects of thoracic surgery?
+    - Can you explain thoracic outlet syndrome complications?
+    - How does thoracic outlet syndrome affect nerve function?
+    - Tell me about thoracic outlet syndrome support groups.
+    - Are there any thoracic conditions that affect digestion?
+    - What's the treatment for thoracic outlet syndrome?
+    - Can thoracic pain be a sign of heart problems?
+    - Tell me about thoracic outlet syndrome home remedies.
+    - What are the symptoms of thoracic outlet syndrome?
+    - How does thoracic outlet syndrome affect blood flow?
+    - Can you explain thoracic outlet syndrome prognosis?
+    - What's the best thoracic outlet syndrome treatment?
+    - Tell me about thoracic outlet syndrome medications.
+    - Are there any thoracic outlet syndrome exercises to avoid?
+    - Can thoracic outlet syndrome be cured?
+    - How does thoracic outlet syndrome affect sleep?
+    - Tell me about thoracic outlet syndrome lifestyle changes.
+    - What are the surgical options for thoracic outlet syndrome?
+    - Can you explain thoracic outlet syndrome surgery recovery?
+    - What's the success rate of thoracic outlet syndrome surgery?
+    - Tell me about thoracic outlet syndrome physical therapy exercises.
+    - How does thoracic outlet syndrome affect the shoulder?
+    - Can thoracic outlet syndrome cause arm weakness?
+    - What's the difference between thoracic and lumbar vertebrae?
+    - Tell me about thoracic outlet syndrome massage therapy.
+    - Are there any thoracic outlet syndrome alternative treatments?
+    - Can thoracic outlet syndrome cause hand numbness?
+    - How does thoracic outlet syndrome affect the brachial plexus?
+    - Tell me about thoracic outlet syndrome braces and supports.
+    - What's the role of physical therapy in thoracic outlet syndrome?
+    - Can you explain thoracic outlet syndrome lifestyle modifications?
+    - What are the exercises for thoracic outlet syndrome relief?
+    - Tell me about the diagnosis process for thoracic outlet syndrome.
+    - How does thoracic outlet syndrome affect the sympathetic nervous system?
+    - Can thoracic outlet syndrome cause shoulder pain?
+    - What's the connection between thoracic outlet syndrome and posture?
+    - Tell me about thoracic outlet syndrome exercises for pain management.
+    - Are there any thoracic outlet syndrome exercises for prevention?
+    - Can you explain the relationship between thoracic outlet syndrome and thoracic spine?
+    - What are the non-surgical options for thoracic outlet syndrome treatment?
+    - Tell me about the symptoms of thoracic outlet syndrome in athletes.
+    - How does thoracic outlet syndrome affect blood circulation?
+    - Can thoracic outlet syndrome cause headaches?
+    - What's the role of occupational therapy in thoracic outlet syndrome?
+    - Tell me about thoracic outlet syndrome surgery complications.
+    - Are there any thoracic outlet syndrome exercises for athletes?
+    - Can you explain thoracic outlet syndrome surgery success rates?
+    - What are the symptoms of thoracic outlet syndrome in pregnancy?
+    - Tell me about thoracic outlet syndrome massage techniques.
+    - How does thoracic outlet syndrome affect the quality of life?
+    - Can thoracic outlet syndrome cause neck pain?
+    - What's the role of chiropractic care in thoracic outlet syndrome?
+    - Tell me about thoracic outlet syndrome exercises for cyclists.
+    - Are there any thoracic outlet syndrome exercises for office workers?
+    - Can you explain thoracic outlet syndrome in relation to repetitive strain injury?
+    - What are the ergonomic considerations for thoracic outlet syndrome?
+    - Tell me about thoracic outlet syndrome surgical outcomes.
+    - How does thoracic outlet syndrome affect typing?
+    - Can thoracic outlet syndrome cause tingling in the fingers?
+    - thorax
+    - thoracically
+    - thoracic region
+    - thoracic area
+    - chest
+    - chest cavity
+    - chest area
+    - chest region
+    - upper body
+    - upper chest
+    - ribcage
+    - rib cage
+    - midsection
+    - trunk
+    - chest wall
+    - thoracic spine
+    - thoracic vertebrae
+    - chest bones
+    - chest anatomy
+    - thoracic anatomy
+    - thoracic surgery
+    - chest surgery
+    - thoracic cavity
+    - chest cavity
+    - thoracic outlet
+    - chest outlet
+    - thoracic outlet syndrome
+    - chest outlet syndrome
+    - thoracic pain
+    - chest pain
+    - thoracic injury
+    - chest injury
+    - thoracic trauma
+    - chest trauma
+    - thoracic disorder
+    - chest disorder
+    - thoracic condition
+    - chest condition
+    - thoracic disease
+    - chest disease
+    - thoracic specialist
+    - chest specialist
+    - thoracic surgeon
+    - chest surgeon
+    - thoracic physician
+    - chest physician
+    - thoracic doctor
+    - chest doctor
+    - thoracic researcher
+    - chest researcher
+    - thoracic expert
+    - chest expert
+    - thoracic health
+    - chest health
+    - thoracic care
+    - chest care
+    - thoracic medicine
+    - chest medicine
+    - thoracic treatment
+    - chest treatment
+    - thoracic therapy
+    - chest therapy
+    - thoracic rehabilitation
+    - chest rehabilitation
+    - thoracic exercise
+    - chest exercise
+    - thoracic stretch
+    - chest stretch
+    - thoracic mobility
+    - chest mobility
+    - thoracic flexibility
+    - chest flexibility
+    - thoracic strength
+    - chest strength
+    - thoracic function
+    - chest function
+    - thoracic movement
+    - chest movement
+    - thoracic posture
+    - chest posture
+    - thoracic alignment
+    - chest alignment
+    - thoracic curve
+    - chest curve
+    - thoracic curvature
+    - chest curvature
+    - thoracic spine curve
+    - chest spine curve
+    - thoracic kyphosis
+    - chest kyphosis
+    - thoracic lordosis
+    - chest lordosis
+    - thoracic scoliosis
+    - chest scoliosis
+    - thoracic deformity
+    - chest deformity
+    - thoracic anomaly
+    - chest anomaly
+    - thoracic abnormality
+    - chest abnormality
+    - thoracic disease
+    - chest disease
+    - thoracic disorder
+    - chest disorder
+    - thoracic condition
+    - chest condition
+    - thoracic syndrome
+    - chest syndrome
+    - thoracic outlet anatomy
+    - chest outlet anatomy
+    - thoracic outlet treatment
+    - chest outlet treatment
+    - thoracic outlet surgery
+    - chest outlet surgery
+    - thoracic outlet diagnosis
+    - chest outlet diagnosis
+    - thoracic outlet symptoms
+    - chest outlet symptoms
+    - thoracic outlet causes
+    - chest outlet causes
+    - thoracic outlet prevention
+    - chest outlet prevention
+    - thoracic outlet exercises
+    - chest outlet exercises
+    - thoracic outlet therapy
+    - chest outlet therapy
+    - thoracic outlet rehabilitation
+    - chest outlet rehabilitation
+    - thoracic outlet syndrome treatment
+    - chest outlet syndrome treatment
+    - thoracic outlet syndrome surgery
+    - chest outlet syndrome surgery
+    - thoracic outlet syndrome exercises
+    - chest outlet syndrome exercises
+    - thoracic outlet syndrome diagnosis
+    - chest outlet syndrome diagnosis
+    - thoracic outlet syndrome symptoms
+    - chest outlet syndrome symptoms
+    - thoracic outlet syndrome causes
+    - chest outlet syndrome causes
+    - thoracic outlet syndrome prevention
+    - chest outlet syndrome prevention
+    - thoracic outlet syndrome therapy
+    - chest outlet syndrome therapy
+    - thoracic outlet syndrome rehabilitation
+    - chest outlet syndrome rehabilitation
+    - thoracic outlet syndrome specialist
+    - chest outlet syndrome specialist
+    - thoracic outlet syndrome doctor
+    - chest outlet syndrome doctor
+    - thoracic outlet syndrome expert
+    - chest outlet syndrome expert
+    - thoracic outlet syndrome researcher
+    - chest outlet syndrome researcher
+    - thoracic outlet syndrome support group
+    - chest outlet syndrome support group
+    - thoracic outlet syndrome clinic
+    - chest outlet syndrome clinic
+    - thoracic outlet syndrome center
+    - chest outlet syndrome center
+    - thoracic outlet syndrome foundation
+    - chest outlet syndrome foundation
+    - thoracic outlet syndrome association
+    - chest outlet syndrome association
+    - thoracic outlet syndrome awareness
+    - chest outlet syndrome awareness
+    - thoracic outlet syndrome community
+    - chest outlet syndrome community
+    - thoracic outlet syndrome group
+    - chest outlet syndrome group
+    - thoracic outlet syndrome network
+    - chest outlet syndrome network
+    - thoracic outlet syndrome forum
+    - chest outlet syndrome forum
+    - thoracic outlet syndrome blog
+    - chest outlet syndrome blog
+    - thoracic outlet syndrome website
+    - chest outlet syndrome website
+    - thoracic outlet syndrome resource
+    - chest outlet syndrome resource
+    - thoracic outlet syndrome information
+    - chest outlet syndrome information
+    - thoracic outlet syndrome support
+    - chest outlet syndrome support
+    - thoracic outlet syndrome assistance
+    - chest outlet syndrome assistance
+    - thoracic outlet syndrome guidance
+    - chest outlet syndrome guidance
+    - thoracic outlet syndrome help
+    - chest outlet syndrome help
+    - thoracic outlet syndrome advice
+    - chest outlet syndrome advice
+
+- intent: search_in_pocketdentistry
+  examples: |
+    - pocketdentistry
+    - Can you find information on pocketdentistry?
+    - I need some resources on pocketdentistry.
+    - What can you tell me about pocketdentistry?
+    - Could you search for pocketdentistry content?
+    - Pocketdentistry sounds interesting, can you provide details?
+    - Any articles on pocketdentistry available?
+    - Looking for pocketdentistry materials.
+    - Where can I learn more about pocketdentistry?
+    - Tell me everything you know about pocketdentistry.
+    - I'm curious about pocketdentistry.
+    - Any recommendations for pocketdentistry readings?
+    - Can you help me with pocketdentistry references?
+    - Exploring the world of pocketdentistry.
+    - What are the benefits of pocketdentistry?
+    - Pocketdentistry seems convenient, is it effective?
+    - Pocketdentistry resources, please.
+    - Seeking guidance on pocketdentistry.
+    - Are there any courses on pocketdentistry?
+    - Pocketdentistry textbooks, are they available?
+    - Share some insights into pocketdentistry.
+    - Interested in the latest pocketdentistry trends.
+    - Pocketdentistry journals, where to find them?
+    - Any pocketdentistry experts I can follow?
+    - Pocketdentistry tools, what are they?
+    - Pocketdentistry apps, are they helpful?
+    - How can pocketdentistry improve dental care?
+    - Explaining pocketdentistry to someone unfamiliar.
+    - Comparing traditional dentistry with pocketdentistry.
+    - Pocketdentistry research, any breakthroughs?
+    - Can pocketdentistry be personalized?
+    - What role does technology play in pocketdentistry?
+    - Pocketdentistry and patient education.
+    - Pocketdentistry in different dental specialties.
+    - Pocketdentistry and its impact on oral health.
+    - Pocketdentistry for dental professionals.
+    - The future of pocketdentistry.
+    - Pocketdentistry and telemedicine.
+    - Pocketdentistry and remote consultations.
+    - Pocketdentistry and preventive dentistry.
+    - Pocketdentistry and orthodontics.
+    - Pocketdentistry and periodontics.
+    - Pocketdentistry and endodontics.
+    - Pocketdentistry and prosthodontics.
+    - Pocketdentistry and oral surgery.
+    - Pocketdentistry and pediatric dentistry.
+    - Pocketdentistry and dental implants.
+    - Pocketdentistry and cosmetic dentistry.
+    - Pocketdentistry and dental emergencies.
+    - Pocketdentistry and dental technology.
+    - Pocketdentistry and dental hygiene.
+    - Pocketdentistry and dental materials.
+    - Pocketdentistry and dental anatomy.
+    - Pocketdentistry and dental pharmacology.
+    - Pocketdentistry and dental radiology.
+    - Pocketdentistry and dental ethics.
+    - Pocketdentistry and dental jurisprudence.
+    - Pocketdentistry and dental practice management.
+    - Pocketdentistry and dental economics.
+    - Pocketdentistry and dental insurance.
+    - Pocketdentistry and dental marketing.
+    - Pocketdentistry and dental education.
+    - Pocketdentistry and continuing education.
+    - Pocketdentistry and professional development.
+    - Pocketdentistry and academic dentistry.
+    - Pocketdentistry and research methodology.
+    - Pocketdentistry and evidence-based dentistry.
+    - Pocketdentistry and oral pathology.
+    - Pocketdentistry and oral medicine.
+    - Pocketdentistry and oral microbiology.
+    - Pocketdentistry and oral immunology.
+    - Pocketdentistry and oral histology.
+    - Pocketdentistry and oral embryology.
+    - Pocketdentistry and dental genetics.
+    - Pocketdentistry and dental anomalies.
+    - Pocketdentistry and dental caries.
+    - Pocketdentistry and dental erosion.
+    - Pocketdentistry and dental abrasion.
+    - Pocketdentistry and dental attrition.
+    - Pocketdentistry and dental fluorosis.
+    - Pocketdentistry and dental trauma.
+    - Pocketdentistry and dental malocclusion.
+    - Pocketdentistry and dental occlusion.
+    - Pocketdentistry and dental sensitivity.
+    - Pocketdentistry and dental infections.
+    - Pocketdentistry and dental abscesses.
+    - Pocketdentistry and dental cysts.
+    - Pocketdentistry and dental tumors.
+    - Pocketdentistry and dental prosthetics.
+    - Pocketdentistry and dental bridges.
+    - Pocketdentistry and dental crowns.
+    - Pocketdentistry and dental veneers.
+    - Pocketdentistry and dental inlays.
+    - Pocketdentistry and dental onlays.
+    - Pocketdentistry and dental fillings.
+    - Pocketdentistry and dental sealants.
+    - Pocketdentistry and dental bonding.
+    - Pocketdentistry and dental implants.
+    - Pocketdentistry and dental extractions.
+    - Pocketdentistry and dental root canal treatment.
+    - Pocketdentistry and dental braces.
+    - Pocketdentistry and dental aligners.
+    - Pocketdentistry and dental retainers.
+    - Pocketdentistry and dental splints.
+    - Pocketdentistry and dental appliances.
+    - Pocketdentistry and dental surgery.
+    - Pocketdentistry and dental anesthesia.
+    - Pocketdentistry and dental sedation.
+    - Pocketdentistry and dental emergencies.
+    - Pocketdentistry and dental trauma.
+    - Pocketdentistry and dental pain management.
+    - Pocketdentistry and dental infection control.
+    - Pocketdentistry and dental sterilization.
+    - Pocketdentistry and dental radiography.
+    - Pocketdentistry and dental photography.
+    - Pocketdentistry and dental impressions.
+    - Pocketdentistry and dental models.
+    - Pocketdentistry and dental laboratory procedures.
+    - Pocketdentistry and dental CAD/CAM technology.
+    - Pocketdentistry and dental 3D printing.
+    - Pocketdentistry and dental digital workflow.
+    - Pocketdentistry and dental practice software.
+    - Pocketdentistry and dental informatics.
+    - Pocketdentistry and dental artificial intelligence.
+    - Pocketdentistry and dental robotics.
+    - Pocketdentistry and dental virtual reality.
+    - Pocketdentistry and dental augmented reality.
+    - Pocketdentistry and dental blockchain.
+    - Pocketdentistry and dental telehealth.
+    - Pocketdentistry and dental teledentistry.
+    - Pocketdentistry and dental telemonitoring.
+    - Pocketdentistry and dental teleconsultation.
+    - Pocketdentistry and dental teleeducation.
+    - Pocketdentistry and dental telepractice.
+    - Pocketdentistry and dental telerehabilitation.
+    - Pocketdentistry and dental teleradiology.
+    - Pocketdentistry and dental telepathology.
+    - Pocketdentistry and dental telemedicine regulations.
+    - Pocketdentistry and dental telehealth policies.
+    - Pocketdentistry and dental telecommunication standards.
+    - Pocketdentistry and dental telehealth ethics.
+    - Pocketdentistry and dental telehealth security.
+    - Pocketdentistry and dental telehealth privacy.
+    - Pocketdentistry and dental telehealth reimbursement.
+    - Pocketdentistry and dental telehealth licensing.
+    - Pocketdentistry and dental telehealth liability.
+    - Pocketdentistry and dental telehealth training.
+    - Pocketdentistry and dental telehealth guidelines.
+    - pocket dentistry
+    - pocket-sized dentistry
+    - dentistry on the go
+    - mobile dentistry resources
+    - compact dental information
+    - convenient dental knowledge
+    - handheld dental materials
+    - bite-sized dentistry
+    - portable dental education
+    - dental care at your fingertips
+    - miniaturized dentistry
+    - small-scale dental resources
+    - dentistry in your pocket
+    - dental information on the move
+    - handy dental guides
+    - on-the-fly dentistry
+    - dentistry in a nutshell
+    - concise dental resources
+    - quick-reference dentistry
+    - abbreviated dental knowledge
+    - condensed dental information
+    - summarized dental content
+    - compact dental references
+    - concise dental materials
+    - bite-sized dental education
+    - condensed dental resources
+    - summarized dental guides
+    - pocket-friendly dentistry
+    - miniature dental knowledge
+    - compact dental textbooks
+    - succinct dental information
+    - brief dental resources
+    - portable dental materials
+    - bite-sized dental content
+    - concise dental guides
+    - summarized dental education
+    - abbreviated dental references
+    - pocketable dentistry
+    - miniature dental resources
+    - bite-sized dental knowledge
+    - condensed dental guides
+    - summarized dental textbooks
+    - compact dental education
+    - handy dental materials
+    - pocket-sized dental information
+    - condensed dental textbooks
+    - summarized dental materials
+    - abbreviated dental guides
+    - compact dental guides
+    - summarized dental content
+    - bite-sized dental resources
+    - mini dental education
+    - pocket-sized dental knowledge
+    - concise dental textbooks
+    - summarized dental guides
+    - brief dental education
+    - bite-sized dental materials
+    - pocketable dental resources
+    - miniature dental guides
+    - pocket-friendly dental content
+    - miniature dental textbooks
+    - compact dental resources
+    - summarized dental references
+    - concise dental materials
+    - bite-sized dental guides
+    - portable dental education
+    - abbreviated dental content
+    - condensed dental materials
+    - handy dental guides
+    - concise dental resources
+    - mini dental resources
+    - pocketable dental knowledge
+    - compact dental materials
+    - summarized dental education
+    - miniature dental content
+    - pocket-sized dental guides
+    - condensed dental knowledge
+    - bite-sized dental textbooks
+    - handy dental references
+    - miniature dental education
+    - pocket-friendly dental materials
+    - concise dental guides
+    - condensed dental content
+    - bite-sized dental references
+    - pocket-friendly dental knowledge
+    - miniature dental resources
+    - compact dental textbooks
+    - abbreviated dental education
+    - handy dental knowledge
+    - concise dental content
+    - pocket-sized dental materials
+    - mini dental materials
+    - summarized dental materials
+    - compact dental guides
+    - portable dental resources
+    - concise dental education
+    - miniature dental guides
+    - bite-sized dental content
+    - pocketable dental materials
+    - condensed dental textbooks
+    - summarized dental guides
+    - abbreviated dental resources
+    - handy dental education
+    - concise dental textbooks
+    - miniature dental materials
+    - pocket-sized dental content
+    - compact dental content
+    - summarized dental content
+    - bite-sized dental education
+    - mini dental guides
+    - pocket-friendly dental guides
+    - condensed dental resources
+    - portable dental guides
+    - concise dental references
+    - summarized dental textbooks
+    - miniature dental content
+    - pocket-sized dental resources
+    - compact dental references
+    - concise dental textbooks
+    - bite-sized dental guides
+    - summarized dental education
+    - mini dental resources
+    - handy dental materials
+    - pocketable dental content
+    - concise dental guides
+    - condensed dental knowledge
+    - bite-sized dental materials
+    - summarized dental references
+    - compact dental education
+    - miniature dental textbooks
+    - pocket-sized dental guides
+    - abbreviated dental content
+    - handy dental resources
+    - concise dental materials
+    - bite-sized dental education
+    - summarized dental guides
+    - mini dental education
+    - pocket-friendly dental materials
+    - compact dental materials
+    - miniature dental guides
+    - condensed dental textbooks
+    - summarized dental content
+    - concise dental resources
+    - bite-sized dental knowledge
+    - pocket-sized dental textbooks
+    - compact dental knowledge
+    - summarized dental materials
+    - mini dental guides
+    - pocketable dental education
+    - concise dental content
+    - handy dental guides
+    - miniature dental resources
+    - compact dental content
+    - summarized dental resources
+    - abbreviated dental textbooks
+    - bite-sized dental guides
+    - pocket-friendly dental education
+    - condensed dental materials
+    - concise dental references
+    - miniature dental education
+    - bite-sized dental materials
+    - pocket-sized dental content
+    - compact dental guides
+    - summarized dental knowledge
+    - concise dental guides
+    - handy dental textbooks
+    - bite-sized dental resources
+    - mini dental content
+    - pocketable dental guides
+    - concise dental education
+    - summarized dental textbooks
+    - abbreviated dental resources
+    - pocket-sized dental materials
+    - compact dental content
+    - miniature dental resources
+    - bite-sized dental guides
+    - condensed dental education
+    - summarized dental materials
+    - concise dental references
+    - pocket-friendly dental guides
+    - miniature dental textbooks
+    - compact dental knowledge
+    - summarized dental content
+    - bite-sized dental materials
+    - pocket-sized dental resources
+    - concise dental guides
+    - condensed dental materials
+    - miniature dental education
+    - bite-sized dental content
+    - summarized dental guides
+    - pocketable dental materials
+    - compact dental resources
+    - concise dental textbooks
+    - mini dental guides
+    - pocket-sized dental education
+    - summarized dental content
+    - concise dental materials
+    - handy dental resources
+    - bite-sized dental guides
+    - mini dental materials
+    - pocket-friendly dental education
+    - condensed dental guides
+    - pocketable dental content
+    - concise dental education
+    - summarized dental materials
+    - miniature dental resources
+    - bite-sized dental textbooks
+    - compact dental knowledge
+    - pocket-sized dental guides
+    - concise dental content
+    - handy dental references
+    - mini dental education
+    - pocket-friendly dental materials
+    - compact dental guides
+    - miniature dental content
+    - summarized dental textbooks
+    - bite-sized dental resources
+    - pocketable dental education
+    - concise dental guides
+    - handy dental materials
+    - compact dental content
+    - bite-sized dental education
+    - mini dental resources
+    - pocket-sized dental guides
+    - condensed dental textbooks
+    - summarized dental resources
+    - concise dental textbooks
+    - pocketable dental materials
+    - compact dental education
+    - summarized dental guides
+    - miniature dental content
+    - bite-sized dental materials
+    - concise dental resources
+    - handy dental education
+    - mini dental guides
+
+- intent: search_in_plasticsurgerykey
+  examples: |
+    - plastic surgery
+    - plastic surgeries
+    - plastic surgeon
+    - plastic surgeons
+    - plastic surgical procedure
+    - plastic surgical procedures
+    - plastic reconstructive surgery
+    - plastic reconstructive surgeries
+    - cosmetic surgery
+    - cosmetic surgeries
+    - cosmetic surgeon
+    - cosmetic surgeons
+    - aesthetic surgery
+    - aesthetic surgeries
+    - aesthetic surgeon
+    - aesthetic surgeons
+    - reconstructive surgery
+    - reconstructive surgeries
+    - reconstructive surgeon
+    - reconstructive surgeons
+    - corrective surgery
+    - corrective surgeries
+    - corrective surgeon
+    - corrective surgeons
+    - augmentation surgery
+    - augmentation surgeries
+    - augmentation surgeon
+    - augmentation surgeons
+    - rhinoplasty
+    - rhinoplasties
+    - rhinoplasty surgery
+    - rhinoplasty surgeries
+    - rhinoplasty surgeon
+    - rhinoplasty surgeons
+    - facelift
+    - facelifts
+    - facelift surgery
+    - facelift surgeries
+    - facelift surgeon
+    - facelift surgeons
+    - breast augmentation
+    - breast augmentations
+    - breast augmentation surgery
+    - breast augmentation surgeries
+    - breast augmentation surgeon
+    - breast augmentation surgeons
+    - liposuction
+    - liposuctions
+    - liposuction surgery
+    - liposuction surgeries
+    - liposuction surgeon
+    - liposuction surgeons
+    - tummy tuck
+    - tummy tucks
+    - tummy tuck surgery
+    - tummy tuck surgeries
+    - tummy tuck surgeon
+    - tummy tuck surgeons
+    - blepharoplasty
+    - blepharoplasties
+    - blepharoplasty surgery
+    - blepharoplasty surgeries
+    - blepharoplasty surgeon
+    - blepharoplasty surgeons
+    - breast lift
+    - breast lifts
+    - breast lift surgery
+    - breast lift surgeries
+    - breast lift surgeon
+    - breast lift surgeons
+    - breast reduction
+    - breast reductions
+    - breast reduction surgery
+    - breast reduction surgeries
+    - breast reduction surgeon
+    - breast reduction surgeons
+    - buttock augmentation
+    - buttock augmentations
+    - buttock augmentation surgery
+    - buttock augmentation surgeries
+    - buttock augmentation surgeon
+    - buttock augmentation surgeons
+    - chin augmentation
+    - chin augmentations
+    - chin augmentation surgery
+    - chin augmentation surgeries
+    - chin augmentation surgeon
+    - chin augmentation surgeons
+    - otoplasty
+    - otoplasties
+    - otoplasty surgery
+    - otoplasty surgeries
+    - otoplasty surgeon
+    - otoplasty surgeons
+    - gynecomastia surgery
+    - gynecomastia surgeries
+    - gynecomastia surgeon
+    - gynecomastia surgeons
+    - mommy makeover
+    - mommy makeovers
+    - mommy makeover surgery
+    - mommy makeover surgeries
+    - mommy makeover surgeon
+    - mommy makeover surgeons
+    - hair transplant
+    - hair transplants
+    - hair transplant surgery
+    - hair transplant surgeries
+    - hair transplant surgeon
+    - hair transplant surgeons
+    - forehead lift
+    - forehead lifts
+    - forehead lift surgery
+    - forehead lift surgeries
+    - forehead lift surgeon
+    - forehead lift surgeons
+    - thigh lift
+    - thigh lifts
+    - thigh lift surgery
+    - thigh lift surgeries
+    - thigh lift surgeon
+    - thigh lift surgeons
+    - arm lift
+    - arm lifts
+    - arm lift surgery
+    - arm lift surgeries
+    - arm lift surgeon
+    - arm lift surgeons
+    - body contouring
+    - body contourings
+    - body contouring surgery
+    - body contouring surgeries
+    - body contouring surgeon
+    - body contouring surgeons
+    - chin surgery
+    - chin surgeries
+    - chin surgeon
+    - chin surgeons
+    - ear surgery
+    - ear surgeries
+    - ear surgeon
+    - ear surgeons
+    - forehead surgery
+    - forehead surgeries
+    - forehead surgeon
+    - forehead surgeons
+    - neck lift
+    - neck lifts
+    - neck lift surgery
+    - neck lift surgeries
+    - neck lift surgeon
+    - neck lift surgeons
+    - arm surgery
+    - arm surgeries
+    - arm surgeon
+    - arm surgeons
+    - body lift
+    - body lifts
+    - body lift surgery
+    - body lift surgeries
+    - body lift surgeon
+    - body lift surgeons
+    - breast surgery
+    - breast surgeries
+    - breast surgeon
+    - breast surgeons
+    - eyelid surgery
+    - eyelid surgeries
+    - eyelid surgeon
+    - eyelid surgeons
+    - lip augmentation
+    - lip augmentations
+    - lip augmentation surgery
+    - lip augmentation surgeries
+    - lip augmentation surgeon
+    - lip augmentation surgeons
+    - male breast reduction
+    - male breast reductions
+    - male breast reduction surgery
+    - male breast reduction surgeries
+    - male breast reduction surgeon
+    - male breast reduction surgeons
+    - arm reduction
+    - arm reductions
+    - arm reduction surgery
+    - arm reduction surgeries
+    - arm reduction surgeon
+    - arm reduction surgeons
+    - body lift
+    - body lifts
+    - body lift surgery
+    - body lift surgeries
+    - body lift surgeon
+    - body lift surgeons
+    - calf augmentation
+    - calf augmentations
+    - calf augmentation surgery
+    - calf augmentation surgeries
+    - calf augmentation surgeon
+    - calf augmentation surgeons
+    - cheek augmentation
+    - cheek augmentations
+    - cheek augmentation surgery
+    - cheek augmentation surgeries
+    - cheek augmentation surgeon
+    - cheek augmentation surgeons
+    - dermal fillers
+    - dermal filler injections
+    - dermal filler surgery
+    - dermal filler surgeries
+    - dermal filler surgeon
+    - dermal filler surgeons
+    - fat grafting
+    - fat graftings
+    - fat grafting surgery
+    - fat grafting surgeries
+    - fat grafting surgeon
+    - fat grafting surgeons
+    - hand rejuvenation
+    - hand rejuvenations
+    - hand rejuvenation surgery
+    - hand rejuvenation surgeries
+    - hand rejuvenation surgeon
+    - hand rejuvenation surgeons
+    - jaw surgery
+    - jaw surgeries
+    - jaw surgeon
+    - jaw surgeons
+    - labiaplasty
+    - labiaplasties
+    - labiaplasty surgery
+    - labiaplasty surgeries
+    - labiaplasty surgeon
+    - labiaplasty surgeons
+    - laser hair removal
+    - laser hair removals
+    - laser hair removal surgery
+    - laser hair removal surgeries
+    - laser hair removal surgeon
+    - laser hair removal surgeons
+    - tattoo removal
+    - tattoo removals
+    - tattoo removal surgery
+    - Have you heard about the latest advancements in plastic surgery?
+    - I'm considering plastic surgery for a cosmetic procedure.
+    - Can you recommend a reputable plastic surgeon in the area?
+    - What are the risks associated with plastic surgeries?
+    - My friend underwent plastic reconstructive surgery after the accident.
+    - Is there a difference between cosmetic surgery and aesthetic surgery?
+    - How long is the recovery time for rhinoplasty surgery?
+    - I'm thinking about getting a facelift to rejuvenate my appearance.
+    - Breast augmentation surgeries are quite popular nowadays.
+    - Liposuction surgery helped me achieve my desired body shape.
+    - Have you ever considered getting a tummy tuck?
+    - Blepharoplasty surgery can enhance the appearance of the eyelids.
+    - A breast lift surgery can help improve sagging breasts.
+    - I'm interested in buttock augmentation surgery to enhance my curves.
+    - Chin augmentation surgery can improve facial symmetry.
+    - Gynecomastia surgery is commonly sought after by men.
+    - What's involved in a mommy makeover surgery?
+    - Hair transplant surgery can address baldness effectively.
+    - Forehead lift surgery can reduce wrinkles and creases.
+    - Thigh lift surgery can improve the contour of the legs.
+    - Arm lift surgery can help tighten loose skin under the arms.
+    - I'm considering body contouring surgery after significant weight loss.
+    - Are there any risks associated with chin surgery?
+    - Ear surgery, also known as otoplasty, can reshape the ears.
+    - How long does it take to recover from neck lift surgery?
+    - I'm considering eyelid surgery to correct drooping eyelids.
+    - Male breast reduction surgery can treat gynecomastia.
+    - Body lift surgery can remove excess skin after weight loss.
+    - Cheek augmentation surgery can add volume to the cheeks.
+    - Dermal fillers are commonly used for facial rejuvenation.
+    - Fat grafting surgery can enhance facial volume.
+    - Hand rejuvenation surgery can improve the appearance of aging hands.
+    - Jaw surgery, or orthognathic surgery, can correct jaw alignment issues.
+    - Labiaplasty surgery can reshape and resize the labia.
+    - I'm thinking about undergoing laser hair removal for unwanted hair.
+    - Tattoo removal surgery can help remove unwanted tattoos.
+
+- intent: search_in_musculoskeletalkey
+  examples: |
+    - musculoskeletal
+    - What are the functions of the musculoskeletal system?
+    - Can you provide information on musculoskeletal disorders?
+    - I need to learn about musculoskeletal injuries.
+    - What are the components of the musculoskeletal system?
+    - How does the musculoskeletal system support the body?
+    - Can you explain musculoskeletal anatomy?
+    - What is the role of bones in the musculoskeletal system?
+    - Describe the musculoskeletal system.
+    - Explain the importance of the musculoskeletal system.
+    - What are some common musculoskeletal conditions?
+    - How can I keep my musculoskeletal system healthy?
+    - Are there any exercises specifically for the musculoskeletal system?
+    - What are the major bones in the musculoskeletal system?
+    - How does aging affect the musculoskeletal system?
+    - I'm experiencing musculoskeletal pain, what should I do?
+    - Can you recommend any treatments for musculoskeletal injuries?
+    - What is the connection between the musculoskeletal system and posture?
+    - Are there any supplements that support the musculoskeletal system?
+    - I'm interested in learning more about musculoskeletal disorders.
+    - How does nutrition affect the musculoskeletal system?
+    - What role does the musculoskeletal system play in movement?
+    - Can you explain the musculoskeletal system in simple terms?
+    - What are the differences between the musculoskeletal systems of animals?
+    - Are there any advancements in treating musculoskeletal disorders?
+    - How does exercise impact the musculoskeletal system?
+    - What are some examples of musculoskeletal trauma?
+    - Can you discuss the relationship between the musculoskeletal system and other body systems?
+    - I want to understand the development of the musculoskeletal system.
+    - What is the function of cartilage in the musculoskeletal system?
+    - How does the musculoskeletal system repair itself after injury?
+    - Are there any genetic factors that affect the musculoskeletal system?
+    - Can you explain the biomechanics of the musculoskeletal system?
+    - What is the role of tendons and ligaments in the musculoskeletal system?
+    - How does the musculoskeletal system change with physical activity?
+    - What are the different types of musculoskeletal tissue?
+    - Can you provide information on musculoskeletal imaging techniques?
+    - What are some common musculoskeletal surgeries?
+    - How does inflammation affect the musculoskeletal system?
+    - What are the long-term effects of musculoskeletal injuries?
+    - I'm interested in learning about musculoskeletal disorders in children.
+    - Can you discuss the role of hormones in the musculoskeletal system?
+    - What are the risk factors for musculoskeletal disorders?
+    - How does the musculoskeletal system contribute to balance?
+    - Are there any occupational hazards that affect the musculoskeletal system?
+    - What is the significance of muscle tone in the musculoskeletal system?
+    - Can you explain the role of proprioception in the musculoskeletal system?
+    - How does the musculoskeletal system change with age?
+    - What are the differences between acute and chronic musculoskeletal conditions?
+    - I'm interested in learning about musculoskeletal disorders related to sports.
+    - Can you provide information on musculoskeletal diseases?
+    - What are the psychological effects of musculoskeletal disorders?
+    - How does the musculoskeletal system adapt to different activities?
+    - Are there any alternative therapies for musculoskeletal pain?
+    - What are the structural differences between the male and female musculoskeletal systems?
+    - Can you discuss the role of calcium in the musculoskeletal system?
+    - How does posture affect the musculoskeletal system?
+    - What are some common musculoskeletal abnormalities?
+    - I want to learn about musculoskeletal injuries in the workplace.
+    - Can you explain how the musculoskeletal system interacts with the nervous system?
+    - What is the role of physical therapy in treating musculoskeletal disorders?
+    - How does obesity impact the musculoskeletal system?
+    - What are the symptoms of musculoskeletal disorders?
+    - Are there any non-invasive treatments for musculoskeletal conditions?
+    - What is the role of inflammation in musculoskeletal healing?
+    - Can you discuss the role of genetics in musculoskeletal health?
+    - How does smoking affect the musculoskeletal system?
+    - What are some preventative measures for musculoskeletal injuries?
+    - I'm interested in learning about musculoskeletal disorders in older adults.
+    - Can you explain how posture affects musculoskeletal alignment?
+    - What are the stages of musculoskeletal healing?
+    - How does stretching impact the musculoskeletal system?
+    - What are some common musculoskeletal disorders in athletes?
+    - Can you provide information on musculoskeletal tumors?
+    - What role does the musculoskeletal system play in metabolism?
+    - How does poor nutrition affect the musculoskeletal system?
+    - What are the functions of the skeletal muscles in the musculoskeletal system?
+    - Can you discuss the role of blood flow in musculoskeletal health?
+    - What are some natural remedies for musculoskeletal pain?
+    - How does joint stability affect the musculoskeletal system?
+    - What is the relationship between musculoskeletal health and mental health?
+    - Can you explain how aging affects musculoskeletal strength?
+    - What are the effects of stress on the musculoskeletal system?
+    - How does hydration impact musculoskeletal health?
+    - What are the effects of immobility on the musculoskeletal system?
+    - Can you provide information on musculoskeletal infections?
+    - What is the role of posture in preventing musculoskeletal injuries?
+    - How does physical activity impact musculoskeletal health?
+    - What are the functions of the synovial fluid in the musculoskeletal system?
+    - Can you discuss the role of hormones in musculoskeletal development?
+    - What are the effects of temperature on musculoskeletal health?
+    - How does poor ergonomics affect the musculoskeletal system?
+    - What are the long-term effects of musculoskeletal disorders?
+    - Can you explain how the musculoskeletal system adapts to exercise?
+    - What are the differences between acute and chronic musculoskeletal pain?
+    - How does the musculoskeletal system contribute to thermoregulation?
+    - What are the effects of medications on musculoskeletal health?
+    - Can you provide information on musculoskeletal trauma in emergency situations?
+    - What is the role of physical activity in preventing musculoskeletal disorders?
+    - How does inflammation affect musculoskeletal function?
+    - What are the effects of aging on musculoskeletal flexibility?
+    - Can you discuss the role of vitamins and minerals in musculoskeletal health?
+    - What are the effects of poor posture on musculoskeletal alignment?
+    - How does the musculoskeletal system adapt to changes in workload?
+    - What are the risk factors for musculoskeletal injuries in athletes?
+    - Can you explain the relationship between musculoskeletal health and immune function?
+    - What are the effects of dehydration on musculoskeletal function?
+    - musculoskeletal
+    - musculoskeletal system
+    - musculoskeletal health
+    - musculoskeletal disorders
+    - musculoskeletal injuries
+    - musculoskeletal anatomy
+    - musculoskeletal conditions
+    - musculoskeletal pain
+    - musculoskeletal trauma
+    - musculoskeletal surgeries
+    - musculoskeletal tissue
+    - musculoskeletal imaging techniques
+    - musculoskeletal diseases
+    - musculoskeletal abnormalities
+    - musculoskeletal alignment
+    - musculoskeletal tumors
+    - musculoskeletal infections
+    - musculoskeletal function
+    - musculoskeletal flexibility
+    - musculoskeletal alignment
+    - musculoskeletal function
+    - musculoskeletal disorders in children
+    - musculoskeletal disorders related to sports
+    - musculoskeletal disorders in older adults
+    - musculoskeletal healing
+    - musculoskeletal strength
+    - musculoskeletal synovial fluid
+    - musculoskeletal development
+    - musculoskeletal thermoregulation
+    - musculoskeletal medications
+    - musculoskeletal flexibility
+    - musculoskeletal ergonomics
+    - musculoskeletal workload
+    - musculoskeletal immune function
+  
+- intent: search_in_radiologykey
+  examples: |
+    - radiology
+    - radiology department
+    - radiology services
+    - radiology technician
+    - radiology report
+    - radiology imaging
+    - radiology center
+    - radiology exam
+    - radiology test
+    - radiology clinic
+    - radiology specialist
+    - radiology equipment
+    - radiology residency
+    - radiology fellowship
+    - radiology conference
+    - radiology journal
+    - radiology technology
+    - radiology procedure
+    - radiology scan
+    - radiology consultant
+    - radiology research
+    - radiology career
+    - radiology education
+    - radiology training
+    - radiology lecture
+    - radiology lecture series
+    - radiology webinar
+    - radiology workshop
+    - radiology symposium
+    - radiology congress
+    - radiology association
+    - radiology society
+    - radiology forum
+    - radiology discussion
+    - radiology news
+    - radiology updates
+    - radiology advancements
+    - radiology innovations
+    - radiology breakthroughs
+    - radiology technology trends
+    - radiology conferences 2024
+    - radiology journal articles
+    - radiology case studies
+    - radiology textbooks
+    - radiology resources
+    - radiology online courses
+    - radiology certification
+    - radiology board exam
+    - radiology residency programs
+    - radiology fellowship opportunities
+    - radiology career pathways
+    - radiology job prospects
+    - radiology salary
+    - radiology job satisfaction
+    - radiology professional development
+    - radiology continuing education
+    - radiology research opportunities
+    - radiology research grants
+    - radiology research funding
+    - radiology research projects
+    - radiology research publications
+    - radiology research conferences
+    - radiology research symposiums
+    - radiology research centers
+    - radiology research labs
+    - radiology research collaborations
+    - radiology research networks
+    - radiology research initiatives
+    - radiology research breakthroughs
+    - radiology research findings
+    - radiology research impact
+    - radiology research outcomes
+    - radiology research implications
+    - radiology research challenges
+    - radiology research opportunities
+    - radiology research priorities
+    - radiology research directions
+    - radiology research goals
+    - radiology research strategies
+    - radiology research methodologies
+    - radiology research techniques
+    - radiology research tools
+    - radiology research instruments
+    - radiology research models
+    - radiology research databases
+    - radiology research software
+    - radiology research hardware
+    - radiology research infrastructure
+    - radiology research facilities
+    - radiology research capabilities
+    - radiology research expertise
+    - radiology research leadership
+    - radiology research collaboration
+    - radiology research partnerships
+    - radiology research networks
+    - radiology research community
+    - radiology research culture
+    - radiology research environment
+    - radiology research support
+    - radiology research funding
+    - radiology research grants
+    - radiology research awards
+    - radiology research recognition
+    - radiology research publication
+    - radiology research dissemination
+    - radiology research impact
+    - radiology research translation
+    - radiology research application
+    - radiology research outcomes
+    - radiology research implications
+    - radiology research challenges
+    - radiology research opportunities
+    - radiology research priorities
+    - radiology research agenda
+    - radiology research initiatives
+    - radiology research collaborations
+    - radiology research partnerships
+    - radiology research networks
+    - radiology research consortia
+    - radiology research centers
+    - radiology research labs
+    - radiology research facilities
+    - radiology research infrastructure
+    - radiology research resources
+    - radiology research tools
+    - radiology research methodologies
+    - radiology research techniques
+    - radiology research instruments
+    - radiology research models
+    - radiology research databases
+    - radiology research software
+    - radiology research hardware
+    - radiology research expertise
+    - radiology research leadership
+    - radiology research community
+    - radiology research culture
+    - radiology research environment
+    - radiology research support
+    - radiology research funding
+    - radiology research grants
+    - radiology research awards
+    - radiology research recognition
+    - radiology research publication
+    - radiology research dissemination
+    - radiology research translation
+    - radiology research application
+    - radiology research outcomes
+    - radiology research implications
+    - radiology research challenges
+    - radiology research opportunities
+    - radiology research priorities
+    - radiology research agenda
+    - radiology research initiatives
+    - radiology research collaborations
+    - radiology research partnerships
+    - radiology research networks
+    - radiology research consortia
+    - radiology research centers
+    - radiology research labs
+    - radiology research facilities
+    - radiology research infrastructure
+    - radiology research resources
+    - radiology research tools
+    - radiology research methodologies
+    - radiology research techniques
+    - radiology research instruments
+    - radiology research models
+    - radiology research databases
+    - radiology research software
+    - radiology research hardware
+    - radiology research expertise
+    - radiology research leadership
+    - radiology research community
+    - radiology research culture
+    - radiology research environment
+    - radiology research support
+    - radiology research funding
+    - radiology research grants
+    - radiology research awards
+    - radiology research recognition
+    - radiology research publication
+    - radiology research dissemination
+    - radiology research translation
+    - radiology research application
+    - radiology research outcomes
+    - radiology research implications
+    - radiology research challenges
+    - radiology research opportunities
+    - radiology research priorities
+    - radiology research agenda
+    - radiology research initiatives
+    - radiology research collaborations
+    - radiology research partnerships
+    - radiology research networks
+    - radiology research consortia
+    - radiology research centers
+    - radiology research labs
+    - radiology research facilities
+    - radiology research infrastructure
+    - radiology research resources
+    - radiology research tools
+    - radiology research methodologies
+    - radiology research techniques
+    - radiology research instruments
+    - radiology research models
+    - radiology research databases
+    - radiology research software
+    - radiology research hardware
+    - radiology research expertise
+    - radiology research leadership
+    - radiology research community
+    - radiology research culture
+    - radiology research environment
+    - radiology research support
+    - radiology research funding
+    - radiology research grants
+    - radiology research awards
+    - radiology research recognition
+    - radiology research publication
+    - radiology research dissemination
+    - radiology research translation
+    - radiology research
+    - Can you provide information on the latest advancements in radiology technology?
+    - I'm looking for a radiology center nearby. Can you help me find one?
+    - What are the typical procedures involved in a radiology exam?
+    - Do you have any recommendations for radiology textbooks for beginners?
+    - I'm interested in attending a radiology conference. Are there any upcoming ones?
+    - Could you share some insights on the job prospects in the field of radiology?
+    - I need assistance with understanding my radiology report. Can you explain it to me?
+    - Can you suggest any online courses for continuing education in radiology?
+    - I'm considering a career in radiology. What are the required qualifications?
+    - Are there any radiology research projects currently underway at your institution?
+    - I'm curious about the salary range for radiology technicians. Can you provide some insight?
+    - What are some common imaging techniques used in radiology?
+    - I'm looking for information on radiology fellowship opportunities. Can you assist?
+    - Can you recommend any reputable radiology journals for staying updated with research?
+    - I'm interested in pursuing a residency program in radiology. Any suggestions on where to apply?
+    - How can I get involved in radiology research collaborations?
+    - Can you explain the process of obtaining radiology certification?
+    - What are the key skills required for a successful career in radiology?
+    - Are there any upcoming radiology workshops or webinars?
+    - I'm having trouble interpreting my radiology scan results. Can you provide some guidance?
+    - Do you have any tips for preparing for the radiology board exam?
+    - I'm interested in learning more about the radiology equipment used in hospitals. Any resources?
+    - Can you recommend any reputable radiology associations or societies to join?
+    - What are the typical responsibilities of a radiology specialist?
+    - I'm considering pursuing a career in radiology. What are the available pathways?
+    - Are there any scholarships available for students pursuing degrees in radiology?
+    - Can you provide an overview of the different modalities in radiology imaging?
+    - I'm fascinated by recent radiology innovations. Can you share some examples?
+    - What are the main challenges faced by radiology researchers today?
+    - I'm looking for a comprehensive overview of radiology research methodologies. Any recommendations?
+    - Can you explain the significance of artificial intelligence in radiology?
+    - Are there any clinical trials related to radiology currently recruiting participants?
+    - I'm interested in learning more about the history of radiology. Any recommended readings?
+    - Can you recommend any radiology forums for discussions and networking?
+    - What are the potential career paths for someone with a degree in radiology technology?
+    - I'm considering pursuing a radiology fellowship. What are the application requirements?
+    - Can you provide an overview of the role of radiology in diagnosing medical conditions?
+    - I'm interested in attending a radiology symposium. Can you provide details on any upcoming events?
+    - What are the ethical considerations in conducting radiology research?
+    - Can you recommend any radiology software for image analysis?
+    - I'm curious about the future trends in radiology. Can you provide any insights?
+    - How does radiology contribute to advancements in medical treatment?
+    - Can you explain the difference between diagnostic and interventional radiology?
+    - I'm looking for resources to improve my understanding of radiology anatomy. Any suggestions?
+    - What are the key factors influencing the adoption of new radiology technologies?
+    - Can you recommend any radiology research databases for literature review?
+    - I'm interested in learning about the role of radiology in personalized medicine. Any resources available?
+    - How can radiology play a role in population health management?
+    - Can you provide an overview of the process of obtaining informed consent in radiology research?
+    - What are the potential risks associated with radiation exposure in radiology procedures?
+    - I'm interested in learning about the future applications of radiology in healthcare. Any insights?
+    - Can you recommend any radiology research conferences happening in the next few months?
+    - I'm considering pursuing a career as a radiology consultant. What are the necessary qualifications?
+    - Can you provide an overview of the current challenges facing radiology education?
+    - What are the main considerations in developing radiology imaging protocols?
+    - I'm curious about the role of radiology in veterinary medicine. Any resources available?
+    - Can you recommend any radiology research institutes known for their contributions to the field?
+    - What are the key metrics used to assess the quality of radiology services in a healthcare facility?
+    - I'm interested in learning about the role of radiology in guiding surgical procedures. Any insights?
+    - Can you provide examples of how radiology is integrated into multidisciplinary healthcare teams?
+    - What are the career opportunities for radiology graduates outside of clinical practice?
+    - I'm interested in learning about the role of radiology in forensic investigations. Any recommended readings?
+    - Can you explain the process of obtaining IRB approval for a radiology research study?
+    - What are the main challenges in implementing tele-radiology services in rural areas?
+    - I'm considering pursuing a career in academic radiology. What are the typical responsibilities?
+    - Can you recommend any online platforms for accessing radiology case studies?
+    - What are the key considerations in developing radiation safety protocols for radiology departments?
+    - I'm curious about the role of radiology in public health initiatives. Any resources available?
+    - Can you provide an overview of the different subspecialties within radiology?
+    - What are the key differences between traditional and digital radiology imaging techniques?
+    - I'm interested in learning about the role of radiology in assessing sports-related injuries. Any insights?
+    - Can you recommend any radiology research journals with a focus on pediatric imaging?
+    - What are the main factors influencing patient satisfaction with radiology services?
+    - I'm considering pursuing a career in radiology informatics. What are the necessary skills?
+    - Can you provide examples of how radiology is used in preclinical drug development studies?
+    - What are the key considerations in developing radiation therapy treatment plans in radiology?
+    - I'm interested in learning about the role of radiology in precision medicine. Any resources available?
+    - Can you recommend any radiology conferences with a focus on artificial intelligence applications?
+    - What are the main challenges in implementing picture archiving and communication systems (PACS) in radiology?
+    - I'm curious about the role of radiology in emergency medicine. Any insights?
+    - Can you provide examples of how radiology is used in assessing environmental health risks?
+    - What are the key considerations in developing radiation safety training programs for radiology staff?
+    - I'm interested in learning about the role of radiology in global health initiatives. Any resources available?
+    - Can you recommend any radiology research grants for early-career investigators?
+    - What are the main considerations in developing radiation dose optimization strategies in radiology?
+    - I'm considering pursuing a career in interventional radiology. What are the necessary training requirements?
+    - Can you provide an overview of the role of radiology in cancer diagnosis and treatment?
+    - What are the main factors influencing the adoption of digital pathology in radiology departments?
+  
+- intent: contact_us
+  examples: |
+    - Hi, I need to get in touch with someone from support.
+    - Can I speak to a representative, please?
+    - Hello, how can I contact you?
+    - I have a question, how can I reach you?
+    - Hi there! How do I get in touch with your team?
+    - Is there a way to contact support directly?
+    - I need assistance, how can I contact you guys?
+    - Hey, I'm having trouble and need to contact support.
+    - How can I reach out to your customer service team?
+    - Hi, I need to talk to someone about an issue I'm having.
+    - Hello! What's the best way to get in touch with you?
+    - Can you provide me with a way to contact support?
+    - Hi, I have a problem and need to reach out to support.
+    - How do I get in contact with your support team?
+    - Hey there! I have a question, how can I get help?
+    - I need to speak with someone, how can I contact support?
+    - Hello, I need assistance. How can I contact you?
+    - Hi, I need to reach out to your team. How can I do that?
+    - Is there a way to contact support via Telegram?
+    - Can I get some help? How can I contact support?
+    - Hello! I have an issue and need to get in touch with you.
+    - I need assistance, what's the best way to contact you?
+    - Hi, I need to talk to someone about my account.
+    - How do I reach out to your customer support team?
+    - Hey there! I need to get in touch with support.
+    - Can you provide me with a contact for support?
+    - Hi, I have a question. How can I reach you?
+    - Hello, I need help. How can I contact support?
+    - Hi, how do I contact your team for assistance?
+    - Can you give me a way to contact support?
+    - Hey, I'm having trouble and need to contact someone.
+    - How can I speak to a support representative?
+    - Hi there! How do I get help from your team?
+    - Is there a way to contact support through Telegram?
+    - Can I contact support directly from here?
+    - Hello! I need to get in touch with someone from your team.
+    - I have a question, how can I reach out to you?
+    - Hi, I need assistance. How can I contact you?
+    - How do I reach out to your team for help?
+    - Hey, I need to talk to someone about my issue.
+    - Can you provide me with a contact for your support team?
+    - Hi, I need to contact support. How can I do that?
+    - Hello, I have a problem and need assistance.
+    - Hi, how can I get help from your support team?
+    - Can you give me a way to contact your team?
+    - Hey there! I need assistance, how can I contact support?
+    - How can I speak to someone about my account?
+    - Hi, I need to get in touch with support. How can I do that?
+    - Is there a way to contact support via this chatbot?
+    - Can I get assistance by contacting support?
+    - Hello! I have an issue and need to speak with someone.
+    - I need help, what's the best way to contact you?
+    - Hi, I need to contact your team. How can I do that?
+    - Hello, I need assistance. How can I reach out to you?
+    - Hi, how do I contact support for help?
+    - Can you give me a way to contact someone from your team?
+    - Hey, I'm having trouble and need assistance.
+    - How can I speak to a representative about my issue?
+    - Hi there! How do I get in touch with support?
+    - Is there a way to contact support through this chatbot?
+    - Can I contact support directly through Telegram?
+    - Hello! I need to get in touch with someone for help.
+    - I have a question, how can I contact support?
+    - Hi, I need assistance. How can I reach out to you?
+    - How do I reach out to your team for assistance?
+    - Hey, I need to talk to someone about my account.
+    - Can you provide me with a contact for support?
+    - Hi, I need to contact support. How can I do that?
+    - Hello, I have a problem and need assistance.
+    - Hi, how can I get help from your support team?
+    - Can you give me a way to contact your team?
+    - Hey there! I need assistance, how can I contact support?
+    - How can I speak to someone about my issue?
+    - Hi, I need to get in touch with support. How can I do that?
+    - Is there a way to contact support via this chatbot?
+    - Can I get assistance by contacting support?
+    - Hello! I have an issue and need to speak with someone.
+    - I need help, what's the best way to contact you?
+    - Hi, I need to contact your team. How can I do that?
+    - Hello, I need assistance. How can I reach out to you?
+    - Hi, how do I contact support for help?
+    - Can you give me a way to contact someone from your team?
+    - Hey, I'm having trouble and need assistance.
+    - How can I speak to a representative about my issue?
+    - Hi there! How do I get in touch with support?
+    - Is there a way to contact support through this chatbot?
+    - Can I contact support directly through Telegram?
+    - Hello! I need to get in touch with someone for help.
+    - I have a question, how can I contact support?
+    - Hi, I need assistance. How can I reach out to you?
+    - How do I reach out to your team for assistance?
+    - Hey, I need to talk to someone about my account.
+    - Can you provide me with a contact for support?
+    - Hi, I need to contact support. How can I do that?
+    - Hello, I have a problem and need assistance.
+    - Hi, how can I get help from your support team?
+    - Can you give me a way to contact your team?
+    - Hey there! I need assistance, how can I contact support?
+    - How can I speak to someone about my issue?
+    - Hi, I need to get in touch with support. How can I do that?
+    - Is there a way to contact support via this chatbot?
+    - Can I get assistance by contacting support?
+    - Hello! I have an issue and need to speak with someone.
+    - I need help, what's the best way to contact you?
+    - Hi, I need to contact your team. How can I do that?
+    - Hello, I need assistance. How can I reach out to you?
+    - Hi, how do I contact support for help?
+    - Can you give me a way to contact someone 
+    - I'm interested in learning more about psychiatry.
+    - I have a question, how do I reach out to your customer service?
+    - Hello, I'm having an issue. How can I get help?
+    - I need your help 
+
+  
+
+
+
+    
+
+
+
+
+
+
+  
+
