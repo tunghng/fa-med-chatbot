@@ -1,0 +1,101 @@
+version: "3.1"
+
+stories:
+- story: Happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+- story: Say goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+- story: Cheer up
+  steps:
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+- story: Bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+- story: search in abdominal key
+  steps:
+  - intent: search_in_abdominalkey
+  - action: utter_ab
+
+- story: search in anesthesiology key
+  steps:
+  - intent: search_in_aneskey
+  - action: utter_a
+
+- story: search in basic medical key
+  steps:
+  - intent: search_in_basicmdeicalkey
+  - action: utter_b
+
+- story: search in clinical medicine
+  steps:
+  - intent: search_in_clemedicine
+  - action: utter_c
+
+- story: search in entomology key
+  steps:
+  - intent: search_in_entokey
+  - action: utter_e
+
+- story: search in oncology/hematology key
+  steps:
+  - intent: search_in_oncohemakey
+  - action: utter_on
+
+- story: search in obstetrics/gynecology key
+  steps:
+  - intent: search_in_obgynkey
+  - action: utter_o
+
+- story: search in nursing key
+  steps:
+  - intent: search_in_nursekey
+  - action: utter_nu
+
+- story: search in neuropsychiatry key
+  steps:
+  - intent: search_in_neupsykey
+  - action: utter_n
+
+- story: search in veterinary key
+  steps:
+  - intent: search_in_veteriankey
+  - action: utter_v
+
+- story: search in thoracic surgery key
+  steps:
+  - intent: search_in_thoracickey
+  - action: utter_t
+
+- story: search in pocket dentistry key
+  steps:
+  - intent: search_in_pocketdentistry
+  - action: utter_d
+
+- story: search in plastic surgery key
+  steps:
+  - intent: search_in_plasticsurgerykey
+  - action: utter_p
+
+- story: search in musculoskeletal key
+  steps:
+  - intent: search_in_musculoskeletalkey
+  - action: utter_m
+
+- story: search in radiology key
+  steps:
+  - intent: search_in_radiologykey
+  - action: utter_r
+
+- story: contact us
+  steps:
+  - intent: contact_us
+  - action: utter_contact
