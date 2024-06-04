@@ -15,6 +15,10 @@ FA Med Chatbot is a Telegram bot developed using the Gin framework and Telegram 
 ## Telegram Bot
 You can interact with the FA Med Chatbot on Telegram through the following link: [FA Med Chatbot](https://t.me/ClinicalTreeSearch_bot)
 
+## Architecture
+
+![Architecture](statics/architecture.png)
+
 ## Docker
 
 To deploy the CVSeeker application using Docker Compose, follow these steps:

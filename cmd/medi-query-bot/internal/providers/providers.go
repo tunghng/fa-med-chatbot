@@ -11,6 +11,7 @@ import (
 	tlRepositories "med-chat-bot/internal/repositories/telegram"
 	"med-chat-bot/internal/repositories/wordpress"
 	"med-chat-bot/pkg/cfg"
+	"med-chat-bot/pkg/rediscmd"
 )
 
 func init() {
@@ -37,6 +38,8 @@ func BuildContainer() *dig.Container {
 		_ = container.Provide(newMySQLConnection, dig.Name("faquizDB"))
 		_ = container.Provide(newMySQLUserTrackingConnection, dig.Name("trackingDB"))
 
+		_ = container.Provide(rediscmd.NewRedisCmd)
+
 		_ = container.Provide(handlers.NewHandlers)
 		_ = container.Provide(cbHandler.NewChatBotHandler)
 		_ = container.Provide(cbHandler.NewImageHandler)
@@ -45,7 +48,9 @@ func BuildContainer() *dig.Container {
 		_ = container.Provide(chatbotService.NewImageService)
 
 		_ = container.Provide(tlRepositories.NewTelegramChabotRepository)
+		_ = container.Provide(tlRepositories.NewTelegramChabotResponseRepository)
 		_ = container.Provide(wordpress.NewWordpressPostRepository)
+
 	}
 
 	return container
