@@ -1,15 +1,5 @@
 # FA Med Chatbot
 
-FA Med Chatbot is a medical chatbot designed to assist users in getting quick medical information and support. The chatbot is built using Go and can be deployed using Docker.
-
-## Table of Contents
-- [Introduction](#introduction)
-- [Telegram Bot](#telegram-bot)
-- [Docker](#docker)
-
-
-## Introduction
-
 FA Med Chatbot is a Telegram bot developed using the Gin framework and Telegram Bot API. It is specifically designed to assist medical students in retrieving documents and information. The bot leverages Google’s Custom Search API to provide accurate and relevant search results, making it a valuable tool for medical education and research.
 
 ## Telegram Bot
